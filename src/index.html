@@ -8,11 +8,24 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/kognise/water.css/dist/dark.min.css"
     />
+    <link rel="stylesheet" href="./styles/index.css" />
     <script src="./index.js" defer></script>
 
     <title>Meetapp</title>
   </head>
   <body>
-    <h1>hello there 🤓</h1>
+    <main>
+      <h1>Meet's registration 📝</h1>
+
+      <form class="meet__register">
+        <label for="meet-name">What is the meet's name?</label>
+        <input id="meet-name" type="text" />
+
+        <label for="meet-time">What is the meet's duration?</label>
+        <input id="meet-time" type="number" />
+
+        <button class="meet__button" type="submit">Create meet</button>
+      </form>
+    </main>
   </body>
 </html>
