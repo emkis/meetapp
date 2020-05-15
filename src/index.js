@@ -3,8 +3,9 @@ import calculateMinutes from './utils/calculateMinutes'
 
 function makeTrails(meets = []) {
   const trails = []
-  const sanitizedTrails = []
+  let sanitizedTrails = []
   const tempMeets = [...meets]
+
   const MORNING_MINUTES_LIMIT = 180
   const EVENING_MINUTES_LIMIT = 240
 
@@ -67,7 +68,7 @@ function makeTrails(meets = []) {
       return `${time} ${name} ${duration}min`
     }
 
-    sanitizedTrails.push(trails.map(trail => {
+    sanitizedTrails = trails.map(trail => {
       setTime(MORNING_START_TIME, 0)
       const morning = trail.morning.map(meet => formatOutput(meet))
       const lunch = `${LUNCH_START_TIME}:00 Almoço`
@@ -77,7 +78,7 @@ function makeTrails(meets = []) {
       const network = `${hour}:00 Evento de Networking`
 
       return [...morning, lunch, ...evening, network]
-    }))
+    })
   }
 
   getTrails()
