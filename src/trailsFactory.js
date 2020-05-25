@@ -1,12 +1,10 @@
+import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT } from './utils/constants'
 import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
   const trails = []
 
   function build() {
-    const MORNING_MINUTES_LIMIT = 180
-    const EVENING_MINUTES_LIMIT = 240
-
     const mutableMeets = [...meets]
 
     while (mutableMeets.length > 0) {

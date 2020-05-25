@@ -96,20 +96,4 @@ export const meets = [
     name: 'CSS extremo',
     duration: 30
   }
-
-  ,{
-    id: uuid(),
-    name: 'AAAAAAA',
-    duration: 240
-  },
-  {
-    id: uuid(),
-    name: 'BBBBBBB',
-    duration: 182
-  },
-  {
-    id: uuid(),
-    name: 'CCCCCCC',
-    duration: 55
-  }
 ]

@@ -1,6 +1,6 @@
-import trailsFactory from './trailsFactory'
+import coreUI from './ui'
 import { meets } from './meets'
+import trailsFactory from './trailsFactory'
 
-const trails = trailsFactory(meets)
-console.log( trails.build() )
-console.log( trails.buildSchedule() )
+const ui = coreUI(trailsFactory, meets)
+ui.start()
