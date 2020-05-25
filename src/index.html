@@ -15,17 +15,34 @@
   </head>
   <body>
     <main>
-      <h1>Meet's registration 📝</h1>
+      <div class="grid-item">
+        <h3>Meet's registration ✍</h3>
+        <div class="alert"></div>
 
-      <form class="meet__register">
-        <label for="meet-name">What is the meet's name?</label>
-        <input id="meet-name" type="text" />
+        <form class="meet__register">
+          <div class="input-wrapper">
+            <label for="meet-name">What is the meet's name?</label>
+            <input id="meet-name" type="text" />
+          </div>
 
-        <label for="meet-time">What is the meet's duration?</label>
-        <input id="meet-time" type="number" />
+          <div class="input-wrapper">
+            <label for="meet-duration"
+              >What is the meet's duration? <i>in minutes</i></label
+            >
+            <input id="meet-duration" type="number" />
+          </div>
 
-        <button class="meet__button" type="submit">Create meet</button>
-      </form>
+          <button class="meet__button" type="submit">📝 Add meet</button>
+        </form>
+      </div>
+
+      <div class="grid-item">
+        <h3>Meet's list 📖</h3>
+        <ul class="meet-list"></ul>
+        <button id="organizer" class="meet__button">🔨 Organize meets</button>
+      </div>
+
+      <div class="grid-item trails" style="opacity: 0;"></div>
     </main>
   </body>
 </html>

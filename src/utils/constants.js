@@ -1,0 +1,2 @@
+export const MORNING_MINUTES_LIMIT = 180
+export const EVENING_MINUTES_LIMIT = 240
