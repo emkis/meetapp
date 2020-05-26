@@ -1,6 +1,11 @@
+import trailsFactory from './trailsFactory'
+import { meets as originalMeets } from './meets'
 import { haveOnlyLetters, mustNotBeGreaterThanLimit, mustBeMultipleOfFive, isEmpty } from './utils/validators'
 
-function ui(factory, meets) {
+function createUi(configurations = {}) {
+  const meets = configurations.meets || originalMeets
+  const factory = configurations.factory || trailsFactory
+
   const $alert = document.querySelector('.alert')
   const $form = document.querySelector('.meet__register')
   const $nameInput = document.querySelector('#meet-name')
@@ -152,11 +157,11 @@ function ui(factory, meets) {
     return !!state.errors.length
   }
 
-  function start() {
+  function render() {
     renderRawList()
   }
 
-  return { start }
+  return { render }
 }
 
-export default ui
+export default createUi

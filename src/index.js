@@ -1,6 +1,4 @@
-import coreUI from './ui'
-import { meets } from './meets'
-import trailsFactory from './trailsFactory'
+import createUi from './ui'
 
-const ui = coreUI(trailsFactory, meets)
-ui.start()
+const ui = createUi()
+ui.render()
