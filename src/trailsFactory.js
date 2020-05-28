@@ -1,4 +1,4 @@
-import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT } from './utils/constants'
+import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT, MAX_MINUTES_PER_TRAIL } from './utils/constants'
 import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
@@ -25,6 +25,10 @@ function trailsFactory(meets = []) {
       const currentDuration = meets[index].duration
       const accumulator = totalDuration + currentDuration
 
+      if (currentDuration > MAX_MINUTES_PER_TRAIL ) {
+        throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
+      }
+      
       if (accumulator <= periodLimit) {
         totalDuration += currentDuration
         periodMeets.push(meets[index])
