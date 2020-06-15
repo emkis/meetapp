@@ -26,20 +26,32 @@
           </div>
 
           <div class="input-wrapper">
-            <label for="meet-duration"
-              >What is the meet's duration? <i>in minutes</i></label
-            >
+            <label for="meet-duration">
+              What is the meet's duration? <i>in minutes</i>
+            </label>
             <input id="meet-duration" type="number" />
           </div>
 
-          <button class="meet__button" type="submit">📝 Add meet</button>
+          <div class="input-wrapper">
+            <label for="meet-category">What is the meet's category?</label>
+            <select name="meet-category" id="meet-category">
+              <option value="">Choose a category</option>
+            </select>
+          </div>
+
+          <button class="meet__button" type="submit">Add meet 📝</button>
         </form>
       </div>
 
       <div class="grid-item">
         <h3>Meet's list 📖</h3>
         <ul class="meet-list"></ul>
-        <button id="organizer" class="meet__button">🔨 Organize meets</button>
+        <button id="organizer" class="meet__button">Organize meets 🔨</button>
+      </div>
+
+      <div class="grid-item filters" style="opacity: 0;">
+        <h3>Categories 📌</h3>
+        <div class="filters-list"></div>
       </div>
 
       <div class="grid-item trails" style="opacity: 0;"></div>
