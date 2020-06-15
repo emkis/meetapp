@@ -1,99 +1,99 @@
-import uuid from './utils/generateID'
+import { CATEGORIES } from "./utils/constants"
 
 export const meets = [
   {
-    id: uuid(),
     name: 'Escrita rápida de testes',
+    category: CATEGORIES.TEST,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Python extremo',
+    category: CATEGORIES.ADVANCED_TOPICS,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Lua em 21 dias',
+    category: CATEGORIES.BEGGINER,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'Ruby sem erros',
+    category: CATEGORIES.ADVANCED_TOPICS,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Erros comuns de Ruby',
+    category: CATEGORIES.BEGGINER,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Ruby para quem sabe Python',
+    category: CATEGORIES.BEGGINER,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Comunicação a Distância',
+    category: CATEGORIES.AGILE,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Desenvolvimento Orientado a Contabilidade',
+    category: CATEGORIES.AGILE,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Rust for dummies',
+    category: CATEGORIES.BEGGINER,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'Sente-se e escreva',
+    category: CATEGORIES.AGILE,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'Programação em Par vs Ruído',
+    category: CATEGORIES.ADVANCED_TOPICS,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Java Magic',
+    category: CATEGORIES.BACKEND,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Java 13',
+    category: CATEGORIES.BACKEND,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Clojure é bom (no meu projeto)',
+    category: CATEGORIES.ADVANCED_TOPICS,
     duration: 45
   },
   {
-    id: uuid(),
     name: 'Scala avançado',
+    category: CATEGORIES.ADVANCED_TOPICS,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'Ruby vs. Clojure para desenvolvimento de back-end',
+    category: CATEGORIES.BACKEND,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'Kotlin sobre rodas',
+    category: CATEGORIES.BACKEND,
     duration: 60
   },
   {
-    id: uuid(),
     name: 'Um mundo sem hackersNews',
+    category: CATEGORIES.AGILE,
     duration: 30
   },
   {
-    id: uuid(),
     name: 'CSS extremo',
+    category: CATEGORIES.FRONTEND,
     duration: 30
   }
 ]

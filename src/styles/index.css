@@ -5,7 +5,9 @@
 }
 
 :root {
-  --color-accent: #fe2946;
+  --color-attention: #fe2946;
+  --color-accent: #ffc83d;
+  --color-selected: rgba(255, 200, 61, 0.3);
   --color-faded: rgba(255, 255, 255, 0.1);
   --radius: 6px;
   --default-space: 1.25rem;
@@ -37,7 +39,8 @@ button {
 }
 
 button,
-input {
+input,
+select {
   margin: 0;
   width: 100%;
 }
@@ -69,7 +72,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: var(--default-space);
   text-align: center;
   border-radius: var(--radius);
-  background: var(--color-accent);
+  background: var(--color-attention);
   display: none;
 }
 
@@ -138,6 +141,55 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: var(--radius);
 }
 
+.trail-list > li span {
+  margin-right: 6px;
+}
+
 .trail-list > li + li {
   margin-top: 0.3125rem;
+}
+
+.trail-list.filtered > li {
+  opacity: 0.25;
+}
+
+.trail-list.filtered > li span {
+  color: white;
+}
+
+.trail-list.filtered > li.found {
+  color: var(--color-accent);
+  opacity: 1;
+}
+
+.filters {
+  grid-column: span 2;
+  transition: opacity 200ms ease;
+}
+
+.filters .filters-list {
+  display: flex;
+  flex-grow: 2;
+}
+
+.filters .filters-list > .filter {
+  padding: 10px 16px;
+  background: var(--color-faded);
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.filters .filters-list > .filter:hover {
+  opacity: 0.8;
+}
+
+.filters .filters-list > .filter.selected {
+  border: 2px solid var(--color-accent);
+  background: var(--color-selected);
+}
+
+.filters .filters-list > .filter + .filter {
+  margin-left: 10px;
 }

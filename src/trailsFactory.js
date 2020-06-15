@@ -28,7 +28,7 @@ function trailsFactory(meets = []) {
       if (currentDuration > MAX_MINUTES_PER_TRAIL ) {
         throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
       }
-      
+
       if (accumulator <= periodLimit) {
         totalDuration += currentDuration
         periodMeets.push(meets[index])
@@ -70,17 +70,21 @@ function trailsFactory(meets = []) {
       const time = `${hour}:${!!minute ? minute : '00'}`
       incrementTime(duration)
 
-      return `${time} ${name} ${duration}min`
+      return {
+        time: `${time}`,
+        name: `${name} ${duration}min`,
+        category: meet.category
+      }
     }
 
     sanitizedTrails = trails.map(trail => {
       setTime(MORNING_START_TIME, 0)
       const morning = trail.morning.map(meet => formatOutput(meet))
-      const lunch = `${LUNCH_START_TIME}:00 Almoço`
+      const lunch = { time: `${LUNCH_START_TIME}:00`, name: 'Almoço' }
 
       setTime(EVENING_START_TIME, 0)
       const evening = trail.evening.map(meet => formatOutput(meet))
-      const network = `${hour}:00 Evento de Networking`
+      const network = { time: `${hour}:00`, name: 'Evento de Networking' }
 
       return [...morning, lunch, ...evening, network]
     })
