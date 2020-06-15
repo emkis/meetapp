@@ -178,6 +178,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: var(--radius);
   border: 2px solid transparent;
   cursor: pointer;
+  box-shadow: none;
 }
 
 .filters .filters-list > .filter:hover {
