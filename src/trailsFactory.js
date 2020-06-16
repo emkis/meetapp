@@ -1,4 +1,8 @@
-import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT, MAX_MINUTES_PER_TRAIL } from './utils/constants'
+import {
+  MORNING_MINUTES_LIMIT,
+  EVENING_MINUTES_LIMIT,
+  MAX_MINUTES_PER_TRAIL,
+  CATEGORIES } from './utils/constants'
 import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
@@ -17,25 +21,76 @@ function trailsFactory(meets = []) {
     return trails
   }
 
+  // rules
+  function alreadyUsed(meetCategory, usedMeets) {
+    return usedMeets.some(meet => meet === meetCategory)
+  }
+
+  function allCategoriesUsed(categories, usedCategories) {
+    const categoriesLength = Object.keys(categories).length
+    const usedCategoriesLength = usedCategories.length
+
+    return categoriesLength === usedCategoriesLength
+  }
+
+  function isPreviousCategory(currentCategory, usedCategories) {
+    const lastCategoryPosition = usedCategories.length - 1
+    const previousCategory = usedCategories[lastCategoryPosition]
+
+    return currentCategory === previousCategory
+  }
+
   function getPeriod(meets, periodLimit) {
+    const usedCategories = []
     const periodMeets = []
     let totalDuration = 0
 
+    function addMeetToPeriod(currentIndex, duration, currentCategory) {
+      usedCategories.push(currentCategory)
+
+      totalDuration += duration
+      periodMeets.push(meets[currentIndex])
+      meets.splice(currentIndex, 1)
+    }
+
     for (let index = 0; index < meets.length; index++) {
       const currentDuration = meets[index].duration
+      const currentCategory = meets[index].category
       const accumulator = totalDuration + currentDuration
 
-      if (currentDuration > MAX_MINUTES_PER_TRAIL ) {
+      if (currentDuration > MAX_MINUTES_PER_TRAIL) {
         throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
       }
 
-      if (accumulator <= periodLimit) {
-        totalDuration += currentDuration
-        periodMeets.push(meets[index])
-        meets.splice(index, 1)
-        index--
+      if (!alreadyUsed(currentCategory, usedCategories)) {
+        if (accumulator <= periodLimit) {
+          addMeetToPeriod(index, currentDuration, currentCategory)
+          index--
 
-        if (accumulator === periodLimit) break
+          if (accumulator === periodLimit) break
+        }
+      }
+    }
+
+    for (let index = 0; index < meets.length; index++) {
+      const currentDuration = meets[index].duration
+      const currentCategory = meets[index].category
+      const accumulator = totalDuration + currentDuration
+
+      if (alreadyUsed(currentCategory, usedCategories) && !isPreviousCategory(currentCategory, usedCategories)) {
+        if (accumulator <= periodLimit) {
+          addMeetToPeriod(index, currentDuration, currentCategory)
+          index--
+
+          if (accumulator === periodLimit) break
+        }
+      } else {
+        if (accumulator <= periodLimit) {
+          addMeetToPeriod(index, currentDuration, currentCategory)
+          index--
+
+          if (accumulator === periodLimit) break
+        }
       }
     }
 
