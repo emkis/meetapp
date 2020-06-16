@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-import {
-  MORNING_MINUTES_LIMIT,
-  EVENING_MINUTES_LIMIT,
-  MAX_MINUTES_PER_TRAIL,
-  CATEGORIES } from './utils/constants'
-=======
 import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT, MAX_MINUTES_PER_TRAIL } from './utils/constants'
->>>>>>> 7f273ace0e42ac4fb23209d00db276958fdf0191
 import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
@@ -25,16 +17,8 @@ function trailsFactory(meets = []) {
     return trails
   }
 
-  // rules
-  function alreadyUsed(meetCategory, usedMeets) {
+  function categoryAlreadyUsed(meetCategory, usedMeets) {
     return usedMeets.some(meet => meet === meetCategory)
-  }
-
-  function allCategoriesUsed(categories, usedCategories) {
-    const categoriesLength = Object.keys(categories).length
-    const usedCategoriesLength = usedCategories.length
-
-    return categoriesLength === usedCategoriesLength
   }
 
   function isPreviousCategory(currentCategory, usedCategories) {
@@ -66,7 +50,7 @@ function trailsFactory(meets = []) {
         throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
       }
 
-      if (!alreadyUsed(currentCategory, usedCategories)) {
+      if (!categoryAlreadyUsed(currentCategory, usedCategories)) {
         if (accumulator <= periodLimit) {
           addMeetToPeriod(index, currentDuration, currentCategory)
           index--
@@ -81,7 +65,7 @@ function trailsFactory(meets = []) {
       const currentCategory = meets[index].category
       const accumulator = totalDuration + currentDuration
 
-      if (alreadyUsed(currentCategory, usedCategories) && !isPreviousCategory(currentCategory, usedCategories)) {
+      if (categoryAlreadyUsed(currentCategory, usedCategories) && !isPreviousCategory(currentCategory, usedCategories)) {
         if (accumulator <= periodLimit) {
           addMeetToPeriod(index, currentDuration, currentCategory)
           index--
