@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import {
   MORNING_MINUTES_LIMIT,
   EVENING_MINUTES_LIMIT,
   MAX_MINUTES_PER_TRAIL,
   CATEGORIES } from './utils/constants'
+=======
+import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT, MAX_MINUTES_PER_TRAIL } from './utils/constants'
+>>>>>>> 7f273ace0e42ac4fb23209d00db276958fdf0191
 import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
@@ -58,9 +62,21 @@ function trailsFactory(meets = []) {
       const currentCategory = meets[index].category
       const accumulator = totalDuration + currentDuration
 
+<<<<<<< HEAD
       if (currentDuration > MAX_MINUTES_PER_TRAIL) {
         throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
       }
+=======
+      if (currentDuration > MAX_MINUTES_PER_TRAIL ) {
+        throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
+      }
+
+      if (accumulator <= periodLimit) {
+        totalDuration += currentDuration
+        periodMeets.push(meets[index])
+        meets.splice(index, 1)
+        index--
+>>>>>>> 7f273ace0e42ac4fb23209d00db276958fdf0191
 
       if (!alreadyUsed(currentCategory, usedCategories)) {
         if (accumulator <= periodLimit) {
