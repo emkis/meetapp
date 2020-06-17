@@ -8,6 +8,10 @@
       <div class="options-list">
         <button class="option-item">Edit meet</button>
         <button class="option-item">Remove meet</button>
+        <button class="option-item" style="color: #fa5f1c;">
+          <IconAttention color="#fa5f1c" style="margin: 0 2px -2px 0;" />
+          Click to confirm
+        </button>
       </div>
     </template>
 
@@ -22,10 +26,10 @@
 </template>
 
 <script>
-import { IconOptions, IconClock } from '@/components/icons'
+import { IconOptions, IconClock, IconAttention } from '@/components/icons'
 
 export default {
-  components: { IconOptions, IconClock },
+  components: { IconOptions, IconClock, IconAttention },
   props: {
     id: {
       type: String,
@@ -150,9 +154,11 @@ export default {
     top: rem(60px);
     right: rem(20px);
     padding: rem(6px 0);
+    min-width: rem(160px);
     max-width: rem(250px);
     overflow: hidden;
     user-select: none;
+    z-index: $layer_two;
 
     background: white;
     border-radius: var(--border-radius);
