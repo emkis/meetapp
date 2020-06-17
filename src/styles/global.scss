@@ -1,0 +1,24 @@
+@import '~normalize.css';
+@import 'reset';
+@import 'colors';
+
+html,
+body,
+#app {
+  height: 100vh; /* fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+body,
+#app {
+  min-height: 100%;
+}
+
+#app {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
