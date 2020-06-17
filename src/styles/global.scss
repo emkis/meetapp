@@ -5,6 +5,7 @@
   --color-primary: #26265e;
   --color-primary-faded: rgba(38, 38, 94, 0.2);
   --color-gray-primary: #e7e7e7;
+  --color-attention: #fa5f1c;
 
   --border-radius: 10px;
   --grid-grap: 40px;
@@ -15,6 +16,7 @@ body,
 #app {
   height: 100vh; /* fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
+  scroll-behavior: smooth;
 }
 
 body,
