@@ -1,8 +1,11 @@
 @import '~normalize.css';
 @import 'reset';
-@import 'colors';
 
 :root {
+  --color-primary: #26265e;
+  --color-primary-faded: rgba(38, 38, 94, 0.2);
+  --color-gray-primary: #e7e7e7;
+
   --border-radius: 10px;
   --grid-grap: 40px;
 }
