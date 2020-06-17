@@ -2,6 +2,10 @@
 @import 'reset';
 @import 'colors';
 
+:root {
+  --border-radius: 10px;
+}
+
 html,
 body,
 #app {
@@ -15,10 +19,18 @@ body,
 }
 
 #app {
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-family: $font-body;
   font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $font-title;
 }
