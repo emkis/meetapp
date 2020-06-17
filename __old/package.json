@@ -1,0 +1,21 @@
+{
+  "name": "meetaap",
+  "description": "meetapp is a service to help you organize events",
+  "version": "0.1.0",
+  "main": "src/index.html",
+  "repository": "https://github.com/emkis/meetaap.git",
+  "author": "Nicolas Jardim <nicolasemkis@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url ./ --no-source-maps",
+    "test": "jest --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "parcel": "^1.12.4"
+  }
+}
