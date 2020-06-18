@@ -1,23 +1,79 @@
 <template>
   <form id="registration-form" @submit.prevent="handleSubmit">
-    <Input label="Meet name" />
-    <Input label="Meet duration" />
-    <InputSelect label="Meet category" :options="['yesssss', 'no', 'what']" />
+    <BaseInput
+      label="Meet name"
+      v-model.trim="meetName"
+      @input="$v.meetName.$touch()"
+      :isValid="!$v.meetName.$invalid"
+      :hasError="$v.meetName.$error"
+    >
+      <template #requirements>
+        <p v-if="!$v.meetName.required">You need to provide a name</p>
+        <p v-else-if="!$v.meetName.haveOnlyLetters">Only letters are allowed</p>
+      </template>
+    </BaseInput>
+
+    <InputDuration
+      label="Meet duration"
+      v-model="meetDuration"
+      :v="$v.meetDuration"
+    />
+
+    <InputSelect
+      label="Meet category"
+      placeholder="Choose a category"
+      :options="['yesssss', 'no', 'what']"
+      v-model.trim="meetCategory"
+      @input="$v.meetCategory.$touch()"
+      :isValid="!$v.meetCategory.$invalid"
+      :hasError="$v.meetCategory.$error"
+    >
+      <template #requirements>
+        <p v-if="!$v.meetCategory.required">You need to choose a category</p>
+      </template>
+    </InputSelect>
 
     <Button theme="primary" type="submit">Create meet</Button>
   </form>
 </template>
 
 <script>
-import Input from '@/components/Input'
+import { required } from 'vuelidate/lib/validators'
+import { mustBeMultipleOfFive, haveOnlyLetters } from '@/utils/validators'
+
+import BaseInput from '@/components/BaseInput'
+import InputDuration from '@/components/InputDuration'
 import Button from '@/components/Button'
 import InputSelect from '@/components/InputSelect'
 
 export default {
-  components: { Input, Button, InputSelect },
+  name: 'RegistrationForm',
+  components: { BaseInput, InputDuration, Button, InputSelect },
+  data() {
+    return {
+      meetName: '',
+      meetDuration: null,
+      meetCategory: '',
+    }
+  },
+  validations: {
+    meetName: {
+      required,
+      haveOnlyLetters,
+    },
+    meetDuration: {
+      required,
+      mustBeMultipleOfFive,
+    },
+    meetCategory: {
+      required,
+    },
+  },
   methods: {
     handleSubmit() {
+      this.$v.$touch()
       console.log('subitted')
+      console.log(this.meetName, this.meetDuration, this.meetCategory)
     },
   },
 }
@@ -25,7 +81,11 @@ export default {
 
 <style lang="scss" scoped>
 #registration-form {
-  button {
+  > * + * {
+    margin-top: rem(25px);
+  }
+
+  > button {
     margin-top: rem(40px);
   }
 }
