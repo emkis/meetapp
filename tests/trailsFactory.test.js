@@ -1,4 +1,5 @@
 import trailsFactory from "../src/trailsFactory.js"
+import { CATEGORIES } from "../src/utils/constants.js"
 
 describe('#build', () => {
   describe('success', () => {
@@ -14,16 +15,7 @@ describe('#build', () => {
       const trails = trailsFactory(subject)
       const response = trails.build()
 
-      expect(response).toEqual(expect.arrayContaining([
-        {
-          "evening": [{ "duration": 240, "name": "Meet2" }],
-          "morning": [{ "duration": 65, "name": "Meet1" }, { "duration": 30, "name": "Meet4" }, { "duration": 25, "name": "Meet5" }]
-        },
-        {
-          "evening": [],
-          "morning": [{ "duration": 120, "name": "Meet3" }]
-        }
-      ]))
+      expect(response).toEqual(expect.arrayContaining([{"evening": [{"duration": 240, "name": "Meet2"}], "morning": [{"duration": 65, "name": "Meet1"}, {"duration": 30, "name": "Meet4"}, {"duration": 25, "name": "Meet5"}]}, {"evening": [], "morning": [{"duration": 120, "name": "Meet3"}]}]))
     })
   })
 
@@ -66,10 +58,7 @@ describe('#buildSchedule', () => {
     const sanitized_trails = factory.buildSchedule()
 
     expect(sanitized_trails).toEqual(expect.arrayContaining(
-      [
-        ["9:00 Meet1 65min", "10:5 Meet4 30min", "10:35 Meet5 25min", "12:00 Almoço", "13:00 Meet2 240min", "17:00 Evento de Networking"],
-        ["9:00 Meet3 120min", "12:00 Almoço", "13:00 Evento de Networking"]
-      ]))
+      [[{"category": undefined, "name": "Meet1 65min", "time": "9:00"}, {"category": undefined, "name": "Meet4 30min", "time": "10:5"}, {"category": undefined, "name": "Meet5 25min", "time": "10:35"}, {"name": "Almoço", "time": "12:00"}, {"category": undefined, "name": "Meet2 240min", "time": "13:00"}, {"name": "Evento de Networking", "time": "17:00"}], [{"category": undefined, "name": "Meet3 120min", "time": "9:00"}, {"name": "Almoço", "time": "12:00"}, {"name": "Evento de Networking", "time": "13:00"}]]))
   })
 
   it('should return a lunch time within the array', () => {
@@ -77,8 +66,8 @@ describe('#buildSchedule', () => {
     factory.build()
     const sanitized_trails = factory.buildSchedule()
 
-    expect(sanitized_trails[0]).toContain('12:00 Almoço')
-    expect(sanitized_trails[1]).toContain('12:00 Almoço')
+    expect(sanitized_trails[0]).toContainEqual({ time: '12:00', name: 'Almoço' })
+    expect(sanitized_trails[1]).toContainEqual({ time: '12:00', name: 'Almoço' })
   })
 
   it('trail should start at 9am', () => {
@@ -86,8 +75,8 @@ describe('#buildSchedule', () => {
     factory.build()
     const sanitized_trails = factory.buildSchedule()
 
-    expect(sanitized_trails[0]).toContain('9:00 Meet1 65min')
-    expect(sanitized_trails[1]).toContain('9:00 Meet3 120min')
+    expect(sanitized_trails[0]).toContainEqual({"category": undefined, "name": "Meet1 65min", "time": "9:00"})
+    expect(sanitized_trails[1]).toContainEqual({ time: '9:00', name: 'Meet3 120min', category: undefined })
   })
 
   it('should start the first evening meet at 1pm', () => {
@@ -95,8 +84,8 @@ describe('#buildSchedule', () => {
     factory.build()
     const sanitized_trails = factory.buildSchedule()
 
-    expect(sanitized_trails[0]).toContain('13:00 Meet2 240min')
-    expect(sanitized_trails[1]).toContain('13:00 Evento de Networking')
+    expect(sanitized_trails[0]).toContainEqual({"category": undefined, "name": "Meet2 240min", "time": "13:00"})
+    expect(sanitized_trails[1]).toContainEqual({ time: '13:00', name: 'Evento de Networking' })
   })
 
   it('the networking event should start at 5pm', () => {
@@ -104,7 +93,7 @@ describe('#buildSchedule', () => {
     factory.build()
     const sanitized_trails = factory.buildSchedule()
 
-    expect(sanitized_trails[0]).toContain('17:00 Evento de Networking')
+    expect(sanitized_trails[0]).toContainEqual({ time: '17:00', name: 'Evento de Networking' })
   })
 
   it('should return a trail without empty scape between meets', () => {
@@ -119,7 +108,11 @@ describe('#buildSchedule', () => {
     const sanitized_trails = factory.buildSchedule()
 
     expect(sanitized_trails[0]).toEqual(
-      [ '9:00 Meet1 65min', '10:5 Meet4 30min', '10:35 Meet5 25min',
-        '12:00 Almoço', '13:00 Meet2 240min', '17:00 Evento de Networking' ])
+      [ { time: '9:00', name: 'Meet1 65min', category: undefined },
+      { time: '10:5', name: 'Meet4 30min', category: undefined },
+      { time: '10:35', name: 'Meet5 25min', category: undefined },
+      { time: '12:00', name: 'Almoço' },
+      { time: '13:00', name: 'Meet2 240min', category: undefined },
+      { time: '17:00', name: 'Evento de Networking' } ])
   })
 })
