@@ -158,7 +158,7 @@ export default {
     max-width: rem(250px);
     overflow: hidden;
     user-select: none;
-    z-index: $layer_two;
+    z-index: $layer-popover;
 
     background: white;
     border-radius: var(--border-radius);
