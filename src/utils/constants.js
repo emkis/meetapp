@@ -4,7 +4,7 @@ export const MAX_MINUTES_PER_TRAIL = 420
 
 export const CATEGORIES = {
   ADVANCED_TOPICS: 'Advanced Topics',
-  BEGGINER: 'Begginer',
+  BEGINNER: 'Beginner',
   FRONTEND: 'Frontend',
   BACKEND: 'Backend',
   AGILE: 'Agile',
