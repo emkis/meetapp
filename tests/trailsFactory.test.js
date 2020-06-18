@@ -57,8 +57,6 @@ describe('#buildSchedule', () => {
     factory.build()
     const sanitized_trails = factory.buildSchedule()
 
-    console.log(sanitized_trails)
-
     expect(sanitized_trails).toEqual(expect.arrayContaining(
       [[{"category": undefined, "name": "Meet1 65min", "time": "9:00"}, {"category": undefined, "name": "Meet4 30min", "time": "10:05"}, {"category": undefined, "name": "Meet5 25min", "time": "10:35"}, {"name": "Almoço", "time": "12:00"}, {"category": undefined, "name": "Meet2 240min", "time": "13:00"}, {"name": "Evento de Networking", "time": "17:00"}], [{"category": undefined, "name": "Meet3 120min", "time": "9:00"}, {"name": "Almoço", "time": "12:00"}, {"name": "Evento de Networking", "time": "13:00"}]]))
   })
