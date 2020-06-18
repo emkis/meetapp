@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group">
+  <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
     <label @click="focus">{{ label }}</label>
     <input
       ref="input"
@@ -8,16 +8,27 @@
       :value="value"
       :aria-label="label"
     />
+
+    <div class="message" v-if="hasError"><slot name="requirements" /></div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'BaseInput',
   inheritAttrs: false,
   props: {
     label: {
       type: String,
       required: true,
+    },
+    isValid: {
+      type: Boolean,
+      default: false,
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
     },
     value: {
       type: [String, Number],
@@ -37,14 +48,26 @@ export default {
 
 <style lang="scss" scoped>
 .input-group {
-  width: 100%;
+  --background-color: var(--color-gray-primary);
+  --default-color: var(--color-primary);
+  $space-after: 25px;
 
-  & + & {
-    margin-top: rem(25px);
+  &.has-error {
+    --background-color: rgba(217, 48, 37, 0.2);
+    --default-color: rgb(217, 48, 37);
   }
 
-  label {
-    display: block;
+  &.valid {
+    --background-color: rgba(37, 217, 37, 0.2);
+    --default-color: rgb(37, 217, 37);
+  }
+
+  & + & {
+    margin-top: rem($space-after);
+  }
+
+  > label {
+    display: inline-block;
     margin-bottom: rem(10px);
 
     font-size: rem(18px);
@@ -53,7 +76,7 @@ export default {
     color: var(--color-primary);
   }
 
-  input {
+  > input {
     width: 100%;
     min-height: rem(55px);
     padding: rem(8px 20px);
@@ -62,14 +85,22 @@ export default {
     border: 2px solid transparent;
     border-radius: var(--border-radius);
     color: var(--color-primary);
-    background: var(--color-gray-primary);
-    transition: border 200ms ease-out;
+    background: var(--background-color);
+    transition: background 200ms ease-out, border 200ms ease-out;
 
     &:focus,
     &:active {
       outline: none;
-      border-color: var(--color-primary);
+      border-color: var(--default-color);
     }
+  }
+
+  > .message {
+    margin-top: rem(6px);
+    font-size: rem(14px);
+    line-height: 1.3;
+
+    color: var(--default-color);
   }
 }
 </style>
