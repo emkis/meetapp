@@ -110,7 +110,9 @@ function trailsFactory(meets = []) {
     function formatOutput(meet) {
       const name = meet.name
       const duration = meet.duration
-      const time = `${hour}:${!!minute ? minute : '00'}`
+      const sanitizedMinutes = minute < 10 ? `0${minute}` : minute
+
+      const time = `${hour}:${!!sanitizedMinutes ? sanitizedMinutes : '00'}`
       incrementTime(duration)
 
       return {
