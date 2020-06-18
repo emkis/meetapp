@@ -129,7 +129,10 @@ function trailsFactory(meets = []) {
 
       setTime(EVENING_START_TIME, 0)
       const evening = trail.evening.map(meet => formatOutput(meet))
-      const network = { time: `${hour}:00`, name: 'Evento de Networking' }
+
+      const sanatizedMinute = minute < 10 ? `0${minute}` : minute
+
+      const network = { time: `${hour}:${sanatizedMinute}`, name: 'Evento de Networking' }
 
       return [...morning, lunch, ...evening, network]
     })
