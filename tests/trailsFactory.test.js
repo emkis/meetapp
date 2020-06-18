@@ -1,4 +1,5 @@
 import trailsFactory from '../src/trailsFactory.js'
+import { CATEGORIES } from '../src/utils/constants'
 
 describe('#build', () => {
   describe('success', () => {
@@ -119,6 +120,7 @@ describe('#buildSchedule', () => {
       { name: 'Meet4', duration: 30 },
       { name: 'Meet5', duration: 25 }
     ]
+
     const factory = trailsFactory(subject)
     factory.build()
     const sanitized_trails = factory.buildSchedule()
@@ -132,5 +134,51 @@ describe('#buildSchedule', () => {
         { time: '13:00', name: 'Meet2 240min', category: undefined },
         { time: '17:00', name: 'Evento de Networking' }
       ])
+  })
+
+  it('if there are no different categories, do not repeat the same category as the previous meet', () => {
+    const subject = [
+        { name: 'AAA', category: CATEGORIES.FRONTEND, duration: 15 },
+        { name: 'BBB', category: CATEGORIES.BACKEND, duration: 15 },
+        { name: 'CCC', category: CATEGORIES.FRONTEND, duration: 15 },
+        { name: 'DDD', category: CATEGORIES.BEGINNER, duration: 15 },
+      ]
+
+      const factory = trailsFactory(subject)
+      factory.build()
+      const sanitized_trails = factory.buildSchedule()
+
+      expect(sanitized_trails[0]).toEqual(
+        [
+          { time: '9:00', name: 'AAA 15min', category: CATEGORIES.FRONTEND },
+          { time: '9:15', name: 'BBB 15min', category: CATEGORIES.BACKEND },
+          { time: '9:30', name: 'DDD 15min', category: CATEGORIES.BEGINNER },
+          { time: '9:45', name: 'CCC 15min', category: CATEGORIES.FRONTEND },
+          { time: '12:00', name: 'Almoço' },
+          { time: '13:00', name: 'Evento de Networking' }
+        ])
+  })
+
+  it('if there is no other category to organize, repeat the previous category', () => {
+    const subject = [
+        { name: 'AAA', category: CATEGORIES.FRONTEND, duration: 15 },
+        { name: 'BBB', category: CATEGORIES.FRONTEND, duration: 15 },
+        { name: 'CCC', category: CATEGORIES.FRONTEND, duration: 15 },
+        { name: 'DDD', category: CATEGORIES.FRONTEND, duration: 15 },
+      ]
+
+      const factory = trailsFactory(subject)
+      factory.build()
+      const sanitized_trails = factory.buildSchedule()
+
+      expect(sanitized_trails[0]).toEqual(
+        [
+          { time: '9:00', name: 'AAA 15min', category: CATEGORIES.FRONTEND },
+          { time: '9:15', name: 'BBB 15min', category: CATEGORIES.FRONTEND },
+          { time: '9:30', name: 'CCC 15min', category: CATEGORIES.FRONTEND },
+          { time: '9:45', name: 'DDD 15min', category: CATEGORIES.FRONTEND },
+          { time: '12:00', name: 'Almoço' },
+          { time: '13:00', name: 'Evento de Networking' }
+        ])
   })
 })
