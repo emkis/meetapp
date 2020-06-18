@@ -1,37 +1,60 @@
 <template>
-  <div class="input-group">
+  <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
     <label @click="focus">{{ label }}</label>
 
-    <select
-      ref="input"
-      :aria-label="label"
-      v-on="listeners"
-      v-bind="$attrs"
-      @input="updateValue"
-      :value="value"
-    >
-      <option
-        v-for="option in options"
-        :key="option"
-        :selected="option === value"
+    <div class="wrapper">
+      <IconArrowDown size="26" color="#333" />
+
+      <select
+        ref="input"
+        @input="updateValue"
+        v-on="listeners"
+        v-bind="$attrs"
+        :value="value"
+        :aria-label="label"
       >
-        {{ option }}
-      </option>
-    </select>
+        <option value="" selected disabled>{{ placeholder }}</option>
+        <option
+          v-for="option in options"
+          :key="option"
+          :selected="option === value"
+        >
+          {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="message" v-if="hasError"><slot name="requirements" /></div>
   </div>
 </template>
 
 <script>
+import { IconArrowDown } from '@/components/icons'
+
 export default {
+  name: 'InputSelect',
   inheritAttrs: false,
+  components: { IconArrowDown },
   props: {
     label: {
+      type: String,
+      required: true,
+    },
+    placeholder: {
       type: String,
       required: true,
     },
     options: {
       type: Array,
       required: true,
+    },
+    isValid: {
+      type: Boolean,
+      default: false,
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
     },
     value: {
       type: [String, Number],
@@ -60,10 +83,22 @@ export default {
 
 <style lang="scss" scoped>
 .input-group {
-  width: 100%;
+  --background-color: var(--color-gray-primary);
+  --default-color: var(--color-primary);
+  $space-after: 25px;
+
+  &.has-error {
+    --background-color: rgba(217, 48, 37, 0.2);
+    --default-color: rgb(217, 48, 37);
+  }
+
+  &.valid {
+    --background-color: rgba(37, 217, 37, 0.2);
+    --default-color: rgb(37, 217, 37);
+  }
 
   & + & {
-    margin-top: rem(25px);
+    margin-top: rem($space-after);
   }
 
   label {
@@ -87,14 +122,36 @@ export default {
     border: 2px solid transparent;
     border-radius: var(--border-radius);
     color: var(--color-primary);
-    background: var(--color-gray-primary);
+    background: var(--background-color);
     transition: border 200ms ease-out;
 
     &:focus,
     &:active {
       outline: none;
-      border-color: var(--color-primary);
+      border-color: var(--default-color);
     }
+  }
+
+  > .wrapper {
+    position: relative;
+
+    > svg {
+      position: absolute;
+      top: 50%;
+      right: rem(26px);
+      transform: translateY(-50%);
+      margin-top: 1px;
+      display: inline-block;
+      pointer-events: none;
+    }
+  }
+
+  > .message {
+    margin-top: rem(6px);
+    font-size: rem(14px);
+    line-height: 1.3;
+
+    color: var(--default-color);
   }
 }
 </style>
