@@ -2,15 +2,13 @@
   <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
     <label @click="focus">{{ label }}</label>
 
-    <div class="wrapper">
-      <input
-        ref="input"
-        @input="updateValue"
-        v-bind="$attrs"
-        :value="value"
-        :aria-label="label"
-      />
-    </div>
+    <input
+      ref="input"
+      @input="updateValue"
+      v-bind="$attrs"
+      :value="value"
+      :aria-label="label"
+    />
 
     <div class="message" v-if="hasError"><slot name="requirements" /></div>
   </div>
@@ -84,7 +82,7 @@ export default {
   input {
     width: 100%;
     min-height: rem(55px);
-    padding: rem(8px 60px 8px 20px);
+    padding: rem(8px 20px);
 
     box-shadow: none;
     border: 2px solid transparent;
@@ -98,19 +96,6 @@ export default {
       --background-color: white;
       border-color: var(--default-color);
       outline: none;
-    }
-  }
-
-  > .wrapper {
-    position: relative;
-
-    &::before {
-      position: absolute;
-      content: '😸🙀😿😄🤔😯';
-      top: 50%;
-      right: rem(26px);
-      transform: translateY(-50%);
-      pointer-events: none;
     }
   }
 
