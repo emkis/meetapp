@@ -56,13 +56,15 @@ export default {
   $space-after: 25px;
 
   &.has-error {
-    --background-color: rgba(217, 48, 37, 0.2);
-    --default-color: rgb(217, 48, 37);
+    --default-color: var(--color-input-has-error);
+
+    input {
+      border-color: var(--default-color);
+    }
   }
 
   &.valid {
-    --background-color: rgba(37, 217, 37, 0.2);
-    --default-color: rgb(37, 217, 37);
+    --default-color: var(--color-input-valid);
   }
 
   & + & {
@@ -93,8 +95,9 @@ export default {
 
     &:focus,
     &:active {
-      outline: none;
+      --background-color: white;
       border-color: var(--default-color);
+      outline: none;
     }
   }
 
