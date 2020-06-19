@@ -39,7 +39,11 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import { mustBeMultipleOfFive, haveOnlyLetters } from '@/utils/validators'
+import {
+  isMultipleOfFive,
+  haveOnlyLetters,
+  isLessThanLimit,
+} from '@/utils/validators'
 
 import BaseInput from '@/components/BaseInput'
 import InputDuration from '@/components/InputDuration'
@@ -63,7 +67,8 @@ export default {
     },
     meetDuration: {
       required,
-      mustBeMultipleOfFive,
+      isMultipleOfFive,
+      isLessThanLimit,
     },
     meetCategory: {
       required,
@@ -87,6 +92,7 @@ export default {
 
   > button {
     margin-top: rem(40px);
+    min-height: rem(55px);
   }
 }
 </style>
