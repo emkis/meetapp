@@ -70,7 +70,7 @@ export default {
   position: relative;
   padding: rem(25px 36px);
 
-  background: rgba(173, 216, 230, 0.5);
+  background: #f6f4ff;
   border-radius: var(--border-radius);
   color: var(--color-primary);
 
