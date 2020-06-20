@@ -1,19 +1,8 @@
 <template>
   <div class="meet">
-    <button v-if="hasOptions" class="options" @click="toggleOptions">
+    <button v-if="hasOptions" class="options" @click="openContextMenu">
       <IconOptions size="35" color="#26265e" />
     </button>
-
-    <template v-if="optionsIsVisible">
-      <div class="options-list">
-        <button class="option-item">Edit meet</button>
-        <button class="option-item">Remove meet</button>
-        <button class="option-item" style="color: #fa5f1c;">
-          <IconAttention color="#fa5f1c" style="margin: 0 2px -2px 0;" />
-          Click to confirm
-        </button>
-      </div>
-    </template>
 
     <h4 class="title">Ruby vs. Clojure para desenvolvimento de back-end</h4>
     <p class="category">Frontend</p>
@@ -26,10 +15,12 @@
 </template>
 
 <script>
-import { IconOptions, IconClock, IconAttention } from '@/components/icons'
+import { ContextMenuBus } from '@/eventBus'
+import { IconOptions, IconClock } from '@/components/icons'
+import ButtonConfirm from '@/components/ButtonConfirm'
 
 export default {
-  components: { IconOptions, IconClock, IconAttention },
+  components: { IconOptions, IconClock },
   props: {
     id: {
       type: String,
@@ -46,14 +37,32 @@ export default {
     },
     duration: [Number, String],
   },
-  data() {
-    return {
-      optionsIsVisible: false,
-    }
-  },
   methods: {
-    toggleOptions() {
-      this.optionsIsVisible = !this.optionsIsVisible
+    openContextMenu(event) {
+      const removeMeetFunction = () => {
+        alert('deleting meet...')
+        ContextMenuBus.$emit('@context-menu/CLOSE')
+      }
+
+      const options = [
+        { label: 'Edit meet', action: () => alert('hey') },
+        {
+          component: ButtonConfirm,
+          props: {
+            label: 'Remove meet',
+            confirmAction: removeMeetFunction,
+          },
+        },
+      ]
+
+      const { x, y } = event.target.getBoundingClientRect()
+      const buttonOptionHeight = 40
+      const offsetFromContextMenu = 130
+
+      ContextMenuBus.$emit('@context-menu/OPEN', {
+        options,
+        position: { x: x - offsetFromContextMenu, y: y + buttonOptionHeight },
+      })
     },
     editMeet() {
       console.log('editing meet')
@@ -146,39 +155,6 @@ export default {
 
     &:hover::before {
       opacity: 1;
-    }
-  }
-
-  .options-list {
-    position: absolute;
-    top: rem(60px);
-    right: rem(20px);
-    padding: rem(6px 0);
-    min-width: rem(160px);
-    max-width: rem(250px);
-    overflow: hidden;
-    user-select: none;
-    z-index: $layer-popover;
-
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-
-    .option-item {
-      all: unset;
-      display: block;
-      max-width: 100%;
-      width: 100%;
-      padding: rem(15px);
-      cursor: pointer;
-
-      text-align: left;
-      color: var(--color-primary);
-      transition: background 100ms ease;
-
-      &:hover {
-        background: var(--color-gray-primary);
-      }
     }
   }
 }
