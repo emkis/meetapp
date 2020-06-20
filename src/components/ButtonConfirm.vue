@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .button-confirm {
-  color: #fa5f1c !important;
+  color: var(--color-attention) !important;
 
   > svg {
     margin: 0 2px -2px 0;
