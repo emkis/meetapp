@@ -43,9 +43,7 @@ export default {
   },
   watch: {
     clickedTimes(currentValue) {
-      if (currentValue === 2) {
-        this.confirmAction()
-      }
+      if (currentValue === 2) this.confirmAction()
     },
   },
 }
