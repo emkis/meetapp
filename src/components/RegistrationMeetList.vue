@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
 .meet-list {
-  max-height: 400px;
+  max-height: 420px;
   overflow: auto;
   overscroll-behavior: contain;
 }
