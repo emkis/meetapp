@@ -45,13 +45,17 @@ export default {
   },
   methods: {
     openContextMenu(event) {
+      const editMeetFunction = () => {
+        alert('editing meet...')
+      }
+
       const removeMeetFunction = () => {
         alert('deleting meet...')
         ContextMenuBus.$emit('@context-menu/CLOSE')
       }
 
       const options = [
-        { label: 'Edit meet', action: () => alert('hey') },
+        { label: 'Edit meet', action: editMeetFunction },
         {
           component: ButtonConfirm,
           props: { label: 'Remove meet', confirmAction: removeMeetFunction },
