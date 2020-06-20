@@ -1,9 +1,29 @@
 <template>
   <div class="meet-list">
-    <Meet :hasOptions="true" />
-    <Meet :hasOptions="true" />
-    <Meet :hasOptions="true" />
-    <Meet :hasOptions="true" />
+    <Meet
+      title="CSS Tips & Tricks"
+      category="Beginner"
+      :durationInMinutes="25"
+      :hasOptions="true"
+    />
+    <Meet
+      title="Frontend for dummmies"
+      category="Beginner"
+      :durationInMinutes="25"
+      :hasOptions="true"
+    />
+    <Meet
+      title="Vue.js Pro Tips"
+      category="Advanced Topics"
+      :durationInMinutes="25"
+      :hasOptions="true"
+    />
+    <Meet
+      title="AA"
+      category="Beginner"
+      :durationInMinutes="25"
+      :hasOptions="true"
+    />
   </div>
 </template>
 

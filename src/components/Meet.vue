@@ -4,12 +4,12 @@
       <IconOptions size="35" color="#26265e" />
     </button>
 
-    <h4 class="title">Ruby vs. Clojure para desenvolvimento de back-end</h4>
-    <p class="category">Frontend</p>
+    <h4 class="title">{{ title }}</h4>
+    <p class="category">{{ category }}</p>
 
     <strong class="time">
       <IconClock size="20" color="#26265e" />
-      50min
+      {{ durationInMinutes ? durationFormatted : scheduleFormatted }}
     </strong>
   </div>
 </template>
@@ -22,20 +22,26 @@ import ButtonConfirm from '@/components/ButtonConfirm'
 export default {
   components: { IconOptions, IconClock },
   props: {
-    id: {
+    title: {
       type: String,
+      required: true,
     },
+    category: {
+      type: String,
+      required: true,
+    },
+    schedule: {
+      type: Object,
+      default: () => ({
+        start_time: '',
+        end_time: '',
+      }),
+    },
+    durationInMinutes: Number,
     hasOptions: {
       type: Boolean,
       default: false,
     },
-    title: {
-      type: String,
-    },
-    category: {
-      type: String,
-    },
-    duration: [Number, String],
   },
   methods: {
     openContextMenu(event) {
@@ -48,10 +54,7 @@ export default {
         { label: 'Edit meet', action: () => alert('hey') },
         {
           component: ButtonConfirm,
-          props: {
-            label: 'Remove meet',
-            confirmAction: removeMeetFunction,
-          },
+          props: { label: 'Remove meet', confirmAction: removeMeetFunction },
         },
       ]
 
@@ -64,11 +67,14 @@ export default {
         position: { x: x - offsetFromContextMenu, y: y + buttonOptionHeight },
       })
     },
-    editMeet() {
-      console.log('editing meet')
+  },
+  computed: {
+    durationFormatted() {
+      return `${this.durationInMinutes}min`
     },
-    removeMeet() {
-      console.log('removing meet')
+    scheduleFormatted() {
+      const { start_time, end_time } = this.schedule
+      return `${start_time} - ${end_time}`
     },
   },
 }
@@ -76,8 +82,10 @@ export default {
 
 <style lang="scss" scoped>
 .meet {
+  $safe-title-space: 60px;
+
   position: relative;
-  padding: rem(25px 36px);
+  padding: rem(25px $safe-title-space 25px 36px);
 
   background: #f6f4ff;
   border-radius: var(--border-radius);
@@ -101,7 +109,6 @@ export default {
   }
 
   .title {
-    padding-right: rem(30px);
     font-size: rem(20px);
     font-family: $font-body;
     line-height: 1.3;
