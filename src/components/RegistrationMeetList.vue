@@ -19,5 +19,6 @@ export default {
 .meet-list {
   max-height: 400px;
   overflow: auto;
+  overscroll-behavior: contain;
 }
 </style>
