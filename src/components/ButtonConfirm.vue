@@ -1,7 +1,7 @@
 <template>
   <button
     :class="{ 'button-confirm': clickedTimes >= 1 }"
-    @click="increaseClick"
+    @click="increaseClickTimes"
   >
     <template>
       <IconAttention v-if="clickedTimes >= 1" color="#fa5f1c" />
@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    increaseClick() {
+    increaseClickTimes() {
       this.clickedTimes = this.clickedTimes + 1
     },
   },
