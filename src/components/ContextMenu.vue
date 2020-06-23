@@ -2,8 +2,8 @@
   <div class="contex-menu-list" :style="positionStyles">
     <component
       class="option"
-      v-for="option in options"
-      :key="option.label"
+      v-for="(option, index) in options"
+      :key="index"
       :is="option.component ? option.component : DEFAULT_COMPONENT"
       v-bind="option.component && option.props"
       @click="handleAction(option.action)"
