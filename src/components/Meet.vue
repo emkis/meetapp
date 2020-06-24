@@ -1,8 +1,10 @@
 <template>
   <div class="meet">
-    <button v-if="hasOptions" class="options" @click="openContextMenu">
-      <IconOptions size="35" color="#26265e" />
-    </button>
+    <ContextMenuClickableArea v-if="hasOptions" :options="options">
+      <button class="options">
+        <IconOptions size="35" color="#26265e" />
+      </button>
+    </ContextMenuClickableArea>
 
     <h4 class="title">{{ title }}</h4>
     <p class="category">{{ category }}</p>
@@ -18,9 +20,19 @@
 import { ContextMenuBus } from '@/eventBus'
 import { IconOptions, IconClock } from '@/components/icons'
 import ButtonConfirm from '@/components/ButtonConfirm'
+import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
+
+const editMeetFunction = () => {
+  alert('editing meet...')
+}
+
+const removeMeetFunction = () => {
+  alert('deleting meet...')
+  ContextMenuBus.$emit('@context-menu/CLOSE')
+}
 
 export default {
-  components: { IconOptions, IconClock },
+  components: { IconOptions, IconClock, ContextMenuClickableArea },
   props: {
     title: {
       type: String,
@@ -43,34 +55,14 @@ export default {
       default: false,
     },
   },
-  methods: {
-    openContextMenu(event) {
-      const editMeetFunction = () => {
-        alert('editing meet...')
-      }
-
-      const removeMeetFunction = () => {
-        alert('deleting meet...')
-        ContextMenuBus.$emit('@context-menu/CLOSE')
-      }
-
-      const options = [
-        { label: 'Edit meet', action: editMeetFunction },
-        {
-          component: ButtonConfirm,
-          props: { label: 'Remove meet', confirmAction: removeMeetFunction },
-        },
-      ]
-
-      const { x, y } = event.target.getBoundingClientRect()
-      const buttonOptionHeight = 40
-      const offsetFromContextMenu = 130
-
-      ContextMenuBus.$emit('@context-menu/OPEN', {
-        options,
-        position: { x: x - offsetFromContextMenu, y: y + buttonOptionHeight },
-      })
-    },
+  created() {
+    this.options = [
+      { label: 'Edit meet', action: editMeetFunction },
+      {
+        component: ButtonConfirm,
+        props: { label: 'Remove meet', confirmAction: removeMeetFunction },
+      },
+    ]
   },
   computed: {
     durationFormatted() {
