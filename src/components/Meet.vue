@@ -18,6 +18,9 @@
 
 <script>
 import { ContextMenuBus } from '@/eventBus'
+import { CATEGORIES } from '@/utils/constants'
+import { rgba } from 'polished'
+
 import { IconOptions, IconClock } from '@/components/icons'
 import ButtonConfirm from '@/components/ButtonConfirm'
 import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
@@ -64,6 +67,25 @@ export default {
       },
     ]
   },
+  mounted() {
+    this.setCategoryColors()
+  },
+  methods: {
+    setCategoryColors() {
+      const category = CATEGORIES.find(item => item.name === this.category)
+      if (!category) return
+
+      const color = category.color
+      const backgroundColor = rgba(color, 0.1)
+      const sidebarColor = color
+
+      this.$el.style.setProperty('--color-background', backgroundColor)
+      this.$el.style.setProperty('--color-sidebar', sidebarColor)
+    },
+    resetCategoryColors() {
+      this.$el.style = ''
+    },
+  },
   computed: {
     durationFormatted() {
       return `${this.durationInMinutes}min`
@@ -73,19 +95,31 @@ export default {
       return `${start_time} - ${end_time}`
     },
   },
+  watch: {
+    category() {
+      this.resetCategoryColors()
+      this.setCategoryColors()
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .meet {
   $safe-title-space: 60px;
+  $timing: 250ms;
+  $animation: ease-in;
+
+  --color-background: rgba(0, 0, 0, 0.05);
+  --color-sidebar: #555;
 
   position: relative;
   padding: rem(25px $safe-title-space 25px 36px);
 
-  background: #f6f4ff;
+  background: var(--color-background);
   border-radius: var(--border-radius);
   color: var(--color-primary);
+  transition: background $timing $animation;
 
   //sidebar
   &::before {
@@ -95,9 +129,11 @@ export default {
     left: 0;
     width: 8px;
     height: 100%;
-    background: #1a55af;
+
+    background: var(--color-sidebar);
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
+    transition: background $timing $animation;
   }
 
   & + & {
