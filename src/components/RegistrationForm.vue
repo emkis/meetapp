@@ -22,7 +22,7 @@
     <InputSelect
       label="Meet category"
       placeholder="Choose a category"
-      :options="['yesssss', 'no', 'what']"
+      :options="categoryNames"
       v-model.trim="meetCategory"
       @input="$v.meetCategory.$touch()"
       :isValid="!$v.meetCategory.$invalid"
@@ -44,6 +44,7 @@ import {
   haveOnlyLetters,
   isLessThanLimit,
 } from '@/utils/validators'
+import { CATEGORIES } from '@/utils/constants'
 
 import BaseInput from '@/components/BaseInput'
 import InputDuration from '@/components/InputDuration'
@@ -82,6 +83,11 @@ export default {
         console.log('subitted')
         console.log(this.meetName, this.meetDuration, this.meetCategory)
       }
+    },
+  },
+  computed: {
+    categoryNames() {
+      return CATEGORIES.map(category => category.name)
     },
   },
 }
