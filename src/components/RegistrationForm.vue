@@ -14,7 +14,7 @@
     </BaseInput>
 
     <InputDuration
-      label="Meet duration"
+      label="Meet duration in minutes"
       v-model="meetDuration"
       :v="$v.meetDuration"
     />
@@ -77,8 +77,11 @@ export default {
   methods: {
     handleSubmit() {
       this.$v.$touch()
-      console.log('subitted')
-      console.log(this.meetName, this.meetDuration, this.meetCategory)
+
+      if (!this.$v.invalid) {
+        console.log('subitted')
+        console.log(this.meetName, this.meetDuration, this.meetCategory)
+      }
     },
   },
 }
