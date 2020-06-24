@@ -141,7 +141,7 @@ export default {
     > svg {
       position: absolute;
       top: 50%;
-      right: rem(26px);
+      right: rem(20px);
       transform: translateY(-50%);
       margin-top: 1px;
       display: inline-block;
