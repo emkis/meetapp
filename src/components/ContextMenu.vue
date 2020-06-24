@@ -6,7 +6,7 @@
       :key="index"
       :is="option.component ? option.component : DEFAULT_COMPONENT"
       v-bind="option.component && option.props"
-      @click="handleAction(option.action)"
+      @click="!option.component && handleAction(option.action)"
     >
       {{ option.label }}
     </component>
