@@ -12,8 +12,8 @@
     <Container>
       <main class="grid">
         <div class="grid-item">
-          <h2 class="secondary-title">Create a meet</h2>
-          <RegistrationForm />
+          <h2 class="secondary-title">{{ currentLabel }}</h2>
+          <RegistrationForm :isEditing="isEditing" />
         </div>
         <div class="grid-item">
           <h2 class="secondary-title">Created meets</h2>
@@ -41,9 +41,19 @@ export default {
     RegistrationForm,
     RegistrationMeetList,
   },
+  data() {
+    return {
+      isEditing: true,
+    }
+  },
   methods: {
     navigate() {
       this.$router.push({ name: 'Trails' })
+    },
+  },
+  computed: {
+    currentLabel() {
+      return this.isEditing ? 'Edit a meet' : 'Create a meet'
     },
   },
 }
