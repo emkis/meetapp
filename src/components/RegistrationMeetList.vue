@@ -2,13 +2,13 @@
   <div class="meet-list">
     <Meet
       title="CSS Tips & Tricks"
-      category="Beginner"
+      category="Test"
       :durationInMinutes="25"
       :hasOptions="true"
     />
     <Meet
       title="Frontend for dummmies"
-      category="Beginner"
+      category="Frontend"
       :durationInMinutes="25"
       :hasOptions="true"
     />
@@ -19,8 +19,8 @@
       :hasOptions="true"
     />
     <Meet
-      title="AA"
-      category="Beginner"
+      title="React Ninja"
+      category="Backend"
       :durationInMinutes="25"
       :hasOptions="true"
     />
