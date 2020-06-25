@@ -33,7 +33,10 @@
       </template>
     </InputSelect>
 
-    <Button theme="primary" type="submit">Create meet</Button>
+    <div class="action-buttons">
+      <Button v-if="isEditing" type="button">Cancel</Button>
+      <Button theme="primary" type="submit">{{ submitButtonText }}</Button>
+    </div>
   </form>
 </template>
 
@@ -54,6 +57,12 @@ import InputSelect from '@/components/InputSelect'
 export default {
   name: 'RegistrationForm',
   components: { BaseInput, InputDuration, Button, InputSelect },
+  props: {
+    isEditing: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       meetName: '',
@@ -89,6 +98,9 @@ export default {
     categoryNames() {
       return CATEGORIES.map(category => category.name)
     },
+    submitButtonText() {
+      return this.isEditing ? 'Save changes' : 'Create meet'
+    },
   },
 }
 </script>
@@ -99,9 +111,14 @@ export default {
     margin-top: rem(25px);
   }
 
-  > button {
+  > .action-buttons {
+    display: flex;
     margin-top: rem(40px);
-    min-height: rem(55px);
+
+    button {
+      margin-right: rem(15px);
+      min-height: rem(55px);
+    }
   }
 }
 </style>
