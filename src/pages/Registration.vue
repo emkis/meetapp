@@ -33,6 +33,7 @@ import RegistrationMeetList from '@/components/RegistrationMeetList'
 import { IconOrganize } from '@/components/icons'
 
 export default {
+  name: 'Registration',
   components: {
     Header,
     Button,
