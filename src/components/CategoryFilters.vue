@@ -8,7 +8,7 @@
           :key="index"
           v-for="(category, index) in categories"
           :name="category.name"
-          :active="selectedFilters.includes(index)"
+          :active="isSelected(index)"
           @click="handleSelectItem(index, category.name)"
         />
       </div>
@@ -29,18 +29,20 @@ export default {
     }
   },
   methods: {
-    handleSelectItem(id, categoryName) {
-      const alreadySelected = this.selectedFilters.findIndex(
-        item => item.id === id
-      )
+    isSelected(categoryId) {
+      return !!this.selectedFilters.find(item => item.id === categoryId)
+    },
+    handleSelectItem(categoryId, categoryName) {
+      const alreadySelected = this.isSelected(categoryId)
 
-      if (alreadySelected >= 0) {
+      if (alreadySelected) {
         const filteredItems = this.selectedFilters.filter(
-          item => item.id !== id
+          item => item.id !== categoryId
         )
+
         this.selectedFilters = filteredItems
       } else {
-        this.selectedFilters.push({ id, name: categoryName })
+        this.selectedFilters.push({ id: categoryId, name: categoryName })
       }
     },
   },
