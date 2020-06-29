@@ -1,4 +1,4 @@
-![demo of the app](https://raw.githubusercontent.com/emkis/meetapp/master/.github/meetapp-demo.png)
+![demo of the app](https://raw.githubusercontent.com/emkis/meetapp/master/__old/.github/meetapp-demo.png)
 
 # :page_with_curl: about
 meetapp is a service to help you organize events
