@@ -1,12 +1,10 @@
 <template>
-  <button class="category-button" :style="active && activeStyles">
+  <button v-on="$listeners" class="category-button" :class="{ active }">
     {{ name }}
   </button>
 </template>
 
 <script>
-import { rgba } from 'polished'
-
 export default {
   name: 'CategoryButton',
   props: {
@@ -19,21 +17,15 @@ export default {
       default: false,
     },
   },
-  computed: {
-    activeStyles() {
-      const primaryColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--color-primary')
-        .trim()
-
-      const fadedPrimaryColor = rgba(primaryColor, 0.2)
-
-      return `--background-color: ${fadedPrimaryColor}; --border-color: ${primaryColor};`
-    },
-  },
 }
 </script>
 
 <style lang="scss" scoped>
+.active {
+  --background-color: var(--color-primary-faded) !important;
+  --border-color: var(--color-primary) !important;
+}
+
 .category-button {
   --background-color: var(--color-gray-primary);
   --border-color: transparent;
