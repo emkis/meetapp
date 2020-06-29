@@ -13,7 +13,6 @@
         />
       </div>
     </section>
-    <strong>{{ selectedFilters }}</strong>
   </BaseContainer>
 </template>
 
