@@ -9,7 +9,7 @@
       </BaseButton>
     </Header>
 
-    <Container>
+    <BaseContainer>
       <main class="grid">
         <div class="grid-item">
           <h2 class="secondary-title">{{ currentLabel }}</h2>
@@ -20,13 +20,12 @@
           <RegistrationMeetList />
         </div>
       </main>
-    </Container>
+    </BaseContainer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
-import Container from '@/components/Container'
 import RegistrationForm from '@/components/RegistrationForm'
 import RegistrationMeetList from '@/components/RegistrationMeetList'
 import { IconOrganize } from '@/components/icons'
@@ -36,7 +35,6 @@ export default {
   components: {
     Header,
     IconOrganize,
-    Container,
     RegistrationForm,
     RegistrationMeetList,
   },
