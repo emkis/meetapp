@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import BaseInput from '@/components/BaseInput'
-
 export default {
   name: 'InputDuration',
   inheritAttrs: false,
@@ -44,7 +42,6 @@ export default {
       default: '',
     },
   },
-  components: { BaseInput },
   computed: {
     duration: {
       get() {

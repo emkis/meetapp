@@ -34,8 +34,10 @@
     </InputSelect>
 
     <div class="action-buttons">
-      <Button v-if="isEditing" type="button">Cancel</Button>
-      <Button theme="primary" type="submit">{{ submitButtonText }}</Button>
+      <BaseButton v-if="isEditing" type="button">Cancel</BaseButton>
+      <BaseButton theme="primary" type="submit">
+        {{ submitButtonText }}
+      </BaseButton>
     </div>
   </form>
 </template>
@@ -49,14 +51,12 @@ import {
 } from '@/utils/validators'
 import { CATEGORIES } from '@/utils/constants'
 
-import BaseInput from '@/components/BaseInput'
 import InputDuration from '@/components/InputDuration'
-import Button from '@/components/Button'
 import InputSelect from '@/components/InputSelect'
 
 export default {
   name: 'RegistrationForm',
-  components: { BaseInput, InputDuration, Button, InputSelect },
+  components: { InputDuration, InputSelect },
   props: {
     isEditing: {
       type: Boolean,

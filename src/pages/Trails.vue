@@ -3,10 +3,10 @@
     <Header>
       <template #title>Trails</template>
 
-      <Button @click="navigate">
+      <BaseButton @click="navigate">
         <IconPlus size="18" color="#26265e" />
         Add meet
-      </Button>
+      </BaseButton>
     </Header>
 
     <CategoryFilters />
@@ -16,12 +16,11 @@
 <script>
 import Header from '@/components/Header'
 import CategoryFilters from '@/components/CategoryFilters'
-import Button from '@/components/Button'
 import { IconPlus } from '@/components/icons'
 
 export default {
   name: 'Trails',
-  components: { CategoryFilters, Header, Button, IconPlus },
+  components: { CategoryFilters, Header, IconPlus },
   methods: {
     navigate() {
       this.$router.push({ name: 'Registration' })
