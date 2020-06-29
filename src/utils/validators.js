@@ -1,12 +1,16 @@
 import { EVENING_MINUTES_LIMIT } from './constants'
 
-export const mustNotBeGreaterThanLimit = (duration) => {
-  const isGreater = duration > EVENING_MINUTES_LIMIT
-  return isGreater
+export const isLessThanLimit = duration => {
+  return duration <= EVENING_MINUTES_LIMIT
 }
 
-export const mustBeMultipleOfFive = (number) => (number % 5 === 0)
+export const haveOnlyLetters = text => !/\d/.test(text)
 
-export const haveOnlyLetters = (text) => !/\d/.test(text)
+export const isMultipleOfFive = number => {
+  if (!isNumber(number)) return false
+  return number % 5 === 0
+}
 
-export const isEmpty = (text) => !(!!text)
+export const isNumber = value => !!Number(value)
+
+export const isEmpty = text => !text
