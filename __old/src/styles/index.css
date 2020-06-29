@@ -28,6 +28,7 @@ body {
 }
 
 main {
+  width: 100%;
   display: grid;
   grid-gap: 60px;
   justify-content: center;

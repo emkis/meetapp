@@ -13,7 +13,7 @@ export const meets = [
   },
   {
     name: 'Lua em 21 dias',
-    category: CATEGORIES.BEGGINER,
+    category: CATEGORIES.BEGINNER,
     duration: 30
   },
   {
@@ -23,12 +23,12 @@ export const meets = [
   },
   {
     name: 'Erros comuns de Ruby',
-    category: CATEGORIES.BEGGINER,
+    category: CATEGORIES.BEGINNER,
     duration: 45
   },
   {
     name: 'Ruby para quem sabe Python',
-    category: CATEGORIES.BEGGINER,
+    category: CATEGORIES.BEGINNER,
     duration: 60
   },
   {
@@ -43,7 +43,7 @@ export const meets = [
   },
   {
     name: 'Rust for dummies',
-    category: CATEGORIES.BEGGINER,
+    category: CATEGORIES.BEGINNER,
     duration: 30
   },
   {
