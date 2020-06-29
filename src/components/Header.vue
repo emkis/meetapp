@@ -1,22 +1,19 @@
 <template>
-  <Container>
+  <BaseContainer>
     <header class="header">
       <HeaderTitle><slot name="title"/></HeaderTitle>
 
       <slot />
     </header>
-  </Container>
+  </BaseContainer>
 </template>
 
 <script>
-import Container from '@/components/Container'
 import HeaderTitle from '@/components/HeaderTitle'
 
 export default {
-  components: {
-    Container,
-    HeaderTitle,
-  },
+  name: 'Header',
+  components: { HeaderTitle },
 }
 </script>
 
