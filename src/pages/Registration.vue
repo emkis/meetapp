@@ -3,10 +3,10 @@
     <Header>
       <template #title>Meet's registration</template>
 
-      <Button @click="navigate">
+      <BaseButton @click="navigate">
         <IconOrganize size="18" color="#26265e" />
         Organize trails
-      </Button>
+      </BaseButton>
     </Header>
 
     <Container>
@@ -27,7 +27,6 @@
 <script>
 import Header from '@/components/Header'
 import Container from '@/components/Container'
-import Button from '@/components/Button'
 import RegistrationForm from '@/components/RegistrationForm'
 import RegistrationMeetList from '@/components/RegistrationMeetList'
 import { IconOrganize } from '@/components/icons'
@@ -36,7 +35,6 @@ export default {
   name: 'Registration',
   components: {
     Header,
-    Button,
     IconOrganize,
     Container,
     RegistrationForm,
