@@ -22,6 +22,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: rem(80px 0);
+  padding: rem(40px 0 80px);
 }
 </style>
