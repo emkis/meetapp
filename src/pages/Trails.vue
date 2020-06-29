@@ -8,16 +8,20 @@
         Add meet
       </Button>
     </Header>
+
+    <CategoryFilters />
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header'
+import CategoryFilters from '@/components/CategoryFilters'
 import Button from '@/components/Button'
 import { IconPlus } from '@/components/icons'
 
 export default {
-  components: { Header, Button, IconPlus },
+  name: 'Trails',
+  components: { CategoryFilters, Header, Button, IconPlus },
   methods: {
     navigate() {
       this.$router.push({ name: 'Registration' })
