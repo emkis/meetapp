@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <BaseContainer>
     <section id="category-filters">
       <h4 class="title">Categories</h4>
 
@@ -8,35 +8,41 @@
           :key="index"
           v-for="(category, index) in categories"
           :name="category.name"
-          :active="true"
+          :active="selectedFilters.includes(index)"
+          @click="handleSelectItem(index, category.name)"
         />
       </div>
     </section>
-  </Container>
+    <strong>{{ selectedFilters }}</strong>
+  </BaseContainer>
 </template>
 
 <script>
-import Container from '@/components/Container'
 import CategoryButton from '@/components/CategoryButton'
 
 export default {
   name: 'CategoryFilters',
-  components: { Container, CategoryButton },
+  components: { CategoryButton },
   data() {
     return {
       selectedFilters: [],
     }
   },
   methods: {
-    // handleSelectItem(id) {
-    //   const alreadySelected = selectedItems.findIndex(item => item === id)
-    //   if (alreadySelected >= 0) {
-    //     const filteredItems = selectedItems.filter(item => item !== id)
-    //     setSelectedItems(filteredItems)
-    //   } else {
-    //     setSelectedItems([...selectedItems, id])
-    //   }
-    // },
+    handleSelectItem(id, categoryName) {
+      const alreadySelected = this.selectedFilters.findIndex(
+        item => item.id === id
+      )
+
+      if (alreadySelected >= 0) {
+        const filteredItems = this.selectedFilters.filter(
+          item => item.id !== id
+        )
+        this.selectedFilters = filteredItems
+      } else {
+        this.selectedFilters.push({ id, name: categoryName })
+      }
+    },
   },
   computed: {
     categories() {
