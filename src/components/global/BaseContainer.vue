@@ -4,6 +4,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'BaseContainer',
+}
+</script>
+
 <style lang="scss" scoped>
 .container {
   margin: 0 auto;
