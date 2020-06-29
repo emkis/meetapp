@@ -8,6 +8,7 @@
 const THEMES = ['default', 'primary']
 
 export default {
+  name: 'BaseButton',
   props: {
     theme: {
       type: String,
