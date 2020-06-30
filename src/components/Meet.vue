@@ -25,18 +25,13 @@ import { IconOptions, IconClock } from '@/components/icons'
 import ButtonConfirm from '@/components/ButtonConfirm'
 import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
 
-const editMeetFunction = () => {
-  alert('editing meet...')
-}
-
-const removeMeetFunction = () => {
-  alert('deleting meet...')
-  ContextMenuBus.$emit('@context-menu/CLOSE')
-}
-
 export default {
   components: { IconOptions, IconClock, ContextMenuClickableArea },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -59,6 +54,15 @@ export default {
     },
   },
   created() {
+    const editMeetFunction = () => {
+      alert(`editing meet ${this.id}... `)
+    }
+
+    const removeMeetFunction = () => {
+      alert('deleting meet...')
+      ContextMenuBus.$emit('@context-menu/CLOSE')
+    }
+
     this.options = [
       { label: 'Edit meet', action: editMeetFunction },
       {
