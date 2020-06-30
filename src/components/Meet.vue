@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     setCategoryColors() {
-      const category = CATEGORIES.find(item => item.name === this.category)
+      const category = CATEGORIES.find((item) => item.name === this.category)
       if (!category) return
 
       const color = category.color

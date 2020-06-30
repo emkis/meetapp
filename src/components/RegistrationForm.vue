@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     categoryNames() {
-      return CATEGORIES.map(category => category.name)
+      return CATEGORIES.map((category) => category.name)
     },
     submitButtonText() {
       return this.isEditing ? 'Save changes' : 'Create meet'

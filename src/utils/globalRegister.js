@@ -14,7 +14,7 @@ function globalComponentRegistration(VueInstance) {
     /Base[A-Z]\w+\.(vue|js)$/
   )
 
-  requireComponent.keys().forEach(fileName => {
+  requireComponent.keys().forEach((fileName) => {
     const componentConfig = requireComponent(fileName)
 
     const componentName = upperFirst(

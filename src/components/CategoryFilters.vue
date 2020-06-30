@@ -29,14 +29,14 @@ export default {
   },
   methods: {
     isSelected(categoryId) {
-      return !!this.selectedFilters.find(item => item.id === categoryId)
+      return !!this.selectedFilters.find((item) => item.id === categoryId)
     },
     handleSelectItem(categoryId, categoryName) {
       const alreadySelected = this.isSelected(categoryId)
 
       if (alreadySelected) {
         const filteredItems = this.selectedFilters.filter(
-          item => item.id !== categoryId
+          (item) => item.id !== categoryId
         )
 
         this.selectedFilters = filteredItems

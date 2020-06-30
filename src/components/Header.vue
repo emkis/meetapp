@@ -1,7 +1,7 @@
 <template>
   <BaseContainer>
     <header class="header">
-      <HeaderTitle><slot name="title"/></HeaderTitle>
+      <HeaderTitle><slot name="title" /></HeaderTitle>
 
       <slot />
     </header>
