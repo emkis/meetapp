@@ -14,7 +14,7 @@ export default {
       type: String,
       default: 'default',
       validator(wantedTheme) {
-        return THEMES.some(theme => theme === wantedTheme)
+        return THEMES.some((theme) => theme === wantedTheme)
       },
     },
   },
