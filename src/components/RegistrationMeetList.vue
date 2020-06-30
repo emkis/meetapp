@@ -1,24 +1,28 @@
 <template>
   <div class="meet-list">
     <Meet
+      :id="uuid()"
       title="CSS Tips & Tricks"
       category="Test"
       :durationInMinutes="25"
       :hasOptions="true"
     />
     <Meet
+      :id="uuid()"
       title="Frontend for dummmies"
       category="Frontend"
       :durationInMinutes="25"
       :hasOptions="true"
     />
     <Meet
+      :id="uuid()"
       title="Vue.js Pro Tips"
       category="Advanced Topics"
       :durationInMinutes="25"
       :hasOptions="true"
     />
     <Meet
+      :id="uuid()"
       title="React Ninja"
       category="Backend"
       :durationInMinutes="25"
@@ -28,10 +32,12 @@
 </template>
 
 <script>
+import uuid from '@/mixins/uuid'
 import Meet from '@/components/Meet'
 
 export default {
   components: { Meet },
+  mixins: [uuid],
 }
 </script>
 
