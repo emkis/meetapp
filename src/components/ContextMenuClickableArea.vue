@@ -1,5 +1,5 @@
 <template>
-  <div @click="openContextMenu">
+  <div v-on:[clickHandler].prevent="openContextMenu">
     <slot />
   </div>
 </template>
@@ -13,6 +13,14 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    clickHandler: {
+      type: String,
+      default: 'click',
+      validator(value) {
+        const handlers = ['click', 'contextmenu']
+        return handlers.includes(value)
+      },
     },
   },
   methods: {
