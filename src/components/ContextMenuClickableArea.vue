@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     openContextMenu(event) {
-      const { clientX, clientY } = event
+      const { pageX, pageY } = event
 
       ContextMenuBus.$emit('@context-menu/OPEN', {
-        position: { x: clientX, y: clientY },
+        position: { x: pageX, y: pageY },
         options: this.options,
       })
     },
