@@ -1,4 +1,7 @@
-![demo of the app](https://raw.githubusercontent.com/emkis/meetapp/master/__old/.github/meetapp-demo.png)
+<h1 align="center">
+    <img alt="demo of the app" src="https://raw.githubusercontent.com/emkis/meetapp/master/.github/meetapp-preview.png" />
+</h1>
+
 
 # :page_with_curl: about
 meetapp is a service to help you organize events
@@ -13,10 +16,10 @@ easily see all the trails of your event, and when each meet will happen
 # :hammer: how it was built
 this project was developed with the following technologies:
 
-- Vanilla JavaScript
-- [Watter.css](https://github.com/kognise/water.css) *for base styles*
-- [Parcel](https://parceljs.org) *for handling bundle*
-- [Jest](https://jestjs.io) *for unit testing*
+- [Vue.js](http://vuejs.org)
+- [Vuex](https://vuex.vuejs.org)
+- [Vue Router](https://router.vuejs.org)
+- SCSS (for handle all styles build it from the ground up)
 
 # :electric_plug: how to use
 to clone this repository and run this app, you'll need **[git](https://git-scm.com)** and **[node.js](https://nodejs.org)** installed on your computer.
@@ -38,9 +41,6 @@ $ npm install
 # run the app in development mode
 $ npm run start
 ```
-
-# :memo: license
-this project is under the **MIT license**, you can see the **[license](https://github.com/emkis/meetapp/blob/master/LICENSE)** for more information.
 
 ---
 
