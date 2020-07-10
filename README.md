@@ -30,7 +30,7 @@ i highly recommend **[yarn](https://yarnpkg.com)** for handling node packages fa
 
 ```bash
 # clone this repository
-$ git clone https://github.com/emkis/repo.git
+$ git clone https://github.com/emkis/meetapp.git
 
 # go into the repository
 $ cd meetapp
@@ -39,7 +39,7 @@ $ cd meetapp
 $ npm install
 
 # run the app in development mode
-$ npm run start
+$ npm run serve
 ```
 
 ---
