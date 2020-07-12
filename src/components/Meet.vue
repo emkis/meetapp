@@ -111,9 +111,6 @@ export default {
 <style lang="scss" scoped>
 .meet {
   $safe-title-space: 60px;
-  $timing: 250ms;
-  $animation: ease-in;
-
   --color-background: rgba(0, 0, 0, 0.05);
   --color-sidebar: #555;
 
@@ -123,7 +120,6 @@ export default {
   background: var(--color-background);
   border-radius: var(--border-radius);
   color: var(--color-primary);
-  transition: background $timing $animation;
 
   //sidebar
   &::before {
@@ -137,7 +133,6 @@ export default {
     background: var(--color-sidebar);
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
-    transition: background $timing $animation;
   }
 
   & + & {
