@@ -1,12 +1,7 @@
 <template>
-  <button
-    :class="{ 'button-confirm': clickedTimes >= 1 }"
-    @click="increaseClickTimes"
-  >
-    <template>
-      <IconAttention v-if="clickedTimes >= 1" color="#fa5f1c" />
-      {{ currentLabel }}
-    </template>
+  <button :class="{ 'button-confirm': clickedTimes >= 1 }" @click="handleClick">
+    <IconAttention class="icon" v-if="clickedTimes >= 1" color="#fa5f1c" />
+    {{ currentLabel }}
   </button>
 </template>
 
@@ -32,8 +27,18 @@ export default {
     }
   },
   methods: {
+    handleClick() {
+      this.increaseClickTimes()
+      this.handleTimeout()
+    },
     increaseClickTimes() {
       this.clickedTimes = this.clickedTimes + 1
+    },
+    handleTimeout() {
+      setTimeout(this.resetClick, 1000)
+    },
+    resetClick() {
+      this.clickedTimes = 0
     },
   },
   computed: {
@@ -52,9 +57,9 @@ export default {
 <style lang="scss" scoped>
 .button-confirm {
   color: var(--color-attention) !important;
+}
 
-  > svg {
-    margin: 0 2px -2px 0;
-  }
+.icon {
+  margin: 0 2px -2px 0;
 }
 </style>
