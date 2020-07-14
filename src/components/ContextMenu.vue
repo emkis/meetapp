@@ -1,7 +1,7 @@
 <template>
-  <div class="contex-menu-list" :style="positionStyles">
+  <div class="context-menu" :style="positionStyles">
     <component
-      class="option"
+      class="context-menu__option"
       v-for="(option, index) in options"
       :key="index"
       :is="option.component ? option.component : DEFAULT_COMPONENT"
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contex-menu-list {
+.context-menu {
   position: absolute;
   padding: rem(6px 0);
   min-width: rem(170px);
@@ -84,7 +84,7 @@ export default {
   border-radius: var(--border-radius);
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
 
-  .option {
+  &__option {
     all: unset;
     display: block;
     max-width: 100%;
