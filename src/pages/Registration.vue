@@ -1,15 +1,15 @@
 <template>
-  <div id="registration">
-    <Header>
-      <template #title>Meet's registration</template>
+  <BaseContainer>
+    <div id="registration">
+      <Header>
+        <template #title>Meet's registration</template>
 
-      <BaseButton @click="navigate">
-        <IconOrganize size="18" color="#26265e" />
-        Organize trails
-      </BaseButton>
-    </Header>
+        <BaseButton @click="navigate">
+          <IconOrganize size="18" color="#26265e" />
+          Organize trails
+        </BaseButton>
+      </Header>
 
-    <BaseContainer>
       <main class="grid">
         <div class="grid-item">
           <h2 class="secondary-title">{{ currentLabel }}</h2>
@@ -20,8 +20,8 @@
           <RegistrationMeetList />
         </div>
       </main>
-    </BaseContainer>
-  </div>
+    </div>
+  </BaseContainer>
 </template>
 
 <script>
