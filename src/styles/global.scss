@@ -20,7 +20,7 @@ body,
 #app {
   height: 100vh; /* fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body,
@@ -43,4 +43,8 @@ h3,
 h4,
 h5 {
   font-family: $font-title;
+}
+
+.fullscreen {
+  margin: 0 calc(-50vw + 50%);
 }
