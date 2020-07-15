@@ -59,18 +59,28 @@ export default {
   flex-flow: row nowrap;
   align-items: center;
 
-  > .title {
-    font-size: rem(18px);
-    line-height: 1;
+  .title {
     margin-right: rem(20px);
+
+    font-size: rem(18px);
     color: var(--color-primary);
   }
 
-  > .filters {
+  .filters {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    overflow: auto;
+    margin-right: calc(-50vw + 50%);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 </style>
