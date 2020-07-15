@@ -1,19 +1,17 @@
 <template>
-  <BaseContainer>
-    <section id="category-filters">
-      <h4 class="title">Categories</h4>
+  <section id="category-filters">
+    <h4 class="title">Categories</h4>
 
-      <div class="filters">
-        <CategoryButton
-          :key="index"
-          v-for="(category, index) in categories"
-          :name="category.name"
-          :active="isSelected(index)"
-          @click="handleSelectItem(index, category.name)"
-        />
-      </div>
-    </section>
-  </BaseContainer>
+    <div class="filters">
+      <CategoryButton
+        :key="index"
+        v-for="(category, index) in categories"
+        :name="category.name"
+        :active="isSelected(index)"
+        @click="handleSelectItem(index, category.name)"
+      />
+    </div>
+  </section>
 </template>
 
 <script>

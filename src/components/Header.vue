@@ -1,11 +1,9 @@
 <template>
-  <BaseContainer>
-    <header class="header">
-      <HeaderTitle><slot name="title" /></HeaderTitle>
+  <header class="header">
+    <HeaderTitle><slot name="title" /></HeaderTitle>
 
-      <slot />
-    </header>
-  </BaseContainer>
+    <slot />
+  </header>
 </template>
 
 <script>
@@ -20,8 +18,8 @@ export default {
 <style lang="scss" scoped>
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: rem(40px 0 80px);
 }
 </style>
