@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      isEditing: true,
+      isEditing: false,
     }
   },
   methods: {
