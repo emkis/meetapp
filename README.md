@@ -2,6 +2,8 @@
     <img alt="demo of the app" src="https://raw.githubusercontent.com/emkis/meetapp/master/.github/meetapp-preview.png" />
 </h1>
 
+# :art: layout
+i built all this application UI with figma, **[you can find the design here](https://www.figma.com/file/lsOKOfuAdy8R8CEISJXYyu/Meetapp?node-id=0%3A1)**
 
 # :page_with_curl: about
 meetapp is a service to help you organize events
