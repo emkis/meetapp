@@ -2,9 +2,15 @@
     <img alt="demo of the app" src="https://raw.githubusercontent.com/emkis/meetapp/master/.github/meetapp-preview.png" />
 </h1>
 
-
 # :page_with_curl: about
-meetapp is a service to help you organize events
+**meetapp is a service to help you organize events**
+
+with meetapp, you register "talks" with a certain time in minutes, and based on those minutes and their categories, **an algorithm organizes your event for you**
+
+**the goal is to try to make the event as less segmented as possible**, always trying to organize lectures on different types of subjects and not just a specific type
+
+# :art: layout
+i built all this application UI with figma, **[you can find the design here](https://www.figma.com/file/lsOKOfuAdy8R8CEISJXYyu/Meetapp?node-id=0%3A1)**
 
 # :pushpin: features
 ### organize your event
