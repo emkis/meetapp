@@ -14,13 +14,22 @@
 </template>
 
 <script>
+import Joi from '@hapi/joi'
+
 export default {
   name: 'ContextMenu',
   props: {
     position: {
       type: Object,
       required: true,
-      // TODO: create validator
+      validator(props) {
+        const schema = Joi.object({
+          x: Joi.number().required(),
+          y: Joi.number().required(),
+        })
+
+        return !schema.validate(props).error
+      },
     },
     options: {
       type: Array,
@@ -42,7 +51,6 @@ export default {
 
     document.addEventListener('keyup', this.handleEscKeyup)
   },
-
   methods: {
     handleEscKeyup(event) {
       const escapeKey = event.keyCode === 27
