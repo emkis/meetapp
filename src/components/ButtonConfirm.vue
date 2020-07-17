@@ -35,7 +35,7 @@ export default {
       this.clickedTimes = this.clickedTimes + 1
     },
     handleTimeout() {
-      setTimeout(this.resetClick, 1000)
+      setTimeout(this.resetClick, 1500)
     },
     resetClick() {
       this.clickedTimes = 0
