@@ -39,6 +39,10 @@ export default {
   flex-direction: column;
   height: 100%;
 
+  .header {
+    padding-bottom: rem(40px);
+  }
+
   #trails-board {
     margin-top: rem(40px);
     padding: 0 3%;
