@@ -83,7 +83,8 @@ export default {
   padding: rem(6px 0);
   min-width: rem(170px);
   max-width: rem(250px);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   user-select: none;
   z-index: $layer-popover;
 
@@ -93,9 +94,6 @@ export default {
 
   &__option {
     all: unset;
-    display: block;
-    max-width: 100%;
-    width: 100%;
     padding: rem(15px);
     cursor: pointer;
 
