@@ -7,7 +7,7 @@
   --color-gray-primary: #e7e7e7;
   --color-gray-dark: #565656;
   --color-attention: #fa5f1c;
-
+  --color-scroll-bar: #c1c1c1;
   --color-input-valid: rgb(37, 217, 37);
   --color-input-has-error: rgb(217, 48, 37);
 
@@ -24,7 +24,7 @@
   height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gray-dark);
+  background: var(--color-scroll-bar);
   border: none;
   border-radius: 50px;
 }
