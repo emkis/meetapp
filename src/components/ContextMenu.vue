@@ -4,7 +4,7 @@
       class="context-menu__option"
       v-for="(option, index) in options"
       :key="index"
-      :is="option.component ? option.component : DEFAULT_COMPONENT"
+      :is="option.component ? option.component : $options.defaultComponent"
       v-bind="option.component && option.props"
       @click="!option.component && handleAction(option.action)"
     >
@@ -46,9 +46,8 @@ export default {
       },
     },
   },
+  defaultComponent: 'button',
   created() {
-    this.DEFAULT_COMPONENT = 'button'
-
     document.addEventListener('keyup', this.handleEscKeyup)
   },
   methods: {
