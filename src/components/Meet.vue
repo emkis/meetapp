@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { ContextMenuBus } from '@/eventBus'
 import { CATEGORIES } from '@/utils/constants'
 import { rgba } from 'polished'
 
@@ -60,7 +59,7 @@ export default {
 
     const removeMeetFunction = () => {
       alert('deleting meet...')
-      ContextMenuBus.$emit('@context-menu/CLOSE')
+      this.$store.dispatch('contextMenu/close')
     }
 
     this.options = [

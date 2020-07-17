@@ -1,12 +1,10 @@
 <template>
-  <div v-on:[clickHandler].prevent="openContextMenu">
+  <div v-on:[handler].prevent="openContextMenu">
     <slot />
   </div>
 </template>
 
 <script>
-import { ContextMenuBus } from '@/eventBus'
-
 export default {
   name: 'ContextMenuClickableArea',
   props: {
@@ -14,7 +12,7 @@ export default {
       type: Array,
       required: true,
     },
-    clickHandler: {
+    handler: {
       type: String,
       default: 'click',
       validator(value) {
@@ -27,7 +25,7 @@ export default {
     openContextMenu(event) {
       const { pageX, pageY } = event
 
-      ContextMenuBus.$emit('@context-menu/OPEN', {
+      this.$store.dispatch('contextMenu/open', {
         position: { x: pageX, y: pageY },
         options: this.options,
       })
