@@ -29,6 +29,7 @@ export default {
   grid-auto-columns: minmax($meet-width, 1fr);
   grid-auto-flow: column;
   grid-gap: 40px;
+  margin-bottom: 5px;
 
   overflow-x: auto;
 }
