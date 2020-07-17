@@ -1,9 +1,11 @@
 import { CATEGORIES } from '@/utils/constants'
 
-export const namespaced = true
+export default {
+  namespaced: true,
 
-export const state = {
-  categories: {
-    ...CATEGORIES,
+  state: {
+    categories: {
+      ...CATEGORIES,
+    },
   },
 }
