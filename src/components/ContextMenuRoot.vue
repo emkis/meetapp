@@ -1,41 +1,26 @@
 <template>
   <ContextMenu
-    v-if="isOpen"
-    :options="options"
-    :position="position"
+    v-if="contextMenu.isOpen"
+    :options="contextMenu.options"
+    :position="contextMenu.position"
     @onClose="handleClose"
     v-click-outside="handleClose"
   />
 </template>
 
 <script>
-import { ContextMenuBus } from '@/eventBus'
+import { mapState } from 'vuex'
 import ContextMenu from '@/components/ContextMenu'
 
 export default {
   name: 'ContextMenuRoot',
   components: { ContextMenu },
-  data() {
-    return {
-      isOpen: false,
-      options: null,
-      position: null,
-    }
-  },
-  created() {
-    ContextMenuBus.$on('@context-menu/CLOSE', this.handleClose)
-
-    ContextMenuBus.$on('@context-menu/OPEN', ({ options, position }) => {
-      this.isOpen = true
-      this.options = options
-      this.position = position
-    })
+  computed: {
+    ...mapState(['contextMenu']),
   },
   methods: {
     handleClose() {
-      this.isOpen = false
-      this.options = null
-      this.position = null
+      this.$store.dispatch('contextMenu/close')
     },
   },
 }
