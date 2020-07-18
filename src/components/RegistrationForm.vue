@@ -6,6 +6,7 @@
       @input="$v.meetName.$touch()"
       :isValid="!$v.meetName.$invalid"
       :hasError="$v.meetName.$error"
+      autofocus
     >
       <template #requirements>
         <p v-if="!$v.meetName.required">You need to provide a name</p>
