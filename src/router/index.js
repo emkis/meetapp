@@ -17,6 +17,10 @@ const routes = [
     name: 'Trails',
     component: Trails,
   },
+  {
+    path: '*',
+    redirect: { name: 'Registration' },
+  },
 ]
 
 const router = new VueRouter({
