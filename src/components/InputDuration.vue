@@ -13,6 +13,9 @@
     >
       <template #requirements>
         <p v-if="!v.required">You need to provide a duration</p>
+        <p v-else-if="!v.isGreaterThanZero">
+          You need to provide a positive number
+        </p>
         <p v-else-if="!v.isMultipleOfFive">
           Only multiple of five are allowed
         </p>
