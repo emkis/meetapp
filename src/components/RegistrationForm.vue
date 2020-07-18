@@ -48,6 +48,7 @@ import {
   isMultipleOfFive,
   haveOnlyLetters,
   isLessThanLimit,
+  isGreaterThanZero,
 } from '@/utils/validators'
 import { CATEGORIES } from '@/utils/constants'
 
@@ -77,6 +78,7 @@ export default {
     },
     meetDuration: {
       required,
+      isGreaterThanZero,
       isMultipleOfFive,
       isLessThanLimit,
     },
