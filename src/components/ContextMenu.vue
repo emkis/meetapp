@@ -47,6 +47,16 @@ export default {
     },
   },
   defaultComponent: 'button',
+  data() {
+    return {
+      componentWidth: 0,
+      componentHeight: 0,
+    }
+  },
+  mounted() {
+    this.getComponentSize()
+    this.$nextTick(this.getComponentSize)
+  },
   created() {
     document.addEventListener('keyup', this.handleEscKeyup)
   },
@@ -62,13 +72,34 @@ export default {
     handleClose() {
       this.$emit('onClose')
     },
+    getComponentSize() {
+      this.componentWidth = this.$el.clientWidth
+      this.componentHeight = this.$el.offsetHeight
+    },
   },
   computed: {
     positionStyles() {
-      const positionY = this.position.y
-      const positionX = this.position.x
+      const pageWidth = window.innerWidth
+      const pageHeight = window.innerHeight
+      const { x: positionX, y: positionY } = this.position
 
-      return `top: ${positionY}px; left: ${positionX}px;`
+      const percentages = {
+        x: ((positionX + this.componentWidth) * 100) / pageWidth,
+        y: ((positionY + this.componentHeight) * 100) / pageHeight,
+        limit: 97,
+      }
+
+      const isNearPageEnd = {
+        x: percentages.x > percentages.limit,
+        y: percentages.y > percentages.limit,
+      }
+
+      const safePosition = {
+        x: isNearPageEnd.x ? positionX - this.componentWidth : positionX,
+        y: isNearPageEnd.y ? positionY - this.componentHeight : positionY,
+      }
+
+      return { top: `${safePosition.y}px`, left: `${safePosition.x}px` }
     },
   },
   beforeDestroy() {
@@ -101,7 +132,8 @@ export default {
     color: var(--color-primary);
     transition: background 100ms ease;
 
-    &:hover {
+    &:hover,
+    &:active {
       background: var(--color-gray-primary);
     }
   }
