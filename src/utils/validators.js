@@ -11,6 +11,11 @@ export const isMultipleOfFive = (number) => {
   return number % 5 === 0
 }
 
+export const isGreaterThanZero = (number) => {
+  if (!isNumber(number)) return false
+  return number > 0
+}
+
 export const isNumber = (value) => !!Number(value)
 
 export const isEmpty = (text) => !text
