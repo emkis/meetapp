@@ -1,10 +1,11 @@
 {
-  "name": "Meetapp",
-  "description": "meetapp is a service to help you organize events",
+  "name": "meetapp",
   "version": "2.0.0",
+  "description": "meetapp is a service to help you organize events",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -24,9 +25,11 @@
     "@vue/cli-plugin-babel": "~4.4.6",
     "@vue/cli-plugin-eslint": "~4.4.6",
     "@vue/cli-plugin-router": "~4.4.6",
+    "@vue/cli-plugin-unit-jest": "^4.4.6",
     "@vue/cli-plugin-vuex": "~4.4.6",
     "@vue/cli-service": "~4.4.6",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
     "eslint-plugin-prettier": "^3.1.3",
