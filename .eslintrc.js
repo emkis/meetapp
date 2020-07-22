@@ -2,8 +2,16 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    'jest/globals': true,
   },
-  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
+  extends: [
+    'plugin:vue/essential',
+    'eslint:recommended',
+    '@vue/prettier',
+    'plugin:jest/recommended',
+    'plugin:jest/style',
+  ],
+  plugins: ['jest'],
   parserOptions: {
     parser: 'babel-eslint',
   },
