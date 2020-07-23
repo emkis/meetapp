@@ -39,5 +39,21 @@ describe('ButtonConfirm', () => {
     expect(mockFunction).toHaveBeenCalled()
   })
 
-  // quando clicado uma vez e esperado mais de 1500ms deve voltar a a label original
+  test('after the first click, if you dont receive another click within the 1500ms interval, you should render the initial label', async () => {
+    const initialLabel = 'Do something'
+
+    const wrapper = mount(ButtonConfirm, {
+      propsData: { label: initialLabel, confirmAction: mockFunction },
+    })
+
+    jest.useFakeTimers()
+
+    wrapper.find('button').trigger('click')
+    jest.advanceTimersByTime(1600)
+    await wrapper.vm.$nextTick()
+
+    const message = wrapper.find('button').element.textContent.trim()
+
+    expect(message).toBe(initialLabel)
+  })
 })
