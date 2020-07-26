@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Joi from '@hapi/joi'
+import * as Yup from 'yup'
 
 export default {
   name: 'ContextMenu',
@@ -23,12 +23,12 @@ export default {
       type: Object,
       required: true,
       validator(props) {
-        const schema = Joi.object({
-          x: Joi.number().required(),
-          y: Joi.number().required(),
+        const schema = Yup.object().shape({
+          x: Yup.number().required(),
+          y: Yup.number().required(),
         })
 
-        return !schema.validate(props).error
+        return schema.validateSync(props)
       },
     },
     options: {
