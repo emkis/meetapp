@@ -33,4 +33,10 @@ describe('ContextMenuRoot', () => {
       expect(renderedOptions).toStrictEqual(['Option 1', 'Option 2'])
     })
   })
+
+  describe('Methods', () => {
+    test('handleClose | should dispatch action when @onClose event was emitted', () => {})
+
+    test('handleClose | should dispatch action when v-click-outside directive is active', () => {})
+  })
 })
