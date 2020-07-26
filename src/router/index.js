@@ -1,25 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Registration from '@/pages/Registration'
-const Trails = () => import(/* webpackChunkName: "trails" */ '@/pages/Trails')
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Registration',
-    component: Registration,
+    component: () =>
+      import(/* webpackChunkName: "Registration" */ '@/pages/Registration'),
   },
   {
     path: '/trails',
     name: 'Trails',
-    component: Trails,
+    component: () => import(/* webpackChunkName: "Trails" */ '@/pages/Trails'),
   },
   {
     path: '*',
-    redirect: { name: 'Registration' },
+    name: 'NotFound',
+    redirect: '/',
   },
 ]
 
