@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "meetapp is a service to help you organize events",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --passWithNoTests",
     "test:unit:watch": "vue-cli-service test:unit --watch --passWithNoTests",
