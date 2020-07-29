@@ -1,43 +1,28 @@
 <template>
   <div class="meet-list">
     <Meet
-      :id="uuid()"
-      title="CSS Tips & Tricks"
-      category="Test"
-      :durationInMinutes="25"
-      :hasOptions="true"
-    />
-    <Meet
-      :id="uuid()"
-      title="Frontend for dummmies"
-      category="Frontend"
-      :durationInMinutes="25"
-      :hasOptions="true"
-    />
-    <Meet
-      :id="uuid()"
-      title="Vue.js Pro Tips"
-      category="Advanced Topics"
-      :durationInMinutes="25"
-      :hasOptions="true"
-    />
-    <Meet
-      :id="uuid()"
-      title="React Ninja"
-      category="Backend"
-      :durationInMinutes="25"
+      :key="meet.id"
+      v-for="meet in meets"
+      :id="meet.id"
+      :title="meet.title"
+      :category="meet.category"
+      :durationInMinutes="meet.duration"
       :hasOptions="true"
     />
   </div>
 </template>
 
 <script>
-import uuid from '@/mixins/uuid'
+import { mapState } from 'vuex'
 import Meet from '@/components/Meet'
 
 export default {
   components: { Meet },
-  mixins: [uuid],
+  computed: {
+    ...mapState('meet', {
+      meets: 'original',
+    }),
+  },
 }
 </script>
 

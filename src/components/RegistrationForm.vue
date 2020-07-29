@@ -45,6 +45,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
+import store from '@/store'
 import {
   isMultipleOfFive,
   haveOnlyLetters,
@@ -59,15 +60,8 @@ import InputSelect from '@/components/InputSelect'
 export default {
   name: 'RegistrationForm',
   components: { InputDuration, InputSelect },
-  props: {
-    isEditing: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
-      meetName: '',
       meetDuration: null,
       meetCategory: '',
     }
@@ -91,13 +85,30 @@ export default {
     handleSubmit() {
       this.$v.$touch()
 
-      if (!this.$v.invalid) {
-        console.log('subitted')
-        console.log(this.meetName, this.meetDuration, this.meetCategory)
+      if (!this.$v.$invalid) {
+        store.dispatch('meet/add', {
+          name: this.meetName,
+          category: this.meetCategory,
+          duration: this.meetDuration,
+        })
       }
     },
   },
   computed: {
+    isEditing() {
+      return store.state.meet.isEditing
+    },
+    meetName: {
+      get() {
+        return store.state.form.meet.name
+      },
+      set(value) {
+        store.dispatch('form/updateMeet', {
+          name: this.meetName,
+          value,
+        })
+      },
+    },
     categoryNames() {
       return CATEGORIES.map((category) => category.name)
     },
