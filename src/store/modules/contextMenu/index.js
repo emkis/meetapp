@@ -1,3 +1,5 @@
+import { OPEN, CLOSE } from './types'
+
 export default {
   namespaced: true,
 
@@ -8,12 +10,12 @@ export default {
   },
 
   mutations: {
-    SET_OPEN(state, { options, position }) {
+    [OPEN](state, { options, position }) {
       state.isOpen = true
       state.options = options
       state.position = position
     },
-    SET_CLOSE(state) {
+    [CLOSE](state) {
       state.isOpen = false
       state.options = null
       state.position = null
@@ -22,10 +24,10 @@ export default {
 
   actions: {
     open({ commit }, payload) {
-      commit('SET_OPEN', payload)
+      commit(OPEN, payload)
     },
     close({ commit }) {
-      commit('SET_CLOSE')
+      commit(CLOSE)
     },
   },
 }
