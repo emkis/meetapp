@@ -45,7 +45,7 @@ $ cd meetapp
 $ npm install
 
 # run the app in development mode
-$ npm run serve
+$ npm run start
 ```
 
 ---
