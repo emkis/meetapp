@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import store from '@/store'
 import { CATEGORIES } from '@/utils/constants'
 import { rgba } from 'polished'
 
@@ -54,12 +55,18 @@ export default {
   },
   created() {
     const editMeetFunction = () => {
-      alert(`editing meet ${this.id}... `)
+      console.log(`editing meet ${this.id}... `)
+      store.dispatch('form/setMeet', {
+        id: this.id,
+        title: this.title,
+        category: this.category,
+        duration: this.durationInMinutes,
+      })
     }
 
     const removeMeetFunction = () => {
-      alert('deleting meet...')
-      this.$store.dispatch('contextMenu/close')
+      store.dispatch('meet/delete', this.id)
+      store.dispatch('contextMenu/close')
     }
 
     this.options = [

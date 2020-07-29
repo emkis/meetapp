@@ -13,7 +13,7 @@
       <main class="grid">
         <div class="grid-item">
           <h2 class="secondary-title">{{ currentLabel }}</h2>
-          <RegistrationForm :isEditing="isEditing" />
+          <RegistrationForm />
         </div>
         <div class="grid-item">
           <h2 class="secondary-title">Created meets</h2>

@@ -8,30 +8,31 @@ export default {
     original: [
       {
         id: uuid(),
-        name: 'CSS Tips & Tricks',
+        title: 'CSS Tips & Tricks',
         category: 'Test',
         duration: 25,
       },
       {
         id: uuid(),
-        name: 'Frontend for dummmies',
+        title: 'Frontend for dummmies',
         category: 'Frontend',
         duration: 40,
       },
       {
         id: uuid(),
-        name: 'Vue.js Pro Tips',
+        title: 'Vue.js Pro Tips',
         category: 'Advanced Topics',
         duration: 20,
       },
       {
         id: uuid(),
-        name: 'Build an API in 5 minutes with Deno',
+        title: 'Build an API in 5 minutes with Deno',
         category: 'Backend',
         duration: 65,
       },
     ],
     organized: {},
+    isEditing: false,
   },
 
   mutations: {
