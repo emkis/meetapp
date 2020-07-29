@@ -42,8 +42,8 @@ export default {
     schedule: {
       type: Object,
       default: () => ({
-        start_time: '',
-        end_time: '',
+        startTime: '',
+        endTime: '',
       }),
     },
     durationInMinutes: Number,
@@ -94,8 +94,8 @@ export default {
       return `${this.durationInMinutes}min`
     },
     scheduleFormatted() {
-      const { start_time, end_time } = this.schedule
-      return `${start_time} - ${end_time}`
+      const { startTime, endTime } = this.schedule
+      return `${startTime} - ${endTime}`
     },
   },
   watch: {
