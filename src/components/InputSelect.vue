@@ -13,7 +13,8 @@
         :value="value"
         :aria-label="label"
       >
-        <option value="" selected disabled>{{ placeholder }}</option>
+        <option value="" selected disabled hidden>{{ placeholder }}</option>
+
         <option
           v-for="option in options"
           :key="option"
