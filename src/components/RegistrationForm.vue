@@ -44,14 +44,13 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
-import store from '@/store'
 import {
   isMultipleOfFive,
   haveOnlyLetters,
   isLessThanLimit,
   isGreaterThanZero,
 } from '@/utils/validators'
+import { required } from 'vuelidate/lib/validators'
 import { CATEGORIES } from '@/utils/constants'
 
 import InputDuration from '@/components/InputDuration'
@@ -86,7 +85,7 @@ export default {
       this.$v.$touch()
 
       if (!this.$v.$invalid) {
-        store.dispatch('meet/add', {
+        this.$store.dispatch('meet/add', {
           name: this.meetName,
           category: this.meetCategory,
           duration: this.meetDuration,
@@ -96,14 +95,14 @@ export default {
   },
   computed: {
     isEditing() {
-      return store.state.meet.isEditing
+      return this.$store.state.meet.isEditing
     },
     meetName: {
       get() {
-        return store.state.form.meet.name
+        return this.$store.state.form.meet.name
       },
       set(value) {
-        store.dispatch('form/updateMeet', {
+        this.$store.dispatch('form/updateMeet', {
           name: this.meetName,
           value,
         })
