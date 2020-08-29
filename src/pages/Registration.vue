@@ -72,7 +72,7 @@ export default {
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: var(--grid-grap);
+    grid-gap: var(--grid-gap);
   }
 }
 </style>
