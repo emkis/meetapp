@@ -1,9 +1,9 @@
 <template>
-  <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
-    <label @click="focus">{{ label }}</label>
+  <fieldset class="input" :class="{ invalid: hasError, valid: isValid }">
+    <label :for="customId">{{ label }}</label>
 
     <input
-      ref="input"
+      :id="customId"
       @input="updateValue"
       v-bind="$attrs"
       :value="value"
@@ -11,7 +11,7 @@
     />
 
     <div class="message" v-if="hasError"><slot name="requirements" /></div>
-  </div>
+  </fieldset>
 </template>
 
 <script>
@@ -19,41 +19,29 @@ export default {
   name: 'BaseInput',
   inheritAttrs: false,
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    isValid: {
-      type: Boolean,
-      default: false,
-    },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
-    value: {
-      type: [String, Number],
-      default: '',
-    },
+    customId: { type: String, required: true },
+    label: { type: String, required: true },
+    isValid: { type: Boolean, default: false },
+    hasError: { type: Boolean, default: false },
+    value: { type: [String, Number] },
   },
   methods: {
     updateValue({ target }) {
       this.$emit('input', target.value)
-    },
-    focus() {
-      this.$refs.input.focus()
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.input-group {
+.input {
+  border: 0;
+  padding: 0;
+
   --background-color: var(--color-gray-primary);
   --default-color: var(--color-primary);
-  $space-after: 25px;
 
-  &.has-error {
+  &.invalid {
     --default-color: var(--color-input-has-error);
 
     input {
@@ -66,7 +54,7 @@ export default {
   }
 
   & + & {
-    margin-top: rem($space-after);
+    margin-top: rem(25px);
   }
 
   label {
