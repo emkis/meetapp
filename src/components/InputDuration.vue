@@ -16,12 +16,8 @@
         <p v-else-if="!v.isGreaterThanZero">
           You need to provide a positive number
         </p>
-        <p v-else-if="!v.isMultipleOfFive">
-          Only multiple of five are allowed
-        </p>
-        <p v-else-if="!v.isLessThanLimit">
-          Can't be greater than 240 minutes
-        </p>
+        <p v-else-if="!v.isMultipleOfFive">Only multiple of five are allowed</p>
+        <p v-else-if="!v.isLessThanLimit">Can't be greater than 240 minutes</p>
       </template>
     </BaseInput>
   </div>
