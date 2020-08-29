@@ -13,6 +13,12 @@
 
   --border-radius: 10px;
   --grid-gap: 40px;
+
+  font-size: 93.75%;
+
+  @media (min-width: 1800px) {
+    font-size: 100%;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -36,7 +42,6 @@
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
-
 
 html,
 body,
