@@ -14,22 +14,12 @@
 </template>
 
 <script>
-import * as Yup from 'yup'
-
 export default {
   name: 'ContextMenu',
   props: {
     position: {
       type: Object,
       required: true,
-      validator(props) {
-        const schema = Yup.object().shape({
-          x: Yup.number().required(),
-          y: Yup.number().required(),
-        })
-
-        return schema.validateSync(props)
-      },
     },
     options: {
       type: Array,
