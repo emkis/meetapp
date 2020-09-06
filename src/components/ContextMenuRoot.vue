@@ -10,6 +10,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import vClickOutside from 'v-click-outside'
 
 const ContextMenu = () =>
   import(/* webpackChunkName: "ContextMenu" */ '@/components/ContextMenu')
@@ -17,6 +18,9 @@ const ContextMenu = () =>
 export default {
   name: 'ContextMenuRoot',
   components: { ContextMenu },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   computed: {
     ...mapState(['contextMenu']),
   },

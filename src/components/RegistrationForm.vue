@@ -50,6 +50,7 @@ import {
   isLessThanLimit,
   isGreaterThanZero,
 } from '@/utils/validators'
+import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import { CATEGORIES } from '@/utils/constants'
 
@@ -59,6 +60,7 @@ import InputSelect from '@/components/InputSelect'
 export default {
   name: 'RegistrationForm',
   components: { InputDuration, InputSelect },
+  mixins: [validationMixin],
   data() {
     return {
       meetDuration: null,
