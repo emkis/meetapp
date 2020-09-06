@@ -1,5 +1,5 @@
 <template>
-  <button class="button" :class="theme" v-on="$listeners">
+  <button class="button" :class="theme" :type="type" v-on="$listeners">
     <slot />
   </button>
 </template>
@@ -17,6 +17,7 @@ export default {
         return THEMES.some((theme) => theme === wantedTheme)
       },
     },
+    type: { type: String, default: 'button' },
   },
 }
 </script>
