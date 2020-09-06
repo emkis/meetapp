@@ -1,10 +1,10 @@
-<template>
+<template functional>
   <h1 class="header-title">
     <slot />
   </h1>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header-title {
   font-size: rem(42px);
   line-height: 1.3;
