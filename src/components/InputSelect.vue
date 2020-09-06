@@ -1,12 +1,12 @@
 <template>
   <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
-    <label @click="focus">{{ label }}</label>
+    <label :for="randomId">{{ label }}</label>
 
     <div class="wrapper">
       <IconArrowDown size="26" color="#333" />
 
       <select
-        ref="input"
+        :id="randomId"
         @input="updateValue"
         v-on="listeners"
         v-bind="$attrs"
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import uuid from '@/utils/uuid'
 import { IconArrowDown } from '@/components/icons'
 
 export default {
@@ -66,9 +67,6 @@ export default {
     updateValue({ target }) {
       this.$emit('input', target.value)
     },
-    focus() {
-      this.$refs.input.focus()
-    },
   },
   computed: {
     listeners() {
@@ -77,6 +75,9 @@ export default {
         ...this.$listeners,
         input: this.updateValue,
       }
+    },
+    randomId() {
+      return uuid()
     },
   },
 }
@@ -105,7 +106,7 @@ export default {
   }
 
   label {
-    display: block;
+    display: inline-block;
     margin-bottom: rem(10px);
 
     font-size: rem(18px);
