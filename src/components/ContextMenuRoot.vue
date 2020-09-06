@@ -10,7 +10,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import ContextMenu from '@/components/ContextMenu'
+
+const ContextMenu = () =>
+  import(/* webpackChunkName: "ContextMenu" */ '@/components/ContextMenu')
 
 export default {
   name: 'ContextMenuRoot',
