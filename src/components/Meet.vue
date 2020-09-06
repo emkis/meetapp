@@ -28,30 +28,12 @@ import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
 export default {
   components: { IconOptions, IconClock, ContextMenuClickableArea },
   props: {
-    id: {
-      type: String,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    schedule: {
-      type: Object,
-      default: () => ({
-        startTime: '',
-        endTime: '',
-      }),
-    },
+    id: { type: String, required: true },
+    title: { type: String, required: true },
+    category: { type: String, required: true },
     durationInMinutes: Number,
-    hasOptions: {
-      type: Boolean,
-      default: false,
-    },
+    hasOptions: { type: Boolean, default: false },
+    schedule: { type: Object, default: () => ({ startTime: '', endTime: '' }) },
   },
   created() {
     const editMeetFunction = () => {
