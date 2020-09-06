@@ -38,30 +38,12 @@ export default {
   inheritAttrs: false,
   components: { IconArrowDown },
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    placeholder: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Array,
-      required: true,
-    },
-    isValid: {
-      type: Boolean,
-      default: false,
-    },
-    hasError: {
-      type: Boolean,
-      default: false,
-    },
-    value: {
-      type: [String, Number],
-      default: '',
-    },
+    label: { type: String, required: true },
+    placeholder: { type: String, required: true },
+    options: { type: Array, required: true },
+    isValid: { type: Boolean, default: false },
+    hasError: { type: Boolean, default: false },
+    value: { type: [String, Number], default: '' },
   },
   methods: {
     updateValue({ target }) {
