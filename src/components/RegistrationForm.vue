@@ -56,10 +56,12 @@ import { CATEGORIES } from '@/utils/constants'
 
 import InputDuration from '@/components/InputDuration'
 import InputSelect from '@/components/InputSelect'
+import BaseButton from '@/components/BaseButton'
+import BaseInput from '@/components/BaseInput'
 
 export default {
   name: 'RegistrationForm',
-  components: { InputDuration, InputSelect },
+  components: { InputDuration, InputSelect, BaseButton, BaseInput },
   mixins: [validationMixin],
   data() {
     return {

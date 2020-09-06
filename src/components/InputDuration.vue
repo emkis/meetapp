@@ -22,22 +22,16 @@
 </template>
 
 <script>
+import BaseInput from '@/components/BaseInput'
+
 export default {
   name: 'InputDuration',
   inheritAttrs: false,
+  components: { BaseInput },
   props: {
-    v: {
-      type: Object,
-      required: true,
-    },
-    label: {
-      type: String,
-      required: true,
-    },
-    value: {
-      type: String,
-      default: '',
-    },
+    v: { type: Object, required: true },
+    label: { type: String, required: true },
+    value: { type: String, default: '' },
   },
   computed: {
     duration: {

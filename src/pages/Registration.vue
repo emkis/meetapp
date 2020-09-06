@@ -28,6 +28,8 @@
 import Header from '@/components/Header'
 import RegistrationForm from '@/components/RegistrationForm'
 import RegistrationMeetList from '@/components/RegistrationMeetList'
+import BaseButton from '@/components/BaseButton'
+import BaseContainer from '@/components/BaseContainer'
 import { IconOrganize } from '@/components/icons'
 
 export default {
@@ -37,6 +39,8 @@ export default {
     IconOrganize,
     RegistrationForm,
     RegistrationMeetList,
+    BaseButton,
+    BaseContainer,
   },
   data() {
     return {

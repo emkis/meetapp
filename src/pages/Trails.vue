@@ -19,12 +19,21 @@
 <script>
 import Header from '@/components/Header'
 import CategoryFilters from '@/components/CategoryFilters'
+import BaseButton from '@/components/BaseButton'
+import BaseContainer from '@/components/BaseContainer'
 import TrailsBoard from '@/components/TrailsBoard'
 import { IconPlus } from '@/components/icons'
 
 export default {
   name: 'Trails',
-  components: { CategoryFilters, Header, IconPlus, TrailsBoard },
+  components: {
+    CategoryFilters,
+    Header,
+    IconPlus,
+    TrailsBoard,
+    BaseButton,
+    BaseContainer,
+  },
   methods: {
     navigate() {
       this.$router.push({ name: 'Registration' })
