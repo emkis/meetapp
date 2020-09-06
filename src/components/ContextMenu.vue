@@ -14,12 +14,20 @@
 </template>
 
 <script>
+import { isNumber } from '@/utils/validators'
+
 export default {
   name: 'ContextMenu',
   props: {
     position: {
       type: Object,
       required: true,
+      validator(props) {
+        const hasRequiredKeys = 'x' in props && 'y' in props
+        if (!hasRequiredKeys) return false
+
+        return isNumber(props.x) && isNumber(props.y)
+      },
     },
     options: {
       type: Array,
