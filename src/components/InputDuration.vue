@@ -1,6 +1,5 @@
 <template>
   <BaseInput
-    customId="duration"
     type="number"
     min="5"
     step="5"
