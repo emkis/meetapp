@@ -1,9 +1,9 @@
 <template>
   <fieldset class="input" :class="{ invalid: hasError, valid: isValid }">
-    <label :for="customId">{{ label }}</label>
+    <label :for="randomId">{{ label }}</label>
 
     <input
-      :id="customId"
+      :id="randomId"
       @input="updateValue"
       v-bind="$attrs"
       :value="value"
@@ -15,11 +15,12 @@
 </template>
 
 <script>
+import uuid from '@/utils/uuid'
+
 export default {
   name: 'BaseInput',
   inheritAttrs: false,
   props: {
-    customId: { type: String, required: true },
     label: { type: String, required: true },
     isValid: { type: Boolean, default: false },
     hasError: { type: Boolean, default: false },
@@ -28,6 +29,11 @@ export default {
   methods: {
     updateValue({ target }) {
       this.$emit('input', target.value)
+    },
+  },
+  computed: {
+    randomId() {
+      return uuid()
     },
   },
 }
