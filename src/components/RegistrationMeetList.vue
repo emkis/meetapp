@@ -13,14 +13,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState } = createNamespacedHelpers('meet')
+
 import Meet from '@/components/Meet'
 
 export default {
   components: { Meet },
   computed: {
-    ...mapState('meet', {
-      meets: 'original',
+    ...mapState({
+      meets: (state) => [...state.original].reverse(),
     }),
   },
 }
