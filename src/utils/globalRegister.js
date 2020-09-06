@@ -1,4 +1,5 @@
-import { upperFirst, camelCase } from 'lodash'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 /**
  * Automatic Global Registration of Base Components
