@@ -31,7 +31,7 @@ export default {
   props: {
     v: { type: Object, required: true },
     label: { type: String, required: true },
-    value: { type: String, default: '' },
+    value: { type: [String, Number], default: '' },
   },
   computed: {
     duration: {
