@@ -22,7 +22,7 @@ export default {
   components: { Meet },
   computed: {
     ...mapState({
-      meets: (state) => [...state.original].reverse(),
+      meets: (state) => [...state.meets].reverse(),
     }),
   },
 }
@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .meet-list {
-  max-height: 420px;
+  max-height: 400px;
   overflow: auto;
   overscroll-behavior: contain;
 }
