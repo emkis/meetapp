@@ -8,7 +8,7 @@
         :title="meet.title"
         :category="meet.category"
         :durationInMinutes="meet.duration"
-        :hasOptions="true"
+        :hasOptions="meet.id !== currentMeetId"
         :selected="meet.id === currentMeetId"
       />
     </transition-group>
