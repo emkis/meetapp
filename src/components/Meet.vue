@@ -1,5 +1,5 @@
 <template>
-  <div class="meet">
+  <div class="meet" :class="{ selected }">
     <ContextMenuClickableArea v-if="hasOptions" :options="options">
       <button class="options">
         <IconOptions size="35" color="#26265e" />
@@ -30,30 +30,17 @@ export default {
     id: { type: String, required: true },
     title: { type: String, required: true },
     category: { type: String, required: true },
-    durationInMinutes: Number,
+    durationInMinutes: [String, Number],
     hasOptions: { type: Boolean, default: false },
     schedule: { type: Object, default: () => ({ startTime: '', endTime: '' }) },
+    selected: { type: Boolean, default: false },
   },
   created() {
-    const editMeetFunction = () => {
-      this.$store.dispatch('form/setMeet', {
-        id: this.id,
-        title: this.title,
-        category: this.category,
-        duration: this.durationInMinutes,
-      })
-    }
-
-    const removeMeetFunction = () => {
-      this.$store.dispatch('meet/delete', this.id)
-      this.$store.dispatch('contextMenu/close')
-    }
-
     this.options = [
-      { label: 'Edit meet', action: editMeetFunction },
+      { label: 'Edit meet', action: this.editMeetFunction },
       {
         component: ButtonConfirm,
-        props: { label: 'Remove meet', confirmAction: removeMeetFunction },
+        props: { label: 'Remove meet', confirmAction: this.removeMeetFunction },
       },
     ]
   },
@@ -61,15 +48,21 @@ export default {
     this.setCategoryColors()
   },
   methods: {
-    setCategoryColors() {
-      const category = this.categories.find(
-        (item) => item.name === this.category
-      )
-      if (!category) return
+    editMeetFunction() {
+      this.$store.dispatch('form/setFields', {
+        id: this.id,
+        title: this.title,
+        category: this.category,
+        duration: this.durationInMinutes,
+      })
+    },
+    removeMeetFunction() {
+      this.$store.dispatch('meet/delete', this.id)
+      this.$store.dispatch('contextMenu/close')
+    },
 
-      const color = category.color
-      const backgroundColor = rgba(color, 0.1)
-      const sidebarColor = color
+    setCategoryColors() {
+      const { backgroundColor, sidebarColor } = this.categoryColor
 
       this.$el.style.setProperty('--color-background', backgroundColor)
       this.$el.style.setProperty('--color-sidebar', sidebarColor)
@@ -87,6 +80,15 @@ export default {
       const { startTime, endTime } = this.schedule
       return `${startTime} - ${endTime}`
     },
+    categoryColor() {
+      const targetCategory = this.categories.find(
+        (item) => item.name === this.category
+      )
+
+      const { color } = targetCategory
+
+      return { backgroundColor: rgba(color, 0.1), sidebarColor: color }
+    },
   },
   watch: {
     category() {
@@ -99,16 +101,21 @@ export default {
 
 <style lang="scss" scoped>
 .meet {
-  $safe-title-space: 60px;
+  $title-space-before-icon: 60px;
   --color-background: rgba(0, 0, 0, 0.05);
   --color-sidebar: #555;
 
   position: relative;
-  padding: rem(25px $safe-title-space 25px 36px);
+  padding: rem(25px $title-space-before-icon 25px 36px);
 
   background: var(--color-background);
   border-radius: var(--border-radius);
   color: var(--color-primary);
+
+  &.selected {
+    border: 2px solid var(--color-sidebar);
+    border-left: 0;
+  }
 
   //sidebar
   &::before {
@@ -180,6 +187,7 @@ export default {
       opacity: 0;
     }
 
+    &:focus::before,
     &:hover::before {
       opacity: 1;
     }
