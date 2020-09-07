@@ -1,4 +1,4 @@
-import { SET, UPDATE, RESET } from './types'
+import { SET, UPDATE, RESET, BACKUP } from './types'
 
 const initialFieldValues = {
   id: null,
@@ -12,6 +12,7 @@ export default {
 
   state: {
     fields: { ...initialFieldValues },
+    backup: null,
     isEditing: false,
   },
 
@@ -26,8 +27,12 @@ export default {
         ...updatedValues,
       }
     },
+    [BACKUP](state, currentFieldValues) {
+      state.backup = currentFieldValues
+    },
     [RESET](state) {
       state.fields = { ...initialFieldValues }
+      state.backup = null
       state.isEditing = false
     },
   },
@@ -35,8 +40,10 @@ export default {
   actions: {
     setFields({ commit }, fields) {
       commit(SET, fields)
+      commit(BACKUP, fields)
     },
-    reset({ commit }) {
+    reset({ commit, dispatch, state }) {
+      dispatch('meet/update', state.backup, { root: true })
       commit(RESET)
     },
     updateField({ commit, dispatch, state }, updatedValues) {
