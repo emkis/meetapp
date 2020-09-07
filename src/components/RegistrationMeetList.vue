@@ -1,28 +1,33 @@
 <template>
   <div class="meet-list">
-    <Meet
-      :key="meet.id"
-      v-for="meet in meets"
-      :id="meet.id"
-      :title="meet.title"
-      :category="meet.category"
-      :durationInMinutes="meet.duration"
-      :hasOptions="true"
-    />
+    <transition-group name="list" tag="div">
+      <Meet
+        :key="meet.id"
+        v-for="meet in meets"
+        :id="meet.id"
+        :title="meet.title"
+        :category="meet.category"
+        :durationInMinutes="meet.duration"
+        :hasOptions="true"
+        :selected="meet.id === currentMeetId"
+      />
+    </transition-group>
   </div>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState } = createNamespacedHelpers('meet')
+import { mapState } from 'vuex'
 
 import Meet from '@/components/Meet'
 
 export default {
   components: { Meet },
   computed: {
-    ...mapState({
+    ...mapState('meet', {
       meets: (state) => [...state.meets].reverse(),
+    }),
+    ...mapState('form', {
+      currentMeetId: (state) => state.meet.id,
     }),
   },
 }
@@ -33,5 +38,17 @@ export default {
   max-height: 400px;
   overflow: auto;
   overscroll-behavior: contain;
+
+  .list {
+    &-enter-active,
+    &-leave-active {
+      transition: all 300ms ease;
+    }
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+  }
 }
 </style>
