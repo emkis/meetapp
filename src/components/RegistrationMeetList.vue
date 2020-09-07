@@ -1,6 +1,6 @@
 <template>
   <div class="meet-list">
-    <transition-group name="list" tag="div">
+    <transition-group name="list" tag="div" appear>
       <Meet
         :key="meet.id"
         v-for="meet in meets"
