@@ -5,7 +5,7 @@
       v-for="(option, index) in options"
       :key="index"
       :is="option.component ? option.component : $options.defaultComponent"
-      v-bind="option.component && option.props"
+      v-bind="option.props"
       @click="!option.component && handleAction(option.action)"
     >
       {{ option.label }}
@@ -133,6 +133,11 @@ export default {
     &:hover,
     &:active {
       background: var(--color-gray-primary);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
     }
   }
 }
