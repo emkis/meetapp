@@ -42,16 +42,19 @@ export default {
       commit(SET, fields)
       commit(BACKUP, fields)
     },
-    reset({ commit, dispatch, state }) {
-      dispatch('meet/update', state.backup, { root: true })
-      commit(RESET)
-    },
     updateField({ commit, dispatch, state }, updatedValues) {
       commit(UPDATE, updatedValues)
 
       if (state.isEditing) {
         dispatch('meet/update', updatedValues, { root: true })
       }
+    },
+    revertChanges({ commit, dispatch, state }) {
+      dispatch('meet/update', state.backup, { root: true })
+      commit(RESET)
+    },
+    reset({ commit }) {
+      commit(RESET)
     },
   },
 }

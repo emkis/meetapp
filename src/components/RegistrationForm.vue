@@ -35,7 +35,7 @@
     </InputSelect>
 
     <div class="action-buttons">
-      <BaseButton v-if="isEditing" @click="handleResetForm">
+      <BaseButton v-if="isEditing" @click="handleRevertChanges">
         Cancel
       </BaseButton>
       <BaseButton theme="primary" type="submit">
@@ -53,7 +53,7 @@ import {
   isGreaterThanZero,
 } from '@/utils/validators'
 import { validationMixin } from 'vuelidate'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 
 import InputDuration from '@/components/InputDuration'
@@ -76,6 +76,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('form', { revertChanges: 'revertChanges' }),
     handleSubmit() {
       this.$v.$touch()
 
@@ -88,6 +89,10 @@ export default {
 
         this.handleResetForm()
       }
+    },
+    handleRevertChanges() {
+      this.revertChanges()
+      this.handleResetForm()
     },
     handleResetForm() {
       this.$store.dispatch('form/reset')
