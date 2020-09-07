@@ -1,2 +1,3 @@
-export const SET = 'Is been set 👀️'
-export const UPDATE = 'Editing meet ✍️'
+export const SET = 'Field Defined'
+export const UPDATE = 'Field Updated'
+export const RESET = 'Reset State'
