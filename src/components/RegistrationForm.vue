@@ -2,7 +2,7 @@
   <form id="registration-form" @submit.prevent="handleSubmit">
     <BaseInput
       label="Meet name"
-      v-model.trim="meetName"
+      v-model="meetName"
       @input="$v.meetName.$touch()"
       :isValid="!$v.meetName.$invalid"
       :hasError="$v.meetName.$error"
@@ -23,8 +23,8 @@
     <InputSelect
       label="Meet category"
       placeholder="Choose a category"
-      :options="categoryNames"
-      v-model.trim="meetCategory"
+      :options="categories"
+      v-model="meetCategory"
       @input="$v.meetCategory.$touch()"
       :isValid="!$v.meetCategory.$invalid"
       :hasError="$v.meetCategory.$error"
@@ -35,7 +35,9 @@
     </InputSelect>
 
     <div class="action-buttons">
-      <BaseButton v-if="isEditing" type="button">Cancel</BaseButton>
+      <BaseButton v-if="isEditing" @click="handleResetForm">
+        Cancel
+      </BaseButton>
       <BaseButton theme="primary" type="submit">
         {{ submitButtonText }}
       </BaseButton>
@@ -51,8 +53,8 @@ import {
   isGreaterThanZero,
 } from '@/utils/validators'
 import { validationMixin } from 'vuelidate'
+import { mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
-import { CATEGORIES } from '@/utils/constants'
 
 import InputDuration from '@/components/InputDuration'
 import InputSelect from '@/components/InputSelect'
@@ -63,25 +65,14 @@ export default {
   name: 'RegistrationForm',
   components: { InputDuration, InputSelect, BaseButton, BaseInput },
   mixins: [validationMixin],
-  data() {
-    return {
-      meetDuration: null,
-      meetCategory: '',
-    }
-  },
   validations: {
-    meetName: {
-      required,
-      haveOnlyLetters,
-    },
+    meetName: { required, haveOnlyLetters },
+    meetCategory: { required },
     meetDuration: {
       required,
       isGreaterThanZero,
       isMultipleOfFive,
       isLessThanLimit,
-    },
-    meetCategory: {
-      required,
     },
   },
   methods: {
@@ -89,31 +80,66 @@ export default {
       this.$v.$touch()
 
       if (!this.$v.$invalid) {
-        this.$store.dispatch('meet/add', {
-          name: this.meetName,
-          category: this.meetCategory,
-          duration: this.meetDuration,
-        })
+        if (this.isEditing) {
+          this.dispatchTo('meet/update')
+        } else {
+          this.dispatchTo('meet/add')
+        }
+
+        this.handleResetForm()
       }
+    },
+    handleResetForm() {
+      this.$store.dispatch('form/reset')
+      this.$v.$reset()
+    },
+    dispatchTo(dispatchString) {
+      this.$store.dispatch(dispatchString, {
+        title: this.meetName,
+        category: this.meetCategory,
+        duration: Number(this.meetDuration),
+      })
+    },
+    updateForm(data) {
+      this.$store.dispatch('form/updateMeet', {
+        id: this.meetId,
+        ...data,
+      })
     },
   },
   computed: {
-    isEditing() {
-      return this.$store.state.meet.isEditing
-    },
+    ...mapState('form', {
+      meetId: (state) => state.meet.id,
+      meetDuration: (state) => state.meet.duration,
+      meetCategory: (state) => state.meet.category,
+      isEditing: (state) => state.isEditing,
+    }),
+    ...mapState('category', {
+      categories: (state) => state.categories.map((category) => category.name),
+    }),
     meetName: {
       get() {
-        return this.$store.state.form.meet.name
+        return this.$store.state.form.meet.title
       },
       set(value) {
-        this.$store.dispatch('form/updateMeet', {
-          name: this.meetName,
-          value,
-        })
+        this.updateForm({ title: value })
       },
     },
-    categoryNames() {
-      return CATEGORIES.map((category) => category.name)
+    meetCategory: {
+      get() {
+        return this.$store.state.form.meet.category
+      },
+      set(value) {
+        this.updateForm({ category: value })
+      },
+    },
+    meetDuration: {
+      get() {
+        return this.$store.state.form.meet.duration
+      },
+      set(value) {
+        this.updateForm({ duration: value })
+      },
     },
     submitButtonText() {
       return this.isEditing ? 'Save changes' : 'Create meet'
