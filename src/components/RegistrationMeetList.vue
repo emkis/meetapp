@@ -39,6 +39,10 @@ export default {
   overflow: auto;
   overscroll-behavior: contain;
 
+  .meet {
+    margin-right: 5px;
+  }
+
   .list {
     &-enter-active,
     &-leave-active {
