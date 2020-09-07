@@ -12,6 +12,10 @@
         :selected="meet.id === currentMeetId"
       />
     </transition-group>
+
+    <EmptyMessage v-if="isListEmpty">
+      No meet has been created yet
+    </EmptyMessage>
   </div>
 </template>
 
@@ -19,9 +23,10 @@
 import { mapState } from 'vuex'
 
 import Meet from '@/components/Meet'
+import EmptyMessage from '@/components/EmptyMessage'
 
 export default {
-  components: { Meet },
+  components: { Meet, EmptyMessage },
   computed: {
     ...mapState('meet', {
       meets: (state) => [...state.meets].reverse(),
@@ -29,6 +34,9 @@ export default {
     ...mapState('form', {
       currentMeetId: (state) => state.fields.id,
     }),
+    isListEmpty() {
+      return this.meets.length === 0
+    },
   },
 }
 </script>
