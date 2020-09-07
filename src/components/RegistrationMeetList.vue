@@ -27,7 +27,7 @@ export default {
       meets: (state) => [...state.meets].reverse(),
     }),
     ...mapState('form', {
-      currentMeetId: (state) => state.meet.id,
+      currentMeetId: (state) => state.fields.id,
     }),
   },
 }

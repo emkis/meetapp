@@ -101,7 +101,7 @@ export default {
       })
     },
     updateForm(data) {
-      this.$store.dispatch('form/updateMeet', {
+      this.$store.dispatch('form/updateField', {
         id: this.meetId,
         ...data,
       })
@@ -109,9 +109,9 @@ export default {
   },
   computed: {
     ...mapState('form', {
-      meetId: (state) => state.meet.id,
-      meetDuration: (state) => state.meet.duration,
-      meetCategory: (state) => state.meet.category,
+      meetId: (state) => state.fields.id,
+      meetDuration: (state) => state.fields.duration,
+      meetCategory: (state) => state.fields.category,
       isEditing: (state) => state.isEditing,
     }),
     ...mapState('category', {
@@ -119,7 +119,7 @@ export default {
     }),
     meetName: {
       get() {
-        return this.$store.state.form.meet.title
+        return this.$store.state.form.fields.title
       },
       set(value) {
         this.updateForm({ title: value })
@@ -127,7 +127,7 @@ export default {
     },
     meetCategory: {
       get() {
-        return this.$store.state.form.meet.category
+        return this.$store.state.form.fields.category
       },
       set(value) {
         this.updateForm({ category: value })
@@ -135,7 +135,7 @@ export default {
     },
     meetDuration: {
       get() {
-        return this.$store.state.form.meet.duration
+        return this.$store.state.form.fields.duration
       },
       set(value) {
         this.updateForm({ duration: value })
