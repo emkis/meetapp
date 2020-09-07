@@ -42,11 +42,6 @@ export default {
     BaseButton,
     BaseContainer,
   },
-  data() {
-    return {
-      isEditing: false,
-    }
-  },
   methods: {
     navigate() {
       this.$router.push({ name: 'Trails' })
@@ -55,6 +50,9 @@ export default {
   computed: {
     currentLabel() {
       return this.isEditing ? 'Edit a meet' : 'Create a meet'
+    },
+    isEditing() {
+      return this.$store.state.form.isEditing
     },
   },
 }
