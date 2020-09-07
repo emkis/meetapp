@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import store from '@/store'
-import { CATEGORIES } from '@/utils/constants'
+import { mapState } from 'vuex'
 import { rgba } from 'polished'
 
 import { IconOptions, IconClock } from '@/components/icons'
@@ -37,8 +36,7 @@ export default {
   },
   created() {
     const editMeetFunction = () => {
-      console.log(`editing meet ${this.id}... `)
-      store.dispatch('form/setMeet', {
+      this.$store.dispatch('form/setMeet', {
         id: this.id,
         title: this.title,
         category: this.category,
@@ -47,8 +45,8 @@ export default {
     }
 
     const removeMeetFunction = () => {
-      store.dispatch('meet/delete', this.id)
-      store.dispatch('contextMenu/close')
+      this.$store.dispatch('meet/delete', this.id)
+      this.$store.dispatch('contextMenu/close')
     }
 
     this.options = [
@@ -64,7 +62,9 @@ export default {
   },
   methods: {
     setCategoryColors() {
-      const category = CATEGORIES.find((item) => item.name === this.category)
+      const category = this.categories.find(
+        (item) => item.name === this.category
+      )
       if (!category) return
 
       const color = category.color
@@ -79,6 +79,7 @@ export default {
     },
   },
   computed: {
+    ...mapState('category', { categories: 'categories' }),
     durationFormatted() {
       return `${this.durationInMinutes}min`
     },
