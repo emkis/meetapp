@@ -1,11 +1,11 @@
 import uuid from '@/utils/uuid'
-import { ADD_MEET, DELETE_MEET } from './types'
+import { ADD, DELETE, UPDATE } from './types'
 
 export default {
   namespaced: true,
 
   state: {
-    original: [
+    meets: [
       {
         id: uuid(),
         title: 'CSS Tips & Tricks',
@@ -31,25 +31,34 @@ export default {
         duration: 65,
       },
     ],
-    organized: {},
-    isEditing: false,
   },
 
   mutations: {
-    [ADD_MEET](state, meet) {
-      state.original.push({ ...meet, id: uuid() })
+    [ADD](state, meet) {
+      state.meets.push({ ...meet, id: uuid() })
     },
-    [DELETE_MEET](state, meetId) {
-      state.original = state.original.filter((meet) => meet.id !== meetId)
+    [UPDATE](state, newValues) {
+      const { id } = newValues
+      const targetMeet = state.meets.find((meet) => meet.id === id)
+
+      if (targetMeet) {
+        Object.assign(targetMeet, newValues)
+      }
+    },
+    [DELETE](state, meetId) {
+      state.meets = state.meets.filter((meet) => meet.id !== meetId)
     },
   },
 
   actions: {
     add({ commit }, meet) {
-      commit(ADD_MEET, meet)
+      commit(ADD, meet)
+    },
+    update({ commit }, newValues) {
+      commit(UPDATE, newValues)
     },
     delete({ commit }, meetId) {
-      commit(DELETE_MEET, meetId)
+      commit(DELETE, meetId)
     },
   },
 }
