@@ -38,7 +38,9 @@ export default {
   },
 
   actions: {
-    setFields({ commit }, fields) {
+    setFields({ commit, state, dispatch }, fields) {
+      if (state.isEditing) dispatch('revertChanges')
+
       commit(SET, fields)
       commit(BACKUP, fields)
     },
