@@ -55,14 +55,7 @@ export default {
     this.getComponentSize()
     this.$nextTick(this.getComponentSize)
   },
-  created() {
-    document.addEventListener('keyup', this.handleEscKeyup)
-  },
   methods: {
-    handleEscKeyup(event) {
-      const escapeKey = event.keyCode === 27
-      if (escapeKey) this.handleClose()
-    },
     handleAction(actionFunction) {
       actionFunction()
       this.handleClose()
@@ -99,9 +92,6 @@ export default {
 
       return { top: `${safePosition.y}px`, left: `${safePosition.x}px` }
     },
-  },
-  beforeDestroy() {
-    document.removeEventListener('keyup', this.handleEscKeyup)
   },
 }
 </script>
