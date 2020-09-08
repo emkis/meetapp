@@ -1,39 +1,48 @@
 import uuid from '@/utils/uuid'
-import { ADD, DELETE, UPDATE } from './types'
+import { ADD, DELETE, UPDATE, INITIALISE } from './types'
+import { getFromStorage } from '@/utils/storage'
 
 export default {
   namespaced: true,
 
   state: {
-    meets: [
-      {
-        id: uuid(),
-        title: 'CSS Tips & Tricks',
-        category: 'Test',
-        duration: 25,
-      },
-      {
-        id: uuid(),
-        title: 'Frontend for dummmies',
-        category: 'Frontend',
-        duration: 40,
-      },
-      {
-        id: uuid(),
-        title: 'Vue.js Pro Tips',
-        category: 'Advanced Topics',
-        duration: 20,
-      },
-      {
-        id: uuid(),
-        title: 'Build an API in 5 minutes with Deno',
-        category: 'Backend',
-        duration: 65,
-      },
-    ],
+    meets: [],
   },
 
   mutations: {
+    [INITIALISE](state) {
+      const initialState = [
+        {
+          id: uuid(),
+          title: 'CSS Tips & Tricks',
+          category: 'Test',
+          duration: 25,
+        },
+        {
+          id: uuid(),
+          title: 'Frontend for dummmies',
+          category: 'Frontend',
+          duration: 40,
+        },
+        {
+          id: uuid(),
+          title: 'Vue.js Pro Tips',
+          category: 'Advanced Topics',
+          duration: 20,
+        },
+        {
+          id: uuid(),
+          title: 'Build an API in five minutes with Deno',
+          category: 'Backend',
+          duration: 65,
+        },
+      ]
+
+      const previousState = getFromStorage('meets')
+
+      if (previousState) state.meets = previousState
+      else state.meets = initialState
+    },
     [ADD](state, meet) {
       state.meets.push({ ...meet, id: uuid() })
     },
@@ -51,6 +60,9 @@ export default {
   },
 
   actions: {
+    initialise({ commit }) {
+      commit(INITIALISE)
+    },
     add({ commit }, meet) {
       commit(ADD, meet)
     },
