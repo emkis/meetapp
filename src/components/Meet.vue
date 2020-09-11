@@ -78,6 +78,8 @@ export default {
     },
     scheduleFormatted() {
       const { startTime, endTime } = this.schedule
+      if (!startTime && !endTime) return 'Schedule not defined yet'
+
       return `${startTime} - ${endTime}`
     },
     categoryColor() {
