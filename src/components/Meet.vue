@@ -131,10 +131,6 @@ export default {
     border-bottom-left-radius: var(--border-radius);
   }
 
-  & + & {
-    margin-top: rem(20px);
-  }
-
   .title {
     font-size: rem(20px);
     font-family: $font-body;
