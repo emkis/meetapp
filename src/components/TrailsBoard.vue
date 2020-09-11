@@ -1,10 +1,6 @@
 <template>
   <div id="trails-board" v-dragscroll="true">
-    <TrailColumn />
-    <TrailColumn />
-    <TrailColumn />
-    <TrailColumn />
-    <TrailColumn />
+    <TrailColumn :key="trail.id" v-for="trail in trails" :trail="trail.meets" />
   </div>
 </template>
 
@@ -17,6 +13,9 @@ export default {
   name: 'TrailsBoard',
   components: { TrailColumn },
   directives: { dragscroll },
+  props: {
+    trails: { type: Array, required: true },
+  },
 }
 </script>
 

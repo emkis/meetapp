@@ -11,7 +11,7 @@
       </Header>
 
       <CategoryFilters />
-      <TrailsBoard class="fullscreen" />
+      <TrailsBoard class="fullscreen" :trails="trails" />
     </div>
   </BaseContainer>
 </template>
@@ -33,6 +33,9 @@ export default {
     TrailsBoard,
     BaseButton,
     BaseContainer,
+  },
+  props: {
+    trails: { type: Array, required: true },
   },
   methods: {
     navigate() {

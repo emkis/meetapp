@@ -4,13 +4,12 @@
 
     <div class="scrollable">
       <Meet
-        :key="index"
-        v-for="(meet, index) in meetsNumber"
-        :id="index"
-        title="Typescript Tips & Tricks"
-        category="Advanced Topics"
-        :schedule="{ startTime: '15:00', endTime: '15:30' }"
-        :hasOptions="false"
+        :key="meet.id"
+        v-for="meet in trail"
+        :id="meet.id"
+        :title="meet.title"
+        :category="meet.category"
+        :schedule="meet.schedule"
       />
     </div>
   </div>
@@ -18,14 +17,13 @@
 
 <script>
 import Meet from '@/components/Meet'
+// import MeetBreak from '@/components/MeetBreak'
 
 export default {
   name: 'TrailColumn',
   components: { Meet },
-  data() {
-    return {
-      meetsNumber: 6,
-    }
+  props: {
+    trail: { type: Array, required: true },
   },
 }
 </script>
@@ -53,6 +51,10 @@ export default {
     height: 100%;
 
     overflow-y: auto;
+
+    * + * {
+      margin-top: rem(20px);
+    }
 
     .meet {
       margin-right: 5px;
