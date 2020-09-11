@@ -9,7 +9,7 @@
         :id="index"
         title="Typescript Tips & Tricks"
         category="Advanced Topics"
-        :schedule="{ start_time: '15:00', end_time: '15:30' }"
+        :schedule="{ startTime: '15:00', endTime: '15:30' }"
         :hasOptions="false"
       />
     </div>
