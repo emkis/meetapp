@@ -1,6 +1,6 @@
 <template>
   <div class="trail-column">
-    <p class="title">Trail one</p>
+    <p class="title">Trail {{ columnNumber | numberToWord }}</p>
 
     <div class="scrollable">
       <Meet
@@ -16,14 +16,18 @@
 </template>
 
 <script>
+import { numberToWord } from '@/utils/string'
+
 import Meet from '@/components/Meet'
 // import MeetBreak from '@/components/MeetBreak'
 
 export default {
   name: 'TrailColumn',
   components: { Meet },
+  filters: { numberToWord },
   props: {
     trail: { type: Array, required: true },
+    columnNumber: { type: Number, required: true },
   },
 }
 </script>

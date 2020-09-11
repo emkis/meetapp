@@ -1,6 +1,11 @@
 <template>
   <div id="trails-board" v-dragscroll="true">
-    <TrailColumn :key="trail.id" v-for="trail in trails" :trail="trail.meets" />
+    <TrailColumn
+      :key="trail.id"
+      v-for="(trail, index) in trails"
+      :trail="trail.meets"
+      :columnNumber="index + 1"
+    />
   </div>
 </template>
 
