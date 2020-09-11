@@ -13,6 +13,6 @@ new Vue({
   store,
   render: (h) => h(App),
   beforeCreate() {
-    this.$store.commit('initialiseStorage')
+    this.$store.commit('initializeStorage')
   },
 }).$mount('#app')

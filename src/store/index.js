@@ -13,8 +13,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   plugins: [persistMeets],
   mutations: {
-    initialiseStorage() {
-      this.dispatch('meet/initialise')
+    initializeStorage() {
+      this.dispatch('meet/initialize')
     },
   },
   modules: {

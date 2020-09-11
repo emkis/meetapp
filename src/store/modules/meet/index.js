@@ -1,5 +1,5 @@
 import uuid from '@/utils/uuid'
-import { ADD, DELETE, UPDATE, INITIALISE } from './types'
+import { ADD, DELETE, UPDATE, INITIALIZE } from './types'
 import { getFromStorage } from '@/utils/storage'
 
 export default {
@@ -10,7 +10,7 @@ export default {
   },
 
   mutations: {
-    [INITIALISE](state) {
+    [INITIALIZE](state) {
       const initialState = [
         {
           id: uuid(),
@@ -60,7 +60,7 @@ export default {
   },
 
   actions: {
-    initialise({ commit }) {
+    initialize({ commit }) {
       commit(INITIALISE)
     },
     add({ commit }, meet) {
