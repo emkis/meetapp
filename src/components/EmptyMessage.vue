@@ -13,6 +13,7 @@ export default { components: { IconSadFace } }
   display: flex;
   align-items: center;
   color: var(--color-gray-dark);
+  line-height: 2;
 
   > svg {
     margin-left: 5px;
