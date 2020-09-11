@@ -49,6 +49,10 @@ export default {
 
   .meet {
     margin-right: 5px;
+
+    & + .meet {
+      margin-top: rem(20px);
+    }
   }
 
   .list {
