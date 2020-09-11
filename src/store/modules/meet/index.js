@@ -61,7 +61,7 @@ export default {
 
   actions: {
     initialize({ commit }) {
-      commit(INITIALISE)
+      commit(INITIALIZE)
     },
     add({ commit }, meet) {
       commit(ADD, meet)

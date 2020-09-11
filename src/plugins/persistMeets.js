@@ -1,4 +1,4 @@
-import { INITIALISE } from '@/store/modules/meet/types'
+import { INITIALIZE } from '@/store/modules/meet/types'
 
 function persistMeet(store) {
   function updateLocalStorage(updatedData) {
@@ -7,7 +7,7 @@ function persistMeet(store) {
 
   store.subscribe((mutation, state) => {
     const isFromMeetModule = mutation.type.startsWith('meet/')
-    const isNotInitialMutation = mutation.type !== `meet/${INITIALISE}`
+    const isNotInitialMutation = mutation.type !== `meet/${INITIALIZE}`
 
     if (isFromMeetModule && isNotInitialMutation) {
       updateLocalStorage(state.meet.meets)
