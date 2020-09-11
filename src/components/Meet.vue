@@ -27,7 +27,7 @@ import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
 export default {
   components: { IconOptions, IconClock, ContextMenuClickableArea },
   props: {
-    id: { type: String, required: true },
+    id: { type: [String, Number], required: true },
     title: { type: String, required: true },
     category: { type: String, required: true },
     durationInMinutes: [String, Number],
