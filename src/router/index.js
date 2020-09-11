@@ -51,6 +51,58 @@ const routes = [
                 category: 'Backend',
                 duration: 65,
               },
+              {
+                id: uuid(),
+                title: 'Lorem Ipsum',
+                category: 'Beginner',
+                schedule: { startTime: '10:00', endTime: '11:25' },
+              },
+            ],
+          },
+          {
+            id: uuid(),
+            meets: [
+              {
+                id: uuid(),
+                title: 'CSS Tips & Tricks',
+                category: 'Test',
+                schedule: { startTime: '10:00', endTime: '11:25' },
+              },
+              {
+                id: uuid(),
+                title: 'Frontend for dummmies',
+                category: 'Frontend',
+                schedule: { startTime: '14:00', endTime: '15:30' },
+              },
+              {
+                id: uuid(),
+                title: 'Vue.js Pro Tips',
+                category: 'Advanced Topics',
+                schedule: { startTime: '16:00', endTime: '16:45' },
+              },
+            ],
+          },
+          {
+            id: uuid(),
+            meets: [
+              {
+                id: uuid(),
+                title: 'CSS Tips & Tricks',
+                category: 'Test',
+                schedule: { startTime: '10:00', endTime: '11:25' },
+              },
+              {
+                id: uuid(),
+                title: 'Frontend for dummmies',
+                category: 'Frontend',
+                schedule: { startTime: '14:00', endTime: '15:30' },
+              },
+              {
+                id: uuid(),
+                title: 'Vue.js Pro Tips',
+                category: 'Advanced Topics',
+                schedule: { startTime: '16:00', endTime: '16:45' },
+              },
             ],
           },
         ],
