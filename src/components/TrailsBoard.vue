@@ -31,6 +31,7 @@ export default {
   grid-gap: 40px;
   margin-bottom: 5px;
 
+  user-select: none;
   overflow-x: auto;
 }
 </style>
