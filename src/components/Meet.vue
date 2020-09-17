@@ -110,11 +110,13 @@ export default {
 
   background: var(--color-background);
   border-radius: var(--border-radius);
+  border: 2px solid transparent;
+  border-left: 0;
   color: var(--color-primary);
+  transition: border-color 200ms ease;
 
   &.selected {
-    border: 2px solid var(--color-sidebar);
-    border-left: 0;
+    border-color: var(--color-sidebar);
   }
 
   //sidebar
