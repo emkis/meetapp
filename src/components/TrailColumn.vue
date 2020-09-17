@@ -1,18 +1,20 @@
 <template>
   <div class="trail-column">
-    <p class="title">Trail one</p>
+    <section class="inner">
+      <p class="title">Trail one</p>
 
-    <div class="scrollable">
-      <Meet
-        :key="index"
-        v-for="(meet, index) in meetsNumber"
-        :id="index"
-        title="Typescript Tips & Tricks"
-        category="Advanced Topics"
-        :schedule="{ start_time: '15:00', end_time: '15:30' }"
-        :hasOptions="false"
-      />
-    </div>
+      <div class="scrollable">
+        <Meet
+          :key="index"
+          v-for="(meet, index) in meetsNumber"
+          :id="index"
+          title="Typescript Tips & Tricks"
+          category="Advanced Topics"
+          :schedule="{ start_time: '15:00', end_time: '15:30' }"
+          :hasOptions="false"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -32,9 +34,11 @@ export default {
 
 <style lang="scss" scoped>
 .trail-column {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 30px;
+  .inner {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+  }
 
   .title {
     margin-bottom: rem(10px);
@@ -46,12 +50,6 @@ export default {
   }
 
   .scrollable {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
     overflow-y: auto;
 
     .meet {
