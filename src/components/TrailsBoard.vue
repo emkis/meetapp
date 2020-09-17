@@ -41,12 +41,20 @@ export default {
     bottom: 0;
     left: 0;
     padding-bottom: 10px;
+  }
 
-    .trail-column {
-      display: inline-block;
-      width: $meet-width;
-      margin: 0 20px;
-      height: 100%;
+  .trail-column {
+    display: inline-block;
+    width: $meet-width;
+    margin: 0 20px;
+    height: 100%;
+
+    &:first-child {
+      margin-left: 40px;
+    }
+
+    &:last-child {
+      margin-right: 40px;
     }
   }
 }
