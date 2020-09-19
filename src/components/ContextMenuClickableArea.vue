@@ -23,12 +23,10 @@ export default {
   },
   methods: {
     openContextMenu(event) {
-      const { srcElement } = event
-      const sourceElementPosition = srcElement.getClientRects()[0]
-      const { x, y } = sourceElementPosition
+      const { pageX, pageY } = event
 
       this.$store.dispatch('contextMenu/open', {
-        position: { x, y },
+        position: { x: pageX, y: pageY },
         options: this.options,
       })
     },
