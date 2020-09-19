@@ -11,7 +11,7 @@
       </Header>
 
       <CategoryFilters />
-      <TrailsBoard class="fullscreen" :trails="trails" />
+      <TrailsBoard class="grow-outside-container" :trails="trails" />
     </div>
   </BaseContainer>
 </template>
@@ -53,6 +53,10 @@ export default {
 
   .header {
     padding-bottom: rem(40px);
+  }
+
+  .grow-outside-container {
+    margin: 0 calc(-49vw + 50%) 13px;
   }
 
   #trails-board {
