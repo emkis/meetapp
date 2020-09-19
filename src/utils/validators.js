@@ -16,6 +16,6 @@ export const isGreaterThanZero = (number) => {
   return number > 0
 }
 
-export const isNumber = (value) => !!Number(value)
+export const isNumber = (value) => typeof value === 'number' && isFinite(value)
 
 export const isEmpty = (text) => !text
