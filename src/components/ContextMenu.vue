@@ -118,7 +118,7 @@ export default {
 
     text-align: left;
     color: var(--color-primary);
-    transition: background 100ms ease;
+    transition: background 150ms ease;
 
     &:hover,
     &:active {
