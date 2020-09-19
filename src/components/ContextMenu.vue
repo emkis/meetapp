@@ -74,6 +74,11 @@ export default {
       const pageHeight = window.innerHeight
       const { x: positionX, y: positionY } = this.position
 
+      /**
+       * this object bellow contain the percentage of the component's position in relation to the screen size
+       * the idea is that the component never render in the original position if it has
+       * lass than 3% space before the page ends horizontally and vertically
+       */
       const percentages = {
         x: ((positionX + this.componentWidth) * 100) / pageWidth,
         y: ((positionY + this.componentHeight) * 100) / pageHeight,
