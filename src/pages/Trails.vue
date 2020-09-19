@@ -57,7 +57,6 @@ export default {
 
   #trails-board {
     margin-top: rem(40px);
-    padding: 0 3%;
     flex-grow: 1;
   }
 }

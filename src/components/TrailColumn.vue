@@ -1,17 +1,19 @@
 <template>
   <div class="trail-column">
-    <p class="title">Trail {{ columnNumber | numberToWord }}</p>
+    <section class="inner">
+      <p class="title">Trail {{ columnNumber | numberToWord }}</p>
 
-    <div class="scrollable">
-      <Meet
-        :key="meet.id"
-        v-for="meet in trail"
-        :id="meet.id"
-        :title="meet.title"
-        :category="meet.category"
-        :schedule="meet.schedule"
-      />
-    </div>
+      <div class="scrollable">
+        <Meet
+          :key="meet.id"
+          v-for="meet in trail"
+          :id="meet.id"
+          :title="meet.title"
+          :category="meet.category"
+          :schedule="meet.schedule"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -34,9 +36,11 @@ export default {
 
 <style lang="scss" scoped>
 .trail-column {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 30px;
+  .inner {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+  }
 
   .title {
     margin-bottom: rem(10px);
@@ -48,12 +52,6 @@ export default {
   }
 
   .scrollable {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
     overflow-y: auto;
 
     * + * {
