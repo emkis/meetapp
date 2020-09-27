@@ -8,10 +8,7 @@
 export default {
   name: 'ContextMenuClickableArea',
   props: {
-    options: {
-      type: Array,
-      required: true,
-    },
+    options: { type: Array, required: true },
     handler: {
       type: String,
       default: 'click',

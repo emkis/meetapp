@@ -12,14 +12,8 @@ export default {
   name: 'ButtonConfirm',
   components: { IconAttention },
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    confirmAction: {
-      type: Function,
-      required: true,
-    },
+    label: { type: String, required: true },
+    confirmAction: { type: Function, required: true },
   },
   data() {
     return {

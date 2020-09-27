@@ -8,14 +8,8 @@
 export default {
   name: 'CategoryButton',
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    active: {
-      type: Boolean,
-      default: false,
-    },
+    name: { type: String, required: true },
+    active: { type: Boolean, default: false },
   },
 }
 </script>
