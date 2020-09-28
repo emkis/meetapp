@@ -1,0 +1,136 @@
+import uuid from '@/utils/uuid'
+
+export default Object.freeze([
+  {
+    id: uuid(),
+    title: 'CSS Tips & Tricks',
+    category: 'Frontend',
+    duration: 60,
+  },
+  {
+    id: uuid(),
+    title: 'Frontend for dummmies',
+    category: 'Frontend',
+    duration: 90,
+  },
+  {
+    id: uuid(),
+    title: 'Vue.js Pro Tips',
+    category: 'Advanced Topics',
+    duration: 60,
+  },
+  {
+    id: uuid(),
+    title: 'Vue.js Composition API',
+    category: 'Advanced Topics',
+    duration: 55,
+  },
+  {
+    id: uuid(),
+    title: 'Choosing the best folder structure for your application',
+    category: 'Advanced Topics',
+    duration: 100,
+  },
+  {
+    id: uuid(),
+    title: 'Successful Elixir Cases',
+    category: 'Backend',
+    duration: 65,
+  },
+  {
+    id: uuid(),
+    title: 'Node.js & Redis. High performance caching',
+    category: 'Backend',
+    duration: 40,
+  },
+  {
+    id: uuid(),
+    title: 'Unit Testing React Components',
+    category: 'Test',
+    duration: 60,
+  },
+  {
+    id: uuid(),
+    title: 'Best Easy Practices of Javascript',
+    category: 'Beginner',
+    duration: 70,
+  },
+  {
+    id: uuid(),
+    title: 'JavaScript Clean Code — Quick Best Practices',
+    category: 'Beginner',
+    duration: 50,
+  },
+  {
+    id: uuid(),
+    title: 'A way to learn React',
+    category: 'Beginner',
+    duration: 80,
+  },
+  {
+    id: uuid(),
+    title: 'Creative Mobile Onboarding Concepts',
+    category: 'Frontend',
+    duration: 95,
+  },
+  {
+    id: uuid(),
+    title: 'TDD Timeless',
+    category: 'Test',
+    duration: 45,
+  },
+  {
+    id: uuid(),
+    title: 'Understanding JavaScript/TypeScript Memoization',
+    category: 'Backend',
+    duration: 80,
+  },
+  {
+    id: uuid(),
+    title: 'Domain Driven Design in JavaScript',
+    category: 'Advanced Topics',
+    duration: 105,
+  },
+  {
+    id: uuid(),
+    title: 'Deno vs. Node.js — Key Differences',
+    category: 'Backend',
+    duration: 0,
+  },
+  {
+    id: uuid(),
+    title: 'Looking into Svelte 3',
+    category: 'Beginner',
+    duration: 45,
+  },
+  {
+    id: uuid(),
+    title: 'Javascript Closure: Simply Explained',
+    category: 'Beginner',
+    duration: 30,
+  },
+  {
+    id: uuid(),
+    title: 'STOP!! You don’t need Microservices',
+    category: 'Backend',
+    duration: 70,
+  },
+  {
+    id: uuid(),
+    title: 'Unit tests in TypeScript',
+    category: 'Test',
+    duration: 90,
+  },
+  {
+    id: uuid(),
+    title: 'Vuex made simple — getting started!',
+    category: 'Beginner',
+    duration: 30,
+  },
+  {
+    id: uuid(),
+    title: 'Functional Programming in Frontend',
+    category: 'Frontend',
+    duration: 125,
+  },
+])
