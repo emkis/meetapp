@@ -109,6 +109,7 @@ export default {
 
   position: relative;
   padding: rem(25px $title-space-before-icon 25px 36px);
+  white-space: normal;
 
   background: var(--color-background);
   border-radius: var(--border-radius);
