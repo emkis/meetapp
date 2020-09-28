@@ -2,6 +2,7 @@ import {
   MORNING_MINUTES_LIMIT,
   EVENING_MINUTES_LIMIT,
   MAX_MINUTES_PER_TRAIL,
+  EVENT_TYPES,
 } from '@/utils/constants'
 import uuid from '@/utils/uuid'
 import getTimeFromMinutes from '@/utils/getTimeFromMinutes'
@@ -132,6 +133,7 @@ function trailsFactory(meets = []) {
 
       return {
         id: uuid(),
+        type: EVENT_TYPES.MEET,
         title,
         category: meet.category,
         schedule: { startTime, endTime },
@@ -143,6 +145,7 @@ function trailsFactory(meets = []) {
       const morning = trail.morning.map((meet) => formatOutput(meet))
       const lunch = {
         title: 'Almoço',
+        type: EVENT_TYPES.BREAK,
         schedule: {
           startTime: `${LUNCH_START_TIME}:00`,
           endTime: `${EVENING_START_TIME}:00`,
@@ -153,8 +156,9 @@ function trailsFactory(meets = []) {
       const evening = trail.evening.map((meet) => formatOutput(meet))
 
       const network = {
-        schedule: { startTime: getTime(), endTime: 'No time set' },
         title: 'Evento de Networking',
+        type: EVENT_TYPES.BREAK,
+        schedule: { startTime: getTime(), endTime: 'No time set' },
       }
 
       return {
