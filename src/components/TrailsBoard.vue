@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 #trails-board {
-  $meet-width: rem(430px);
+  $meet-width: rem(450px);
 
   position: relative;
   user-select: none;
