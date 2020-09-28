@@ -132,7 +132,7 @@ function trailsFactory(meets = []) {
 
       return {
         id: uuid(),
-        title: `${title} ${duration}min`,
+        title,
         category: meet.category,
         schedule: { startTime, endTime },
       }
@@ -153,7 +153,7 @@ function trailsFactory(meets = []) {
       const evening = trail.evening.map((meet) => formatOutput(meet))
 
       const network = {
-        schedule: { startTime: getTime(), endTime: 'Undefined time' },
+        schedule: { startTime: getTime(), endTime: 'No time set' },
         title: 'Evento de Networking',
       }
 
