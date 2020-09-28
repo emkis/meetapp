@@ -116,14 +116,14 @@ function trailsFactory(meets = []) {
       minute = minutes
     }
 
+    function getTime() {
+      const sanitizedMinutes = minute < 10 ? `0${minute}` : minute
+      return `${hour}:${sanitizedMinutes ? sanitizedMinutes : '00'}`
+    }
+
     function formatOutput(meet) {
       const title = meet.title
       const duration = meet.duration
-
-      const getTime = () => {
-        const sanitizedMinutes = minute < 10 ? `0${minute}` : minute
-        return `${hour}:${sanitizedMinutes ? sanitizedMinutes : '00'}`
-      }
 
       const startTime = getTime()
       incrementTime(duration)
@@ -139,15 +139,19 @@ function trailsFactory(meets = []) {
     sanitizedTrails = trails.map((trail) => {
       setTime(MORNING_START_TIME, 0)
       const morning = trail.morning.map((meet) => formatOutput(meet))
-      const lunch = { time: `${LUNCH_START_TIME}:00`, title: 'Almoço' }
+      const lunch = {
+        title: 'Almoço',
+        schedule: {
+          startTime: `${LUNCH_START_TIME}:00`,
+          endTime: `${EVENING_START_TIME}:00`,
+        },
+      }
 
       setTime(EVENING_START_TIME, 0)
       const evening = trail.evening.map((meet) => formatOutput(meet))
 
-      const sanatizedMinute = minute < 10 ? `0${minute}` : minute
-
       const network = {
-        time: `${hour}:${sanatizedMinute}`,
+        schedule: { startTime: getTime(), endTime: 'Undefined time' },
         title: 'Evento de Networking',
       }
 
