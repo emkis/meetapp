@@ -144,6 +144,7 @@ function trailsFactory(meets = []) {
       setTime(MORNING_START_TIME, 0)
       const morning = trail.morning.map((meet) => formatOutput(meet))
       const lunch = {
+        id: uuid(),
         title: 'Almoço',
         type: EVENT_TYPES.BREAK,
         schedule: {
@@ -156,6 +157,7 @@ function trailsFactory(meets = []) {
       const evening = trail.evening.map((meet) => formatOutput(meet))
 
       const network = {
+        id: uuid(),
         title: 'Evento de Networking',
         type: EVENT_TYPES.BREAK,
         schedule: { startTime: getTime(), endTime: 'No time set' },
