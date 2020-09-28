@@ -4,13 +4,11 @@
       <p class="title">Trail {{ columnNumber | numberToWord }}</p>
 
       <div class="scrollable">
-        <Meet
-          :key="meet.id"
-          v-for="meet in trail"
-          :id="meet.id"
-          :title="meet.title"
-          :category="meet.category"
-          :schedule="meet.schedule"
+        <component
+          :is="event.component"
+          :key="event.id"
+          v-for="event in formattedTrail"
+          v-bind="event.props"
         />
       </div>
     </section>
@@ -19,17 +17,33 @@
 
 <script>
 import { numberToWord } from '@/utils/string'
+import { EVENT_TYPES } from '@/utils/constants'
 
 import Meet from '@/components/Meet'
-// import MeetBreak from '@/components/MeetBreak'
+import MeetBreak from '@/components/MeetBreak'
+
+function sanitizeEvent(event) {
+  const { id, title, category, schedule } = event
+  const defaultProps = { id, title, schedule }
+
+  if (event.type === EVENT_TYPES.MEET) {
+    return { component: Meet, props: { ...defaultProps, category } }
+  }
+
+  return { component: MeetBreak, props: { ...defaultProps } }
+}
 
 export default {
   name: 'TrailColumn',
-  components: { Meet },
   filters: { numberToWord },
   props: {
     trail: { type: Array, required: true },
     columnNumber: { type: Number, required: true },
+  },
+  computed: {
+    formattedTrail() {
+      return this.trail.map(sanitizeEvent)
+    },
   },
 }
 </script>
