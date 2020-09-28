@@ -31,7 +31,7 @@ export default {
   props: {
     v: { type: Object, required: true },
     label: { type: String, required: true },
-    value: { type: [String, Number], default: '' },
+    value: { type: Number },
   },
   computed: {
     duration: {
@@ -39,7 +39,7 @@ export default {
         return this.value
       },
       set(value) {
-        this.$emit('input', value)
+        this.$emit('input', Number(value))
       },
     },
   },
