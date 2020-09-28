@@ -1,6 +1,7 @@
 import uuid from '@/utils/uuid'
 import { ADD, DELETE, UPDATE, INITIALIZE } from './types'
 import { getFromStorage } from '@/utils/storage'
+import initialState from './initialState'
 
 export default {
   namespaced: true,
@@ -11,33 +12,6 @@ export default {
 
   mutations: {
     [INITIALIZE](state) {
-      const initialState = [
-        {
-          id: uuid(),
-          title: 'CSS Tips & Tricks',
-          category: 'Test',
-          duration: 25,
-        },
-        {
-          id: uuid(),
-          title: 'Frontend for dummmies',
-          category: 'Frontend',
-          duration: 40,
-        },
-        {
-          id: uuid(),
-          title: 'Vue.js Pro Tips',
-          category: 'Advanced Topics',
-          duration: 20,
-        },
-        {
-          id: uuid(),
-          title: 'Build an API in five minutes with Deno',
-          category: 'Backend',
-          duration: 65,
-        },
-      ]
-
       const previousState = getFromStorage('meets')
 
       if (previousState) state.meets = previousState
