@@ -2,8 +2,9 @@ import {
   MORNING_MINUTES_LIMIT,
   EVENING_MINUTES_LIMIT,
   MAX_MINUTES_PER_TRAIL,
-} from './utils/constants'
-import getTimeFromMinutes from './utils/getTimeFromMinutes'
+} from '@/utils/constants'
+import uuid from '@/utils/uuid'
+import getTimeFromMinutes from '@/utils/getTimeFromMinutes'
 
 function trailsFactory(meets = []) {
   const trails = []
@@ -130,6 +131,7 @@ function trailsFactory(meets = []) {
       const endTime = getTime()
 
       return {
+        id: uuid(),
         title: `${title} ${duration}min`,
         category: meet.category,
         schedule: { startTime, endTime },
@@ -155,7 +157,10 @@ function trailsFactory(meets = []) {
         title: 'Evento de Networking',
       }
 
-      return [...morning, lunch, ...evening, network]
+      return {
+        id: uuid(),
+        meets: [...morning, lunch, ...evening, network],
+      }
     })
 
     return sanitizedTrails
