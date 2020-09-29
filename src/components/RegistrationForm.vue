@@ -98,8 +98,8 @@ export default {
       this.$store.dispatch('form/reset')
       this.$v.$reset()
     },
-    dispatchTo(dispatchString) {
-      this.$store.dispatch(dispatchString, {
+    dispatchTo(targetModule) {
+      this.$store.dispatch(targetModule, {
         title: this.meetName,
         category: this.meetCategory,
         duration: Number(this.meetDuration),
