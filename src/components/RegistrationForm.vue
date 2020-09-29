@@ -76,7 +76,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('form', { revertChanges: 'revertChanges' }),
+    ...mapActions('form', ['revertChanges']),
     handleSubmit() {
       this.$v.$touch()
 
