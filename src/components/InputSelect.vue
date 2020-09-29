@@ -1,5 +1,8 @@
 <template>
-  <div class="input-group" :class="{ 'has-error': hasError, valid: isValid }">
+  <fieldset
+    class="input-group"
+    :class="{ 'has-error': hasError, valid: isValid }"
+  >
     <label :for="randomId">{{ label }}</label>
 
     <div class="wrapper">
@@ -26,7 +29,7 @@
     </div>
 
     <div class="message" v-if="hasError"><slot name="requirements" /></div>
-  </div>
+  </fieldset>
 </template>
 
 <script>
@@ -70,6 +73,10 @@ export default {
   --background-color: var(--color-gray-primary);
   --default-color: var(--color-primary);
   $space-after: 25px;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
 
   &.has-error {
     --default-color: var(--color-input-has-error);
