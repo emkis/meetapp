@@ -1,6 +1,6 @@
 import uuid from '@/utils/uuid'
 
-export default Object.freeze([
+export default [
   {
     id: uuid(),
     title: 'CSS Tips & Tricks',
@@ -133,4 +133,4 @@ export default Object.freeze([
     category: 'Frontend',
     duration: 125,
   },
-])
+]
