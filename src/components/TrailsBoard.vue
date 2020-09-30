@@ -1,12 +1,14 @@
 <template>
   <div id="trails-board" v-dragscroll="true">
     <main v-dragscroll="true">
-      <TrailColumn
-        :key="trail.id"
-        v-for="(trail, index) in trails"
-        :trail="trail.meets"
-        :columnNumber="index + 1"
-      />
+      <transition-group name="list" tag="span" appear>
+        <TrailColumn
+          :key="trail.id"
+          v-for="(trail, index) in trails"
+          :trail="trail.meets"
+          :columnNumber="index + 1"
+        />
+      </transition-group>
     </main>
   </div>
 </template>
@@ -59,6 +61,18 @@ export default {
 
     &:last-child {
       margin-right: 40px;
+    }
+  }
+
+  .list {
+    &-enter-active,
+    &-leave-active {
+      transition: all 300ms ease;
+    }
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+      transform: translateX(-15px);
     }
   }
 }
