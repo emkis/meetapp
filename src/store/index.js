@@ -5,6 +5,7 @@ import category from '@/store/modules/category'
 import meet from '@/store/modules/meet'
 import contextMenu from '@/store/modules/contextMenu'
 import form from '@/store/modules/form'
+import trails from '@/store/modules/trails'
 
 import persistMeets from '@/plugins/persistMeets'
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   modules: {
     meet,
     form,
+    trails,
     category,
     contextMenu,
   },
