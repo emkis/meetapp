@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import TrailsFactory from '@/trailsFactory'
-import store from '@/store'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,13 +14,6 @@ const routes = [
     path: '/trails',
     name: 'Trails',
     component: () => import(/* webpackChunkName: "Trails" */ '@/pages/Trails'),
-    props: () => {
-      const organizer = TrailsFactory(store.state.meet.meets)
-      organizer.build()
-      const trails = organizer.buildSchedule()
-
-      return { trails }
-    },
   },
   {
     path: '*',
