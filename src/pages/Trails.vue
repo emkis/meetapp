@@ -10,8 +10,8 @@
         </BaseButton>
       </Header>
 
-      <CategoryFilters />
-      <TrailsBoard class="grow-outside-container" :trails="trails" />
+      <CategoryFilters @filtered="handleFilter" />
+      <TrailsBoard class="grow-outside-container" :trails="filteredTrails" />
     </div>
   </BaseContainer>
 </template>
@@ -23,6 +23,8 @@ import BaseButton from '@/components/BaseButton'
 import BaseContainer from '@/components/BaseContainer'
 import TrailsBoard from '@/components/TrailsBoard'
 import { IconPlus } from '@/components/icons'
+import { mapState } from 'vuex'
+import store from '@/store'
 
 export default {
   name: 'Trails',
@@ -34,12 +36,28 @@ export default {
     BaseButton,
     BaseContainer,
   },
-  props: {
-    trails: { type: Array, required: true },
+  beforeRouteEnter(to, from, next) {
+    store.dispatch('trails/organize')
+    next()
+  },
+  data() {
+    return {
+      filters: [],
+      // TODO: make filters work
+    }
   },
   methods: {
+    handleFilter(filteredTrails) {
+      this.filteredTrails = filteredTrails
+    },
     navigate() {
       this.$router.push({ name: 'Registration' })
+    },
+  },
+  computed: {
+    ...mapState('trails', ['trails']),
+    filteredTrails() {
+      return this.trails
     },
   },
 }
