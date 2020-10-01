@@ -1,11 +1,11 @@
-<template>
+<template functional>
   <svg
     stroke="currentColor"
-    :fill="color"
+    :fill="props.color"
     stroke-width="0"
     viewBox="0 0 17 16"
-    :height="size"
-    :width="size"
+    :height="props.size"
+    :width="props.size"
     xmlns="http://www.w3.org/2000/svg"
     role="presentation"
   >
