@@ -1,11 +1,5 @@
-import {
-  MORNING_MINUTES_LIMIT,
-  EVENING_MINUTES_LIMIT,
-  MAX_MINUTES_PER_TRAIL,
-  EVENT_TYPES,
-} from '@/utils/constants'
-import uuid from '@/utils/uuid'
-import getTimeFromMinutes from '@/utils/getTimeFromMinutes'
+import { MORNING_MINUTES_LIMIT, EVENING_MINUTES_LIMIT, MAX_MINUTES_PER_TRAIL } from './utils/constants'
+import calculateMinutes from './utils/calculateMinutes'
 
 function trailsFactory(meets = []) {
   const trails = []
@@ -16,7 +10,7 @@ function trailsFactory(meets = []) {
     while (mutableMeets.length > 0) {
       trails.push({
         morning: getPeriod(mutableMeets, MORNING_MINUTES_LIMIT),
-        evening: getPeriod(mutableMeets, EVENING_MINUTES_LIMIT),
+        evening: getPeriod(mutableMeets, EVENING_MINUTES_LIMIT)
       })
     }
 
@@ -24,7 +18,7 @@ function trailsFactory(meets = []) {
   }
 
   function categoryAlreadyUsed(meetCategory, usedMeets) {
-    return usedMeets.some((meet) => meet === meetCategory)
+    return usedMeets.some(meet => meet === meetCategory)
   }
 
   function isPreviousCategory(currentCategory, usedCategories) {
@@ -53,9 +47,7 @@ function trailsFactory(meets = []) {
       const accumulator = totalDuration + currentDuration
 
       if (currentDuration > MAX_MINUTES_PER_TRAIL) {
-        throw Error(
-          'Sorry, something went wrong. Our monkeys are working to fix it :)'
-        )
+        throw Error ('Sorry, something went wrong. Our monkeys are working to fix it :)')
       }
 
       if (!categoryAlreadyUsed(currentCategory, usedCategories)) {
@@ -73,10 +65,7 @@ function trailsFactory(meets = []) {
       const currentCategory = meets[index].category
       const accumulator = totalDuration + currentDuration
 
-      if (
-        categoryAlreadyUsed(currentCategory, usedCategories) &&
-        !isPreviousCategory(currentCategory, usedCategories)
-      ) {
+      if (categoryAlreadyUsed(currentCategory, usedCategories) && !isPreviousCategory(currentCategory, usedCategories)) {
         if (accumulator <= periodLimit) {
           addMeetToPeriod(index, currentDuration, currentCategory)
           index--
@@ -112,61 +101,40 @@ function trailsFactory(meets = []) {
     }
 
     function incrementTime(minutesToAdd) {
-      const { hours, minutes } = getTimeFromMinutes(minutesToAdd + minute)
+      const { hours, minutes } = calculateMinutes(minutesToAdd + minute)
 
       hour += hours
       minute = minutes
     }
 
-    function getTime() {
-      const sanitizedMinutes = minute < 10 ? `0${minute}` : minute
-      return `${hour}:${sanitizedMinutes ? sanitizedMinutes : '00'}`
-    }
-
     function formatOutput(meet) {
-      const title = meet.title
+      const name = meet.name
       const duration = meet.duration
+      const sanitizedMinutes = minute < 10 ? `0${minute}` : minute
 
-      const startTime = getTime()
+      const time = `${hour}:${!!sanitizedMinutes ? sanitizedMinutes : '00'}`
       incrementTime(duration)
-      const endTime = getTime()
 
       return {
-        id: uuid(),
-        type: EVENT_TYPES.MEET,
-        title,
-        category: meet.category,
-        schedule: { startTime, endTime },
+        time: `${time}`,
+        name: `${name} ${duration}min`,
+        category: meet.category
       }
     }
 
-    sanitizedTrails = trails.map((trail) => {
+    sanitizedTrails = trails.map(trail => {
       setTime(MORNING_START_TIME, 0)
-      const morning = trail.morning.map((meet) => formatOutput(meet))
-      const lunch = {
-        id: uuid(),
-        title: 'Almoço',
-        type: EVENT_TYPES.BREAK,
-        schedule: {
-          startTime: `${LUNCH_START_TIME}:00`,
-          endTime: `${EVENING_START_TIME}:00`,
-        },
-      }
+      const morning = trail.morning.map(meet => formatOutput(meet))
+      const lunch = { time: `${LUNCH_START_TIME}:00`, name: 'Almoço' }
 
       setTime(EVENING_START_TIME, 0)
-      const evening = trail.evening.map((meet) => formatOutput(meet))
+      const evening = trail.evening.map(meet => formatOutput(meet))
 
-      const network = {
-        id: uuid(),
-        title: 'Evento de Networking',
-        type: EVENT_TYPES.BREAK,
-        schedule: { startTime: getTime(), endTime: 'No time set' },
-      }
+      const sanatizedMinute = minute < 10 ? `0${minute}` : minute
 
-      return {
-        id: uuid(),
-        meets: [...morning, lunch, ...evening, network],
-      }
+      const network = { time: `${hour}:${sanatizedMinute}`, name: 'Evento de Networking' }
+
+      return [...morning, lunch, ...evening, network]
     })
 
     return sanitizedTrails

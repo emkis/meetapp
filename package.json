@@ -1,48 +1,21 @@
 {
-  "name": "meetapp",
-  "version": "2.0.0",
+  "name": "meetaap",
   "description": "meetapp is a service to help you organize events",
+  "version": "0.1.0",
+  "main": "src/index.html",
+  "repository": "https://github.com/emkis/meetaap.git",
+  "author": "Nicolas Jardim <nicolasemkis@gmail.com>",
+  "license": "MIT",
   "scripts": {
-    "start": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit --passWithNoTests",
-    "test:unit:watch": "vue-cli-service test:unit --watch --passWithNoTests",
-    "test:unit:coverage": "vue-cli-service test:unit --coverage --passWithNoTests",
-    "lint": "vue-cli-service lint --no-fix",
-    "report": "vue-cli-service build --report"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "normalize.css": "^8.0.1",
-    "number-to-words": "^1.2.4",
-    "polished": "^3.6.6",
-    "sass-rem": "^2.0.1",
-    "v-click-outside": "^3.1.2",
-    "vue": "^2.6.12",
-    "vue-dragscroll": "^2.1.0",
-    "vue-router": "^3.4.3",
-    "vuelidate": "^0.7.5",
-    "vuex": "^3.5.1"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url ./ --no-source-maps",
+    "test": "jest --watch"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
-    "@vue/cli-plugin-babel": "~4.5.6",
-    "@vue/cli-plugin-eslint": "~4.5.6",
-    "@vue/cli-plugin-router": "~4.5.6",
-    "@vue/cli-plugin-unit-jest": "^4.5.6",
-    "@vue/cli-plugin-vuex": "~4.5.6",
-    "@vue/cli-service": "~4.5.6",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/test-utils": "^1.1.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
-    "eslint-plugin-jest": "^24.0.1",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^6.2.2",
-    "prettier": "^2.1.2",
-    "sass": "^1.26.11",
-    "sass-loader": "^10.0.2",
-    "vue-template-compiler": "^2.6.12"
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "parcel": "^1.12.4"
   }
 }
