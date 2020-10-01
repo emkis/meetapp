@@ -1,6 +1,6 @@
 <template>
   <button :class="{ 'button-confirm': clickedTimes >= 1 }" @click="handleClick">
-    <IconAttention class="icon" v-if="clickedTimes >= 1" color="#fa5f1c" />
+    <IconAttention v-if="clickedTimes >= 1" color="#fa5f1c" />
     {{ currentLabel }}
   </button>
 </template>
@@ -51,9 +51,9 @@ export default {
 <style lang="scss" scoped>
 .button-confirm {
   color: var(--color-attention) !important;
-}
 
-.icon {
-  margin: 0 2px -2px 0;
+  > svg {
+    margin: 0 2px -2px 0;
+  }
 }
 </style>
