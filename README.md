@@ -9,6 +9,8 @@ with meetapp, you register "talks" with a certain time in minutes, and based on 
 
 **the goal is to try to make the event as less segmented as possible**, always trying to organize lectures on different types of subjects and not just a specific type
 
+try to [**use the app now**](https://emkis-meetapp.netlify.app/)
+
 # :art: layout
 i built all this application UI with figma, **[you can find the design here](https://www.figma.com/file/lsOKOfuAdy8R8CEISJXYyu/Meetapp?node-id=0%3A1)**
 
