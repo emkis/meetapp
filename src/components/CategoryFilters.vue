@@ -4,17 +4,19 @@
 
     <div class="filters">
       <CategoryButton
-        :key="index"
-        v-for="(category, index) in categories"
+        :key="category.name"
+        v-for="category in categories"
         :name="category.name"
-        :active="isSelected(index)"
-        @click="handleSelectItem(index, category.name)"
+        :active="isSelected(category)"
+        @click="handleSelectItem(category)"
       />
     </div>
   </section>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 import CategoryButton from '@/components/CategoryButton'
 
 export default {
@@ -26,26 +28,34 @@ export default {
     }
   },
   methods: {
-    isSelected(categoryId) {
-      return !!this.selectedFilters.find((item) => item.id === categoryId)
+    isSelected({ name: categoryName }) {
+      return !!this.selectedFilters.includes(categoryName)
     },
-    handleSelectItem(categoryId, categoryName) {
-      const alreadySelected = this.isSelected(categoryId)
+    removeCategory(targetCategory) {
+      return this.selectedFilters.filter((item) => item !== targetCategory)
+    },
+    handleSelectItem({ name: categoryName }) {
+      const alreadySelected = this.isSelected({ name: categoryName })
 
       if (alreadySelected) {
-        const filteredItems = this.selectedFilters.filter(
-          (item) => item.id !== categoryId
-        )
-
-        this.selectedFilters = filteredItems
+        const updatedFilters = this.removeCategory(categoryName)
+        this.selectedFilters = updatedFilters
       } else {
-        this.selectedFilters.push({ id: categoryId, name: categoryName })
+        this.selectedFilters.push(categoryName)
       }
+    },
+    getSelectedMeets() {
+      const filteredTrails = this.filterByCategories(this.selectedFilters)
+      this.$emit('filtered', filteredTrails)
     },
   },
   computed: {
-    categories() {
-      return this.$store.state.category.categories
+    ...mapGetters('trails', ['filterByCategories']),
+    ...mapState('category', ['categories']),
+  },
+  watch: {
+    selectedFilters(filters) {
+      this.getSelectedMeets(filters)
     },
   },
 }
