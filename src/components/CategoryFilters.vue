@@ -16,8 +16,6 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { isArrayEmpty } from '@/utils/validators'
-
 import CategoryButton from '@/components/CategoryButton'
 
 export default {
@@ -56,7 +54,7 @@ export default {
   },
   watch: {
     selectedFilters(filters) {
-      if (!isArrayEmpty(filters)) this.getSelectedMeets(filters)
+      this.getSelectedMeets(filters)
     },
   },
 }
