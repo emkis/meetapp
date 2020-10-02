@@ -18,6 +18,4 @@ export const isGreaterThanZero = (number) => {
 
 export const isNumber = (value) => typeof value === 'number' && isFinite(value)
 
-export const isEmpty = (text) => !text
-
 export const isArrayEmpty = (targetArray) => targetArray.length === 0
