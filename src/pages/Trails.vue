@@ -17,14 +17,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { isArrayEmpty } from '@/utils/validators'
+import store from '@/store'
+
 import Header from '@/components/Header'
 import CategoryFilters from '@/components/CategoryFilters'
 import BaseButton from '@/components/BaseButton'
 import BaseContainer from '@/components/BaseContainer'
 import TrailsBoard from '@/components/TrailsBoard'
 import { IconPlus } from '@/components/icons'
-import { mapState } from 'vuex'
-import store from '@/store'
 
 export default {
   name: 'Trails',
@@ -42,22 +44,22 @@ export default {
   },
   data() {
     return {
-      filters: [],
-      // TODO: make filters work
+      trails: [],
     }
   },
   methods: {
     handleFilter(filteredTrails) {
-      this.filteredTrails = filteredTrails
+      this.trails = filteredTrails
     },
     navigate() {
       this.$router.push({ name: 'Registration' })
     },
   },
   computed: {
-    ...mapState('trails', ['trails']),
+    ...mapState('trails', { originalTrails: 'trails' }),
     filteredTrails() {
-      return this.trails
+      const isFilteredTrailsEmpty = isArrayEmpty(this.trails)
+      return isFilteredTrailsEmpty ? this.originalTrails : this.trails
     },
   },
 }
