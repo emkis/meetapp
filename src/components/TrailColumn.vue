@@ -10,6 +10,10 @@
           v-for="event in formattedTrail"
           v-bind="event.props"
         />
+
+        <EmptyMessage v-if="isTrailEmpty">
+          No meets found on this trail
+        </EmptyMessage>
       </div>
     </section>
   </div>
@@ -21,6 +25,7 @@ import { EVENT_TYPES } from '@/utils/constants'
 
 import Meet from '@/components/Meet'
 import MeetBreak from '@/components/MeetBreak'
+import EmptyMessage from '@/components/EmptyMessage'
 
 function sanitizeEvent(event) {
   const { id, title, category, schedule } = event
@@ -36,6 +41,7 @@ function sanitizeEvent(event) {
 export default {
   name: 'TrailColumn',
   filters: { numberToWord },
+  components: { EmptyMessage },
   props: {
     trail: { type: Array, required: true },
     columnNumber: { type: Number, required: true },
@@ -43,6 +49,9 @@ export default {
   computed: {
     formattedTrail() {
       return this.trail.map(sanitizeEvent)
+    },
+    isTrailEmpty() {
+      return this.trail.length === 0
     },
   },
 }
