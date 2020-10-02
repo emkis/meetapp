@@ -1,4 +1,5 @@
 import trailsFactory from '@/trailsFactory'
+import { isArrayEmpty } from '@/utils/validators'
 import { ORGANIZE } from './types'
 
 export default {
@@ -26,16 +27,22 @@ export default {
   },
 
   getters: {
-    filterByCategories: (state) => (wantedCategories) => {
-      // TODO: make this work
+    filterByCategories: (state) => (wantedCategories = []) => {
+      const isCategoriesEmpty = isArrayEmpty(wantedCategories)
+      if (isCategoriesEmpty) return state.trails
 
-      function selectedOnly(trail) {
-        return trail.meets.filter((meet) => {
-          return wantedCategories.includes(meet.category)
-        })
+      function isMeetInCategories(meet) {
+        return wantedCategories.includes(meet.category)
       }
 
-      return state.trails.filter(selectedOnly)
+      const filteredTrails = state.trails.map((trail) => {
+        return {
+          id: trail.id,
+          meets: trail.meets.filter(isMeetInCategories),
+        }
+      })
+
+      return filteredTrails
     },
   },
 }
