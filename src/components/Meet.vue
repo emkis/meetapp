@@ -35,15 +35,6 @@ export default {
     schedule: { type: Object, default: () => ({ startTime: '', endTime: '' }) },
     selected: { type: Boolean, default: false },
   },
-  created() {
-    this.options = [
-      { label: 'Edit meet', action: this.editMeetFunction },
-      {
-        component: ButtonConfirm,
-        props: { label: 'Remove meet', confirmAction: this.removeMeetFunction },
-      },
-    ]
-  },
   mounted() {
     this.setCategoryColors()
   },
@@ -73,6 +64,18 @@ export default {
   },
   computed: {
     ...mapState('category', { categories: 'categories' }),
+    options() {
+      return [
+        { label: 'Edit meet', action: this.editMeetFunction },
+        {
+          component: ButtonConfirm,
+          props: {
+            label: 'Remove meet',
+            confirmAction: this.removeMeetFunction,
+          },
+        },
+      ]
+    },
     durationFormatted() {
       return `${this.durationInMinutes}min`
     },
