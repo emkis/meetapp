@@ -1,7 +1,7 @@
 <template>
   <div class="meet" :class="{ selected }">
     <ContextMenuClickableArea v-if="hasOptions" :options="options">
-      <button class="options">
+      <button type="button" class="options">
         <IconOptions size="35" color="#26265e" />
       </button>
     </ContextMenuClickableArea>
