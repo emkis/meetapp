@@ -11,7 +11,7 @@
 
     <strong class="time">
       <IconClock size="20" color="#26265e" />
-      {{ durationInMinutes ? durationFormatted : scheduleFormatted }}
+      {{ timeText }}
     </strong>
   </div>
 </template>
@@ -63,7 +63,7 @@ export default {
     },
   },
   computed: {
-    ...mapState('category', { categories: 'categories' }),
+    ...mapState('category', ['categories']),
     options() {
       return [
         { label: 'Edit meet', action: this.editMeetFunction },
@@ -75,6 +75,11 @@ export default {
           },
         },
       ]
+    },
+    timeText() {
+      return this.durationInMinutes
+        ? this.durationFormatted
+        : this.scheduleFormatted
     },
     durationFormatted() {
       return `${this.durationInMinutes}min`
