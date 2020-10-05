@@ -61,7 +61,7 @@ export default {
       this.handleClose()
     },
     handleClose() {
-      this.$emit('onClose')
+      this.$emit('on-close')
     },
     getComponentSize() {
       this.componentWidth = this.$el.clientWidth

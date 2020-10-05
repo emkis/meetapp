@@ -3,7 +3,7 @@
     v-if="contextMenu.isOpen"
     :options="contextMenu.options"
     :position="contextMenu.position"
-    @onClose="handleClose"
+    @on-close="handleClose"
     v-click-outside="handleClose"
   />
 </template>
