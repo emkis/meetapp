@@ -77,12 +77,8 @@ export default {
   .scrollable {
     overflow-y: auto;
 
-    * + * {
-      margin-top: rem(20px);
-    }
-
-    .meet {
-      margin-right: 5px;
+    > * {
+      margin: 0 6px rem(20px) 0;
     }
   }
 }
