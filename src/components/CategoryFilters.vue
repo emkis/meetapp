@@ -15,7 +15,9 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
+import { CATEGORIES } from '@/utils/constants'
+
 import CategoryButton from '@/components/CategoryButton'
 
 export default {
@@ -50,7 +52,9 @@ export default {
   },
   computed: {
     ...mapGetters('trails', ['filterByCategories']),
-    ...mapState('category', ['categories']),
+    categories() {
+      return CATEGORIES
+    },
   },
   watch: {
     selectedFilters(filters) {

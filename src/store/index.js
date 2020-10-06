@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import category from '@/store/modules/category'
 import meet from '@/store/modules/meet'
 import contextMenu from '@/store/modules/contextMenu'
 import form from '@/store/modules/form'
@@ -22,7 +21,6 @@ export default new Vuex.Store({
     meet,
     form,
     trails,
-    category,
     contextMenu,
   },
 })

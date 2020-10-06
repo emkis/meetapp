@@ -52,6 +52,7 @@ import {
   isLessThanLimit,
   isGreaterThanZero,
 } from '@/utils/validators'
+import { CATEGORIES } from '@/utils/constants'
 import { validationMixin } from 'vuelidate'
 import { mapState, mapActions } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
@@ -119,9 +120,9 @@ export default {
       meetCategory: (state) => state.fields.category,
       isEditing: (state) => state.isEditing,
     }),
-    ...mapState('category', {
-      categories: (state) => state.categories.map((category) => category.name),
-    }),
+    categories() {
+      return CATEGORIES.map((category) => category.name)
+    },
     meetName: {
       get() {
         return this.$store.state.form.fields.title

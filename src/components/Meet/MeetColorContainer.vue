@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import { rgba } from 'polished'
+import { CATEGORIES } from '@/utils/constants'
 
 export default {
   name: 'MeetColorContainer',
@@ -27,10 +27,9 @@ export default {
     },
   },
   computed: {
-    ...mapState('category', ['categories']),
     categoryColor() {
       const currentCategory = ({ name }) => name === this.category
-      const targetCategory = this.categories.find(currentCategory)
+      const targetCategory = CATEGORIES.find(currentCategory)
 
       const { color } = targetCategory
       return { backgroundColor: rgba(color, 0.1), sidebarColor: color }
