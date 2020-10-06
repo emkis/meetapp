@@ -1,20 +1,20 @@
 <template>
   <div class="meet" :class="{ selected }">
-    <MeetOptions v-if="hasOptions" :handlers="optionHandlers" />
-    <MeetContent :content="contentProps" />
+    <MeetColorContainer :category="category">
+      <MeetOptions v-if="hasOptions" :handlers="optionHandlers" />
+      <MeetContent :content="contentProps" />
+    </MeetColorContainer>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { rgba } from 'polished'
-
 import MeetContent from './MeetContent'
 import MeetOptions from './MeetOptions'
+import MeetColorContainer from './MeetColorContainer'
 
 export default {
   name: 'Meet',
-  components: { MeetContent, MeetOptions },
+  components: { MeetContent, MeetOptions, MeetColorContainer },
   props: {
     id: { type: [String, Number], required: true },
     title: { type: String, required: true },
@@ -24,22 +24,7 @@ export default {
     schedule: { type: Object, default: () => ({}) },
     selected: { type: Boolean, default: false },
   },
-  mounted() {
-    this.setCategoryColors()
-  },
-  methods: {
-    setCategoryColors() {
-      const { backgroundColor, sidebarColor } = this.categoryColor
-
-      this.$el.style.setProperty('--color-background', backgroundColor)
-      this.$el.style.setProperty('--color-sidebar', sidebarColor)
-    },
-    resetCategoryColors() {
-      this.$el.style = ''
-    },
-  },
   computed: {
-    ...mapState('category', ['categories']),
     optionHandlers() {
       const editHandler = () => {
         this.$store.dispatch('form/setFields', {
@@ -64,21 +49,6 @@ export default {
         duration: this.duration,
         schedule: this.schedule,
       }
-    },
-    categoryColor() {
-      const targetCategory = this.categories.find(
-        (item) => item.name === this.category
-      )
-
-      const { color } = targetCategory
-
-      return { backgroundColor: rgba(color, 0.1), sidebarColor: color }
-    },
-  },
-  watch: {
-    category() {
-      this.resetCategoryColors()
-      this.setCategoryColors()
     },
   },
 }
@@ -105,7 +75,7 @@ export default {
     border-color: var(--color-sidebar);
   }
 
-  //sidebar
+  // left border
   &::before {
     position: absolute;
     content: '';
