@@ -15,11 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.active {
-  --background-color: var(--color-primary-faded) !important;
-  --border-color: var(--color-primary) !important;
-}
-
 .category-button {
   --background-color: var(--color-gray-primary);
   --border-color: transparent;
@@ -29,6 +24,7 @@ export default {
   display: inline-block;
   flex-shrink: 0;
   padding: rem(12px 25px);
+  user-select: none;
   cursor: pointer;
 
   border: 2px solid var(--border-color);
@@ -38,6 +34,11 @@ export default {
   font-weight: 400;
   transition: background $timing ease-in, border $timing ease-in,
     transform $timing ease-in;
+
+  &.active {
+    --background-color: var(--color-primary-faded) !important;
+    --border-color: var(--color-primary) !important;
+  }
 
   &:not(:last-child) {
     margin-right: rem(15px);
