@@ -7,7 +7,7 @@
         :id="meet.id"
         :title="meet.title"
         :category="meet.category"
-        :durationInMinutes="meet.duration"
+        :duration="meet.duration"
         :hasOptions="meet.id !== currentMeetId"
         :selected="meet.id === currentMeetId"
       />

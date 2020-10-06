@@ -1,18 +1,7 @@
 <template>
   <div class="meet" :class="{ selected }">
-    <ContextMenuClickableArea v-if="hasOptions" :options="options">
-      <button type="button" class="options">
-        <IconOptions size="35" color="#26265e" />
-      </button>
-    </ContextMenuClickableArea>
-
-    <h4 class="title">{{ title }}</h4>
-    <p class="category">{{ category }}</p>
-
-    <strong class="time">
-      <IconClock size="20" color="#26265e" />
-      {{ timeText }}
-    </strong>
+    <MeetOptions v-if="hasOptions" :handlers="optionHandlers" />
+    <MeetContent :content="contentProps" />
   </div>
 </template>
 
@@ -20,38 +9,25 @@
 import { mapState } from 'vuex'
 import { rgba } from 'polished'
 
-import { IconOptions, IconClock } from '@/components/icons'
-import ButtonConfirm from '@/components/ButtonConfirm'
-import ContextMenuClickableArea from '@/components/ContextMenuClickableArea'
+import MeetContent from './MeetContent'
+import MeetOptions from './MeetOptions'
 
 export default {
-  components: { IconOptions, IconClock, ContextMenuClickableArea },
+  name: 'Meet',
+  components: { MeetContent, MeetOptions },
   props: {
     id: { type: [String, Number], required: true },
     title: { type: String, required: true },
     category: { type: String, required: true },
-    durationInMinutes: [String, Number],
+    duration: [String, Number],
     hasOptions: { type: Boolean, default: false },
-    schedule: { type: Object, default: () => ({ startTime: '', endTime: '' }) },
+    schedule: { type: Object, default: () => ({}) },
     selected: { type: Boolean, default: false },
   },
   mounted() {
     this.setCategoryColors()
   },
   methods: {
-    editMeetFunction() {
-      this.$store.dispatch('form/setFields', {
-        id: this.id,
-        title: this.title,
-        category: this.category,
-        duration: this.durationInMinutes,
-      })
-    },
-    removeMeetFunction() {
-      this.$store.dispatch('meet/delete', this.id)
-      this.$store.dispatch('contextMenu/close')
-    },
-
     setCategoryColors() {
       const { backgroundColor, sidebarColor } = this.categoryColor
 
@@ -64,31 +40,30 @@ export default {
   },
   computed: {
     ...mapState('category', ['categories']),
-    options() {
-      return [
-        { label: 'Edit meet', action: this.editMeetFunction },
-        {
-          component: ButtonConfirm,
-          props: {
-            label: 'Remove meet',
-            confirmAction: this.removeMeetFunction,
-          },
-        },
-      ]
-    },
-    timeText() {
-      return this.durationInMinutes
-        ? this.durationFormatted
-        : this.scheduleFormatted
-    },
-    durationFormatted() {
-      return `${this.durationInMinutes}min`
-    },
-    scheduleFormatted() {
-      const { startTime, endTime } = this.schedule
-      if (!startTime && !endTime) return 'Schedule not defined yet'
+    optionHandlers() {
+      const editHandler = () => {
+        this.$store.dispatch('form/setFields', {
+          id: this.id,
+          title: this.title,
+          category: this.category,
+          duration: this.duration,
+        })
+      }
 
-      return `${startTime} - ${endTime}`
+      const deleteHandler = () => {
+        this.$store.dispatch('meet/delete', this.id)
+        this.$store.dispatch('contextMenu/close')
+      }
+
+      return { editHandler, deleteHandler }
+    },
+    contentProps() {
+      return {
+        title: this.title,
+        category: this.category,
+        duration: this.duration,
+        schedule: this.schedule,
+      }
     },
     categoryColor() {
       const targetCategory = this.categories.find(
@@ -144,19 +119,19 @@ export default {
     border-bottom-left-radius: var(--border-radius);
   }
 
-  .title {
+  ::v-deep .title {
     font-size: rem(20px);
     font-family: $font-body;
     line-height: 1.3;
   }
 
-  .category {
+  ::v-deep .category {
     margin: rem(6px 0 10px);
     font-size: rem(16px);
     line-height: 1.5;
   }
 
-  .time {
+  ::v-deep .time {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -170,7 +145,7 @@ export default {
     }
   }
 
-  .options {
+  ::v-deep .options {
     all: unset;
     position: absolute;
     top: rem(20px);
