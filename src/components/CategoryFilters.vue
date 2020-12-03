@@ -1,6 +1,6 @@
 <template>
   <section id="category-filters">
-    <h4 class="title">Categories</h4>
+    <strong class="title">Categories</strong>
 
     <div class="filters">
       <CategoryButton
@@ -74,6 +74,7 @@ export default {
     margin-right: rem(20px);
 
     font-size: rem(18px);
+    font-family: $font-title;
     color: var(--color-primary);
   }
 
