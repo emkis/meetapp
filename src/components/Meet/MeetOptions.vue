@@ -1,6 +1,6 @@
 <template>
   <ContextMenuClickableArea :options="options">
-    <button type="button" class="options">
+    <button class="options" type="button" aria-label="Meet options">
       <IconOptions size="35" color="#26265e" />
     </button>
   </ContextMenuClickableArea>
