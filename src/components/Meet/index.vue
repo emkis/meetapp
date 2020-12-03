@@ -91,7 +91,6 @@ export default {
 
   ::v-deep .title {
     font-size: rem(20px);
-    font-family: $font-body;
     line-height: 1.3;
   }
 
