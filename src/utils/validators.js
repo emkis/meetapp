@@ -19,3 +19,12 @@ export const isGreaterThanZero = (number) => {
 export const isNumber = (value) => typeof value === 'number' && isFinite(value)
 
 export const isArrayEmpty = (targetArray) => targetArray.length === 0
+
+export function isJSON(stringToTest) {
+  try {
+    JSON.parse(stringToTest)
+    return true
+  } catch {
+    return false
+  }
+}
