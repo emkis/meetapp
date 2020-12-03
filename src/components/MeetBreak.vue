@@ -1,6 +1,6 @@
 <template>
   <div class="meet-break">
-    <h4 class="title">{{ title }}</h4>
+    <strong class="title">{{ title }}</strong>
 
     <strong class="time">
       <IconClock size="20" />
