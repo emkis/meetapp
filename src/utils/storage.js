@@ -1,9 +1,16 @@
+import { isJSON } from '@/utils/validators'
+
 export function getFromStorage(key) {
-  const isKeyInStorage = Boolean(localStorage.getItem(key))
+  const data = localStorage.getItem(key)
+  const isKeyInStorage = Boolean(data)
 
   if (isKeyInStorage) {
     try {
-      return JSON.parse(localStorage.getItem(key))
+      if (isJSON(data)) {
+        return JSON.parse(data)
+      } else {
+        return data
+      }
     } catch {
       localStorage.removeItem(key)
     }
