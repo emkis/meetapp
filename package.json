@@ -12,7 +12,7 @@
     "report": "vue-cli-service build --report"
   },
   "dependencies": {
-    "core-js": "^3.8.0",
+    "core-js": "^3.8.1",
     "normalize.css": "^8.0.1",
     "number-to-words": "^1.2.4",
     "polished": "^4.0.5",
@@ -36,12 +36,12 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/test-utils": "^1.1.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.14.0",
+    "eslint": "^7.15.0",
     "eslint-plugin-jest": "^24.1.3",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^7.1.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-vue": "^7.2.0",
     "prettier": "^2.2.1",
-    "sass": "^1.29.0",
+    "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "vue-template-compiler": "^2.6.12"
   }
